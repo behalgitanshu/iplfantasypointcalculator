@@ -6,6 +6,7 @@ import { Team, Bowling, Batting, Player } from "../model/model";
 import { GridApi } from "ag-grid-community";
 import ReactDropdown from "react-dropdown";
 import 'react-dropdown/style.css';
+import { ClipLoader } from "react-spinners";
 
 export class Scoreboard extends React.Component<{}, {
     showGrid: boolean,
@@ -21,7 +22,7 @@ export class Scoreboard extends React.Component<{}, {
     }
 
     private fixtures: { [key: string]: any } = require("./../data/fixtures.json");
-    private fixtureList: { title: string, id: string }[] = [];
+    private fixtureList: { title: string, id: string, startTime: string }[] = [];
     private data: { [key: string]: any } = require("./../data/cricInfoData.json");
     private playerMap: { [key: string]: Player } = {};
     private gridApi: GridApi = {} as GridApi;
@@ -49,6 +50,7 @@ export class Scoreboard extends React.Component<{}, {
                 return {
                     title: match.shortName + " " + match.description,
                     id: match.id,
+                    startTime: match.startDate,
                 }
             }
         );
@@ -71,10 +73,19 @@ export class Scoreboard extends React.Component<{}, {
                             }
                         );
                     }}
+                    value={this.getCurrentMatch()}
                     placeholder="Please select a match" />
                 {
-                    this.data["header"]["matchEvent"]["statusLabel"] !== "Result"
-                    && <label> Match not completed yet!! :(</label>
+                    this.data["header"]["matchEvent"]["statusLabel"] === "Scheduled"
+                    && <label> Match has not started yet</label>
+                }
+                {
+                    !this.state.showGrid &&
+                    <ClipLoader
+                        size={50}
+                        color={"#123abc"}
+                        loading={true}
+                    />
                 }
                 {
                     this.state.showGrid &&
@@ -84,7 +95,7 @@ export class Scoreboard extends React.Component<{}, {
                         }}
                     >
                         Export to Excel
-                </button>
+                    </button>
                 }
                 {
                     this.state.showGrid &&
@@ -123,12 +134,27 @@ export class Scoreboard extends React.Component<{}, {
         );
     }
 
+    private getCurrentMatch(): any {
+        const now: Date = new Date();
+        let currentMatch: any;
+        this.fixtureList.map((match: any) => {
+            if (new Date(match.startTime) < now) {
+                currentMatch = match;
+            }
+        });
+        this.fetchData(this.getJSONUrl(currentMatch.id));
+        return {
+            label: currentMatch.title,
+            value: currentMatch.id,
+        }
+    }
+
     private getJSONUrl(eventId: string): string {
         return "https://hsapi.espncricinfo.com/v1/pages/match/scoreboard?lang=en&leagueId=8048&eventId=" + eventId + "&liveTest=false&qaTest=false";
     }
 
     private processData() {
-        if (this.data["header"]["matchEvent"]["statusLabel"] === "Result") {
+        if (this.data["header"]["matchEvent"]["statusLabel"] !== "Scheduled") {
             Object.keys(this.playerMap).length === 0 && this.data["content"]["teams"].map(
                 (team: Team) => {
                     team.players.map(
@@ -315,7 +341,7 @@ export class Scoreboard extends React.Component<{}, {
                 // milestones points
                 points += player.fours;
                 points += 2 * player.sixes;
-                if (player.runs === 0 && player.roleId !== "BL") {
+                if (player.runs === 0 && player.roleId !== "BL" && !player.shortText && player.shortText !== "not out") {
                     points -= 5;
                 }
                 player.battingPoints = points;

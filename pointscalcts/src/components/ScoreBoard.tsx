@@ -3,67 +3,91 @@ import { AgGridColumn, AgGridReact } from 'ag-grid-react';
 import './ag-grid.css';
 import 'ag-grid-community/dist/styles/ag-theme-alpine.css';
 import { Team, Bowling, Batting, Player } from "../model/model";
-import { ValueGetterParams } from "ag-grid-community";
-import { decode } from "punycode";
+import { GridApi } from "ag-grid-community";
 
-export class Scoreboard extends React.Component<{}> {
+export class Scoreboard extends React.Component<{}, { showGrid: boolean }> {
 
-    // private getData(){
-    //     fetch("https://hsapi.espncricinfo.com/v1/pages/match/scoreboard?lang=en&leagueId=8048&eventId=1216492&liveTest=false&qaTest=false").then(
-    //         (data: any) => {
-    //             console.log(data);
-    //         }
-    //     );
-    // }
+    constructor(props: any) {
+        super(props);
+        this.state = {
+            showGrid: false,
+        }
+    }
 
     private data: { [key: string]: any } = require("./../data/cricInfoData.json");
     private playerMap: { [key: string]: Player } = {};
+    private gridApi: GridApi = {} as GridApi;
+    private showGrid: boolean = false;
 
     render() {
-        this.processData();
-        // this.writeToExcel();
         return this.viewPointsTable();
     }
 
     private viewPointsTable() {
         return (
             <div>
-                <div className="ag-theme-alpine" style={{ height: '600px', width: '1200px' }}>
-                    <AgGridReact
-                        rowData={Object.values(this.playerMap)}>
-                        <AgGridColumn field="team"></AgGridColumn>
-                        <AgGridColumn field="fullName"></AgGridColumn>
-                        <AgGridColumn field="name"></AgGridColumn>
-                        <AgGridColumn field="roleId"></AgGridColumn>
-                        <AgGridColumn field="shortText"></AgGridColumn>
-                        <AgGridColumn field="runs"></AgGridColumn>
-                        <AgGridColumn field="ballsFaced"></AgGridColumn>
-                        <AgGridColumn field="fours"></AgGridColumn>
-                        <AgGridColumn field="sixes"></AgGridColumn>
-                        <AgGridColumn field="strikeRate"></AgGridColumn>
-                        <AgGridColumn field="overs"></AgGridColumn>
-                        <AgGridColumn field="maidens"></AgGridColumn>
-                        <AgGridColumn field="wickets"></AgGridColumn>
-                        <AgGridColumn field="dots"></AgGridColumn>
-                        <AgGridColumn field="economyRate"></AgGridColumn>
-                        <AgGridColumn field="fielding"></AgGridColumn>
-                        <AgGridColumn field="battingPoints"></AgGridColumn>
-                        <AgGridColumn field="bowlingPoints"></AgGridColumn>
-                        <AgGridColumn field="fieldingPoints"></AgGridColumn>
-                        <AgGridColumn field="specialPoints"></AgGridColumn>
-                        <AgGridColumn field="totalPoints"></AgGridColumn>
-                    </AgGridReact>
-                </div>
+                <label>JSON data:
+                        <input type="text" name="json" id="input" />
+                </label>
+                <input type="submit" value="Submit" onClick={
+                    () => {
+                        const element: any = document.getElementById("input");
+                        this.playerMap = {};
+                        this.processData(element.value);
+                    }
+                } />
+                {
+                    this.state.showGrid &&
+                    <button
+                        onClick={() => {
+                            this.gridApi.exportDataAsCsv();
+                        }}
+                    >
+                        Export
+                </button>
+                }
+                {
+                    this.state.showGrid &&
+                    <div className="ag-theme-alpine" style={{ height: '600px', width: '1200px' }}>
+                        <AgGridReact
+                            rowData={Object.values(this.playerMap)}
+                            onGridReady={(params) => {
+                                this.gridApi = params.api;
+                            }}>
+                            <AgGridColumn field="team"></AgGridColumn>
+                            <AgGridColumn field="fullName"></AgGridColumn>
+                            <AgGridColumn field="name"></AgGridColumn>
+                            <AgGridColumn field="roleId"></AgGridColumn>
+                            <AgGridColumn field="shortText"></AgGridColumn>
+                            <AgGridColumn field="runs"></AgGridColumn>
+                            <AgGridColumn field="ballsFaced"></AgGridColumn>
+                            <AgGridColumn field="fours"></AgGridColumn>
+                            <AgGridColumn field="sixes"></AgGridColumn>
+                            <AgGridColumn field="strikeRate"></AgGridColumn>
+                            <AgGridColumn field="overs"></AgGridColumn>
+                            <AgGridColumn field="maidens"></AgGridColumn>
+                            <AgGridColumn field="wickets"></AgGridColumn>
+                            <AgGridColumn field="dots"></AgGridColumn>
+                            <AgGridColumn field="economyRate"></AgGridColumn>
+                            <AgGridColumn field="fielding"></AgGridColumn>
+                            <AgGridColumn field="battingPoints"></AgGridColumn>
+                            <AgGridColumn field="bowlingPoints"></AgGridColumn>
+                            <AgGridColumn field="fieldingPoints"></AgGridColumn>
+                            <AgGridColumn field="specialPoints"></AgGridColumn>
+                            <AgGridColumn field="totalPoints"></AgGridColumn>
+                        </AgGridReact>
+                    </div>
+                }
             </div>
         );
     }
 
-    private processData() {
-        this.getTeams();
-    }
-
-    private getTeams() {
-        this.data = require("./../data/cricInfoData.json");
+    private processData(json: string) {
+        if (json === "test" || !json) {
+            this.data = require("./../data/cricInfoData.json");
+        } else {
+            this.data = JSON.parse(json);
+        }
         Object.keys(this.playerMap).length === 0 && this.data["content"]["teams"].map(
             (team: Team) => {
                 team.players.map(
@@ -105,7 +129,8 @@ export class Scoreboard extends React.Component<{}> {
                 );
             }
         );
-
-
+        this.setState(
+            { showGrid: true }
+        )
     }
 }

@@ -1,1 +1,1 @@
-# iplfantasypointcalculator
+# An app made for calcuating points of IPL 2020

@@ -353,7 +353,7 @@ export class Scoreboard extends React.Component<{}, {
                 // milestones points
                 points += player.fours;
                 points += 2 * player.sixes;
-                if (player.runs === 0 && player.roleId !== "BL" && !player.shortText && player.shortText !== "not out") {
+                if (player.runs === 0 && player.roleId !== "BL" && player.shortText && player.shortText !== "not out") {
                     points -= 5;
                 }
                 player.battingPoints = points;

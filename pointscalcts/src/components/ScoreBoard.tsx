@@ -11,13 +11,15 @@ import { ClipLoader } from "react-spinners";
 export class Scoreboard extends React.Component<{}, {
     showGrid: boolean,
     title: string,
+    errorMessage: string,
 }> {
 
     constructor(props: any) {
         super(props);
         this.state = {
             showGrid: false,
-            title: "MI v CSK 1st Match (N), Indian Premier League at Abu Dhabi, Sep 19 2020",
+            title: "",
+            errorMessage: ""
         }
     }
 
@@ -41,6 +43,14 @@ export class Scoreboard extends React.Component<{}, {
                     this.data = x;
                     this.processData();
                 })
+            ).catch(
+                (error) => {
+                    this.setState(
+                        {
+                            errorMessage: "Server is down, please try after sometime"
+                        }
+                    );
+                }
             )
     }
 
@@ -58,6 +68,9 @@ export class Scoreboard extends React.Component<{}, {
 
     private viewPointsTable() {
 
+        if (this.state.errorMessage) {
+            return <h3>{this.state.errorMessage}</h3>;
+        }
         return (
             <div>
                 <h2>IPL fantasy league for F.R.I.E.N.D.S  - Points Table</h2>
@@ -135,13 +148,21 @@ export class Scoreboard extends React.Component<{}, {
     }
 
     private getCurrentMatch(): any {
-        const now: Date = new Date();
         let currentMatch: any;
-        this.fixtureList.map((match: any) => {
-            if (new Date(match.startTime) < now) {
-                currentMatch = match;
-            }
-        });
+        if (!this.state.title) {
+            const now: Date = new Date();
+            this.fixtureList.map((match: any) => {
+                if (new Date(match.startTime) < now) {
+                    currentMatch = match;
+                }
+            });
+        } else {
+            this.fixtureList.map((match: any) => {
+                if (match.title === this.state.title) {
+                    currentMatch = match;
+                }
+            });
+        }
         this.fetchData(this.getJSONUrl(currentMatch.id));
         return {
             label: currentMatch.title,

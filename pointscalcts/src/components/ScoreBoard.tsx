@@ -14,6 +14,13 @@ export class Scoreboard extends React.Component<{}, {
     errorMessage: string,
 }> {
 
+    private fixtures: { [key: string]: any } = require("./../data/fixtures.json");
+    private fixtureList: { title: string, id: string, startTime: string }[] = [];
+    private data: { [key: string]: any } = require("./../data/cricInfoData.json");
+    private playerMap: { [key: string]: Player } = {};
+    private gridApi: GridApi = {} as GridApi;
+    private placholder: string = "Select a team";
+
     constructor(props: any) {
         super(props);
         this.state = {
@@ -21,17 +28,10 @@ export class Scoreboard extends React.Component<{}, {
             title: "",
             errorMessage: ""
         }
+        this.getFixtureList();
     }
 
-    private fixtures: { [key: string]: any } = require("./../data/fixtures.json");
-    private fixtureList: { title: string, id: string, startTime: string }[] = [];
-    private data: { [key: string]: any } = require("./../data/cricInfoData.json");
-    private playerMap: { [key: string]: Player } = {};
-    private gridApi: GridApi = {} as GridApi;
-    private showGrid: boolean = false;
-
     render() {
-        this.getFixtureList();
         return this.viewPointsTable();
     }
 
@@ -47,7 +47,7 @@ export class Scoreboard extends React.Component<{}, {
                 (error) => {
                     this.setState(
                         {
-                            errorMessage: "Server is down, please try after sometime"
+                            errorMessage: "kuchh to gadbad hai!!"
                         }
                     );
                 }
@@ -64,6 +64,20 @@ export class Scoreboard extends React.Component<{}, {
                 }
             }
         );
+        const id: string = this.getCurrentMatch();
+        this.fetchData(this.getJSONUrl(id));
+    }
+
+    private getCurrentMatch(): any {
+        let currentMatch: any;
+        const now: Date = new Date();
+        this.fixtureList.map((match: any) => {
+            if (new Date(match.startTime) < now) {
+                currentMatch = match;
+            }
+        });
+        this.placholder = currentMatch.title;
+        return currentMatch.id;
     }
 
     private viewPointsTable() {
@@ -86,14 +100,14 @@ export class Scoreboard extends React.Component<{}, {
                             }
                         );
                     }}
-                    value={this.getCurrentMatch()}
-                    placeholder="Please select a match" />
+                    placeholder={"Latest: " + this.placholder} />
                 {
                     this.data["header"]["matchEvent"]["statusLabel"] === "Scheduled"
-                    && <label> Match has not started yet</label>
+                    && <label> Thoda ruko, jab match chalu hoga tab aana </label>
                 }
                 {
                     !this.state.showGrid &&
+                    this.data["header"]["matchEvent"]["statusLabel"] !== "Scheduled" &&
                     <ClipLoader
                         size={50}
                         color={"#123abc"}
@@ -145,30 +159,6 @@ export class Scoreboard extends React.Component<{}, {
                 }
             </div>
         );
-    }
-
-    private getCurrentMatch(): any {
-        let currentMatch: any;
-        if (!this.state.title) {
-            const now: Date = new Date();
-            this.fixtureList.map((match: any) => {
-                if (new Date(match.startTime) < now) {
-                    currentMatch = match;
-                }
-            });
-        } else {
-            this.fixtureList.map((match: any) => {
-                if (match.title === this.state.title) {
-                    currentMatch = match;
-                }
-            });
-        }
-        this.playerMap = {};
-        this.fetchData(this.getJSONUrl(currentMatch.id));
-        return {
-            label: currentMatch.title,
-            value: currentMatch.id,
-        }
     }
 
     private getJSONUrl(eventId: string): string {

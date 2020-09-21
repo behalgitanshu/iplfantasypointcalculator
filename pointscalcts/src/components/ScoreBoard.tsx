@@ -4,52 +4,106 @@ import './ag-grid.css';
 import 'ag-grid-community/dist/styles/ag-theme-alpine.css';
 import { Team, Bowling, Batting, Player } from "../model/model";
 import { GridApi } from "ag-grid-community";
+import ReactDropdown from "react-dropdown";
+import 'react-dropdown/style.css';
 
-export class Scoreboard extends React.Component<{}, { showGrid: boolean }> {
+export class Scoreboard extends React.Component<{}, {
+    showGrid: boolean,
+    matchData: {
+        title: string,
+        id: string,
+    }
+}> {
 
     constructor(props: any) {
         super(props);
         this.state = {
             showGrid: false,
+            matchData: {
+                title: "MI v CSK 1st Match (N), Indian Premier League at Abu Dhabi, Sep 19 2020",
+                id: "1216492"
+            }
         }
     }
 
+    private fixtures: { [key: string]: any } = require("./../data/fixtures.json");
+    private fixtureList: { title: string, id: string }[] = [];
     private data: { [key: string]: any } = require("./../data/cricInfoData.json");
     private playerMap: { [key: string]: Player } = {};
     private gridApi: GridApi = {} as GridApi;
     private showGrid: boolean = false;
 
     render() {
+        this.getFixtureList();
         return this.viewPointsTable();
     }
 
+    private getFixtureList() {
+        this.fixtureList = this.fixtures["content"]["matchEvents"].map(
+            (match: any) => {
+                return {
+                    title: match.shortName + " " + match.description,
+                    id: match.id,
+                }
+            }
+        );
+    }
+
     private viewPointsTable() {
+
         return (
             <div>
-                <label>
-                    Get JSON from <a target="_blank" href="https://hsapi.espncricinfo.com/v1/pages/match/scoreboard?lang=en&leagueId=8048&eventId=1216492&liveTest=false&qaTest=false">Cricinfo API</a> :: update event id from espncricinfo in the url.
-                </label>
-                <br />
-                <label>JSON data:
-                        <input type="text" name="json" id="input" />
-                </label>
-                <input type="submit" value="Submit" onClick={
-                    () => {
-                        const element: any = document.getElementById("input");
-                        this.playerMap = {};
-                        this.processData(element.value);
-                    }
-                } />
-                {
-                    this.state.showGrid &&
-                    <button
-                        onClick={() => {
-                            this.gridApi.exportDataAsCsv();
-                        }}
-                    >
-                        Export
+                <ReactDropdown
+                    options={this.fixtureList.map((match: any) => { return { label: match.title, value: match.id } })}
+                    onChange={(option: any) => {
+                        this.setState(
+                            {
+                                matchData: {
+                                    id: option.value,
+                                    title: option.label,
+                                }
+                            }
+                        );
+                    }}
+                    placeholder="Sample Input" />
+                <div style={{ display: "flex", flexDirection: "column" }}>
+                    <label>
+                        Match Title: {this.state.matchData.title}
+                    </label>
+                    <label>
+                        Match ID: {this.state.matchData.id}
+                    </label>
+                    <label>
+                        JSON Data link: <a target="_blank" href={this.getJSONUrl()}>Click here</a>
+                    </label>
+                    <div style={{ display: "flex", flexDirection: "row" }}>
+                        <label>JSON data:
+                            <input type="text" name="json" id="input" />
+                        </label>
+                        <input type="submit" value="Submit" onClick={
+                            () => {
+                                const element: any = document.getElementById("input");
+                                this.playerMap = {};
+                                this.processData(element.value);
+                            }
+                        } />
+                        {
+                            this.state.showGrid &&
+                            <button
+                                onClick={() => {
+                                    this.gridApi.exportDataAsCsv();
+                                }}
+                            >
+                                Export to Excel
                 </button>
-                }
+                        }
+
+                    </div>
+                    {
+                        this.data["header"]["matchEvent"]["statusLabel"] !== "Result" &&
+                        <label> Match not completed yet!! :(</label>
+                    }
+                </div>
                 {
                     this.state.showGrid &&
                     <div className="ag-theme-alpine" style={{ height: '600px', width: '1250px' }}>
@@ -87,82 +141,93 @@ export class Scoreboard extends React.Component<{}, { showGrid: boolean }> {
         );
     }
 
+    private getJSONUrl(): string | undefined {
+        return "https://hsapi.espncricinfo.com/v1/pages/match/scoreboard?lang=en&leagueId=8048&eventId=" + this.state.matchData.id + "&liveTest=false&qaTest=false";
+    }
+
     private processData(json: string) {
         if (json === "test" || !json) {
             this.data = require("./../data/cricInfoData.json");
         } else {
             this.data = JSON.parse(json);
         }
-        Object.keys(this.playerMap).length === 0 && this.data["content"]["teams"].map(
-            (team: Team) => {
-                team.players.map(
-                    (player: Player) => {
-                        player.fullName=player.name;
-                        player.battingPoints=0;
-                        player.bowlingPoints=0;
-                        player.fieldingPoints=0;
-                        player.specialPoints=0;
-                        player.totalPoints=0;
-                        player.team=team.title;
-                        player.runs=0;
-                        player.ballsFaced=0;
-                        player.fours=0;
-                        player.sixes=0;
-                        player.strikeRate=0;
-                        player.ballsBowled=0;
-                        player.maidens=0;
-                        player.wickets=0;
-                        player.dots=0;
-                        player.economyRate=0;
-                        player.fieldingActions=0;
-                        player.conceded=0;
-                        this.playerMap[player.fullName] = player;
-                    }
-                );
-            }
-        );
+        if (this.data["header"]["matchEvent"]["statusLabel"] === "Result") {
+            Object.keys(this.playerMap).length === 0 && this.data["content"]["teams"].map(
+                (team: Team) => {
+                    team.players.map(
+                        (player: Player) => {
+                            player.fullName = player.name;
+                            player.battingPoints = 0;
+                            player.bowlingPoints = 0;
+                            player.fieldingPoints = 0;
+                            player.specialPoints = 0;
+                            player.totalPoints = 0;
+                            player.team = team.title;
+                            player.runs = 0;
+                            player.ballsFaced = 0;
+                            player.fours = 0;
+                            player.sixes = 0;
+                            player.strikeRate = 0;
+                            player.ballsBowled = 0;
+                            player.maidens = 0;
+                            player.wickets = 0;
+                            player.dots = 0;
+                            player.economyRate = 0;
+                            player.fieldingActions = 0;
+                            player.conceded = 0;
+                            this.playerMap[player.fullName] = player;
+                        }
+                    );
+                }
+            );
 
-        this.data["content"]["innings"].map(
-            (inn: any) => {
-                inn["batsmen"].map(
-                    (battingData: Batting) => {
-                        this.playerMap[battingData.fullName].ballsFaced = parseInt(battingData.ballsFaced);
-                        this.playerMap[battingData.fullName].fours = parseInt(battingData.fours);
-                        this.playerMap[battingData.fullName].fullName = battingData.fullName;
-                        this.playerMap[battingData.fullName].name = battingData.name;
-                        this.playerMap[battingData.fullName].runs = parseInt(battingData.runs);
-                        this.playerMap[battingData.fullName].shortText = (battingData.shortText)
-                            .replace(/&[^dagger;]*dagger;?/gm, '')
-                            .replace(/&[^amp;]*amp;?/gm, '&');
-                        this.playerMap[battingData.fullName].sixes = parseInt(battingData.sixes);
-                        this.playerMap[battingData.fullName].strikeRate = parseFloat(battingData.strikeRate);
-                    }
-                );
-                inn["bowlers"].map(
-                    (bowlData: Bowling) => {
-                        this.playerMap[bowlData.fullName].dots = parseInt(bowlData.dots);
-                        this.playerMap[bowlData.fullName].economyRate = parseFloat(bowlData.economyRate);
-                        this.playerMap[bowlData.fullName].fullName = bowlData.fullName;
-                        this.playerMap[bowlData.fullName].maidens = parseInt(bowlData.maidens);
-                        this.playerMap[bowlData.fullName].name = bowlData.name;
-                        this.playerMap[bowlData.fullName].ballsBowled = this.getNumberOfBallsBowled(bowlData.overs);
-                        this.playerMap[bowlData.fullName].wickets = parseInt(bowlData.wickets);
-                        this.playerMap[bowlData.fullName].conceded = parseInt(bowlData.conceded);
-                    }
-                );
-            }
-        );
-        this.calculatePoints();
-        this.setState(
-            { showGrid: true }
-        )
+            this.data["content"]["innings"].map(
+                (inn: any) => {
+                    inn["batsmen"].map(
+                        (battingData: Batting) => {
+                            this.playerMap[battingData.fullName].ballsFaced = parseInt(battingData.ballsFaced);
+                            this.playerMap[battingData.fullName].fours = parseInt(battingData.fours);
+                            this.playerMap[battingData.fullName].fullName = battingData.fullName;
+                            this.playerMap[battingData.fullName].name = battingData.name;
+                            this.playerMap[battingData.fullName].runs = parseInt(battingData.runs);
+                            this.playerMap[battingData.fullName].shortText = (battingData.shortText)
+                                .replace(/&[^dagger;]*dagger;?/gm, '')
+                                .replace(/&[^amp;]*amp;?/gm, '&');
+                            this.playerMap[battingData.fullName].sixes = parseInt(battingData.sixes);
+                            this.playerMap[battingData.fullName].strikeRate = parseFloat(battingData.strikeRate);
+                        }
+                    );
+                    inn["bowlers"].map(
+                        (bowlData: Bowling) => {
+                            this.playerMap[bowlData.fullName].dots = parseInt(bowlData.dots);
+                            this.playerMap[bowlData.fullName].economyRate = parseFloat(bowlData.economyRate);
+                            this.playerMap[bowlData.fullName].fullName = bowlData.fullName;
+                            this.playerMap[bowlData.fullName].maidens = parseInt(bowlData.maidens);
+                            this.playerMap[bowlData.fullName].name = bowlData.name;
+                            this.playerMap[bowlData.fullName].ballsBowled = this.getNumberOfBallsBowled(bowlData.overs);
+                            this.playerMap[bowlData.fullName].wickets = parseInt(bowlData.wickets);
+                            this.playerMap[bowlData.fullName].conceded = parseInt(bowlData.conceded);
+                        }
+                    );
+                }
+            );
+            this.calculatePoints();
+            this.setState(
+                { showGrid: true }
+            )
+        } else {
+            // refresh page
+            this.setState({
+                matchData: this.state.matchData
+            });
+        }
     }
 
     private getNumberOfBallsBowled(overs: string): number {
         let balls = 0;
         const str: string[] = overs.split('.');
-        balls+= 6*(parseInt(str[0]));
-        if(str.length == 2){
+        balls += 6 * (parseInt(str[0]));
+        if (str.length == 2) {
             balls += parseInt(str[1]);
         }
         return balls;
@@ -179,11 +244,11 @@ export class Scoreboard extends React.Component<{}, { showGrid: boolean }> {
     private calculateSpecialPoints() {
         // MOM
         const playerName: string = this.data["header"]["bestPlayer"]["name"];
-        if(playerName){
+        if (playerName) {
             this.playerMap[playerName].specialPoints += 25;
         }
-        const winner:string = this.getNameOfWinningTeam();
-        if(winner){
+        const winner: string = this.getNameOfWinningTeam();
+        if (winner) {
             this.allocateWinningBonus(winner);
         }
     }
@@ -191,18 +256,18 @@ export class Scoreboard extends React.Component<{}, { showGrid: boolean }> {
     private allocateWinningBonus(winner: string) {
         Object.values(this.playerMap).map(
             (player: Player) => {
-                if(player.team === winner){
+                if (player.team === winner) {
                     player.specialPoints += 5;
                 }
             }
         );
     }
-    
+
     private getNameOfWinningTeam(): string {
         let winnerTeam: string = "";
         this.data["header"]["matchEvent"]["competitors"].map(
             (team: any) => {
-                if(team.isWinner){
+                if (team.isWinner) {
                     winnerTeam = team.name;
                 }
             }
@@ -215,20 +280,20 @@ export class Scoreboard extends React.Component<{}, { showGrid: boolean }> {
             (player: Player) => {
                 let text: string = player.shortText;
                 // Caught and bowled
-                if(text && text.indexOf("c & b ") > -1){
+                if (text && text.indexOf("c & b ") > -1) {
                     const playerName = text.substring(6);
                     this.allocateFieldingPointToPlayer(playerName, player.team);
                 }
                 // caught
-                if(text && text.indexOf("c ") > -1){
+                if (text && text.indexOf("c ") > -1) {
                     text = text.substring(2);
                     const playerName = text.split(" b")[0];
                     this.allocateFieldingPointToPlayer(playerName, player.team);
                 }
                 // run out
-                if(text && text.indexOf("run out (") > -1){
+                if (text && text.indexOf("run out (") > -1) {
                     text = text.substring(9);
-                    text = text.substring(0, text.length - 1);                    
+                    text = text.substring(0, text.length - 1);
                     text.split("/").map(
                         (playerName: string) => {
                             this.allocateFieldingPointToPlayer(playerName, player.team);
@@ -236,19 +301,19 @@ export class Scoreboard extends React.Component<{}, { showGrid: boolean }> {
                     );
                 }
                 // stumping
-                if(text && text.indexOf("st ") > -1){
+                if (text && text.indexOf("st ") > -1) {
                     text = text.substring(3);
                     const playerName = text.split(" b")[0];
                     this.allocateFieldingPointToPlayer(playerName, player.team);
                 }
-           }
+            }
         );
     }
 
     private allocateFieldingPointToPlayer(playerName: string, oppnentTeam: string) {
         Object.values(this.playerMap).map(
             (player: Player) => {
-                if(player.name.indexOf(playerName) > -1 && player.team != oppnentTeam){
+                if (player.name.indexOf(playerName) > -1 && player.team != oppnentTeam) {
                     player.fieldingActions++;
                     player.fieldingPoints += 10;
                 }
@@ -265,15 +330,15 @@ export class Scoreboard extends React.Component<{}, { showGrid: boolean }> {
                 // Pace points
                 points += (player.runs - player.ballsFaced)
                 // impact points
-                points += player.runs < 25 
-                            ? 0 : player.runs < 50 
-                                ? 5 : player.runs < 75
-                                    ? 15 : player.runs < 100
-                                        ? 30 : 50;
+                points += player.runs < 25
+                    ? 0 : player.runs < 50
+                        ? 5 : player.runs < 75
+                            ? 15 : player.runs < 100
+                                ? 30 : 50;
                 // milestones points
                 points += player.fours;
                 points += 2 * player.sixes;
-                if(player.runs === 0 && player.roleId !== "BL"){
+                if (player.runs === 0 && player.roleId !== "BL") {
                     points -= 5;
                 }
                 player.battingPoints = points;
@@ -291,11 +356,11 @@ export class Scoreboard extends React.Component<{}, { showGrid: boolean }> {
                 const pace: number = 1.5 * player.ballsBowled - player.conceded;
                 points += pace > 0 ? pace * 2 : pace;
                 // impact points
-                points += player.wickets < 2 
-                            ? 0 : player.wickets < 3 
-                                ? 5 : player.wickets < 4
-                                    ? 15 : player.wickets < 5
-                                        ? 30 : 50;
+                points += player.wickets < 2
+                    ? 0 : player.wickets < 3
+                        ? 5 : player.wickets < 4
+                            ? 15 : player.wickets < 5
+                                ? 30 : 50;
                 // milestones points
                 points += player.dots;
                 points += 25 * player.maidens;
@@ -307,10 +372,10 @@ export class Scoreboard extends React.Component<{}, { showGrid: boolean }> {
     private calculateTotalPoints() {
         Object.values(this.playerMap).map(
             (player: Player) => {
-                player.totalPoints = 
-                    player.battingPoints 
-                    + player.bowlingPoints 
-                    + player.fieldingPoints 
+                player.totalPoints =
+                    player.battingPoints
+                    + player.bowlingPoints
+                    + player.fieldingPoints
                     + player.specialPoints;
             }
         );

@@ -9,20 +9,14 @@ import 'react-dropdown/style.css';
 
 export class Scoreboard extends React.Component<{}, {
     showGrid: boolean,
-    matchData: {
-        title: string,
-        id: string,
-    }
+    title: string,
 }> {
 
     constructor(props: any) {
         super(props);
         this.state = {
             showGrid: false,
-            matchData: {
-                title: "MI v CSK 1st Match (N), Indian Premier League at Abu Dhabi, Sep 19 2020",
-                id: "1216492"
-            }
+            title: "MI v CSK 1st Match (N), Indian Premier League at Abu Dhabi, Sep 19 2020",
         }
     }
 
@@ -36,6 +30,17 @@ export class Scoreboard extends React.Component<{}, {
     render() {
         this.getFixtureList();
         return this.viewPointsTable();
+    }
+
+    private fetchData(url: string) {
+        const proxyurl = "https://cors-anywhere.herokuapp.com/"
+        fetch(proxyurl + url, { method: "get" })
+            .then(response => response.json()
+                .then(x => {
+                    this.data = x;
+                    this.processData();
+                })
+            )
     }
 
     private getFixtureList() {
@@ -53,57 +58,34 @@ export class Scoreboard extends React.Component<{}, {
 
         return (
             <div>
+                <h2>IPL fantasy league for F.R.I.E.N.D.S  - Points Table</h2>
                 <ReactDropdown
                     options={this.fixtureList.map((match: any) => { return { label: match.title, value: match.id } })}
                     onChange={(option: any) => {
+                        this.playerMap = {};
+                        this.fetchData(this.getJSONUrl(option.value));
                         this.setState(
                             {
-                                matchData: {
-                                    id: option.value,
-                                    title: option.label,
-                                }
+                                title: option.label,
+                                showGrid: false,
                             }
                         );
                     }}
-                    placeholder="Sample Input" />
-                <div style={{ display: "flex", flexDirection: "column" }}>
-                    <label>
-                        Match Title: {this.state.matchData.title}
-                    </label>
-                    <label>
-                        Match ID: {this.state.matchData.id}
-                    </label>
-                    <label>
-                        JSON Data link: <a target="_blank" href={this.getJSONUrl()}>Click here</a>
-                    </label>
-                    <div style={{ display: "flex", flexDirection: "row" }}>
-                        <label>JSON data:
-                            <input type="text" name="json" id="input" />
-                        </label>
-                        <input type="submit" value="Submit" onClick={
-                            () => {
-                                const element: any = document.getElementById("input");
-                                this.playerMap = {};
-                                this.processData(element.value);
-                            }
-                        } />
-                        {
-                            this.state.showGrid &&
-                            <button
-                                onClick={() => {
-                                    this.gridApi.exportDataAsCsv();
-                                }}
-                            >
-                                Export to Excel
+                    placeholder="Please select a match" />
+                {
+                    this.data["header"]["matchEvent"]["statusLabel"] !== "Result"
+                    && <label> Match not completed yet!! :(</label>
+                }
+                {
+                    this.state.showGrid &&
+                    <button
+                        onClick={() => {
+                            this.gridApi.exportDataAsCsv();
+                        }}
+                    >
+                        Export to Excel
                 </button>
-                        }
-
-                    </div>
-                    {
-                        this.data["header"]["matchEvent"]["statusLabel"] !== "Result" &&
-                        <label> Match not completed yet!! :(</label>
-                    }
-                </div>
+                }
                 {
                     this.state.showGrid &&
                     <div className="ag-theme-alpine" style={{ height: '600px', width: '1250px' }}>
@@ -141,16 +123,11 @@ export class Scoreboard extends React.Component<{}, {
         );
     }
 
-    private getJSONUrl(): string | undefined {
-        return "https://hsapi.espncricinfo.com/v1/pages/match/scoreboard?lang=en&leagueId=8048&eventId=" + this.state.matchData.id + "&liveTest=false&qaTest=false";
+    private getJSONUrl(eventId: string): string {
+        return "https://hsapi.espncricinfo.com/v1/pages/match/scoreboard?lang=en&leagueId=8048&eventId=" + eventId + "&liveTest=false&qaTest=false";
     }
 
-    private processData(json: string) {
-        if (json === "test" || !json) {
-            this.data = require("./../data/cricInfoData.json");
-        } else {
-            this.data = JSON.parse(json);
-        }
+    private processData() {
         if (this.data["header"]["matchEvent"]["statusLabel"] === "Result") {
             Object.keys(this.playerMap).length === 0 && this.data["content"]["teams"].map(
                 (team: Team) => {
@@ -218,7 +195,7 @@ export class Scoreboard extends React.Component<{}, {
         } else {
             // refresh page
             this.setState({
-                matchData: this.state.matchData
+                title: this.state.title
             });
         }
     }
@@ -243,7 +220,7 @@ export class Scoreboard extends React.Component<{}, {
 
     private calculateSpecialPoints() {
         // MOM
-        const playerName: string = this.data["header"]["bestPlayer"]["name"];
+        const playerName: string = this.data["header"]["bestPlayer"] ? this.data["header"]["bestPlayer"]["name"] : "";
         if (playerName) {
             this.playerMap[playerName].specialPoints += 25;
         }

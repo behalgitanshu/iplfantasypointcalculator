@@ -8,18 +8,19 @@ import { decode } from "punycode";
 
 export class Scoreboard extends React.Component<{}> {
 
-    // private getData(){
-    //     fetch("https://hsapi.espncricinfo.com/v1/pages/match/scoreboard?lang=en&leagueId=8048&eventId=1216492&liveTest=false&qaTest=false").then(
-    //         (data: any) => {
-    //             console.log(data);
-    //         }
-    //     );
-    // }
-
     private data: { [key: string]: any } = require("./../data/cricInfoData.json");
     private playerMap: { [key: string]: Player } = {};
 
+    private getData(){
+        fetch("https://hsapi.espncricinfo.com/v1/pages/match/scoreboard?lang=en&leagueId=8048&eventId=1216492&liveTest=false&qaTest=false").then(
+            (data: any) => {
+                console.log(data);
+            }
+        );
+    }
+
     render() {
+        this.getData();
         this.processData();
         // this.writeToExcel();
         return this.viewPointsTable();

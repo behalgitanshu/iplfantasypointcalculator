@@ -163,6 +163,7 @@ export class Scoreboard extends React.Component<{}, {
                 }
             });
         }
+        this.playerMap = {};
         this.fetchData(this.getJSONUrl(currentMatch.id));
         return {
             label: currentMatch.title,

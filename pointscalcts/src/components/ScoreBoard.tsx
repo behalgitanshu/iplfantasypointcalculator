@@ -95,11 +95,11 @@ export class Scoreboard extends React.Component<{}, {
                                 this.gridApi = params.api;
                             }}>
                             <AgGridColumn field="fullName"></AgGridColumn>
+                            <AgGridColumn field="totalPoints"></AgGridColumn>
                             <AgGridColumn field="battingPoints"></AgGridColumn>
                             <AgGridColumn field="bowlingPoints"></AgGridColumn>
                             <AgGridColumn field="fieldingPoints"></AgGridColumn>
                             <AgGridColumn field="specialPoints"></AgGridColumn>
-                            <AgGridColumn field="totalPoints"></AgGridColumn>
                             <AgGridColumn field="team"></AgGridColumn>
                             <AgGridColumn field="roleId"></AgGridColumn>
                             <AgGridColumn field="name"></AgGridColumn>

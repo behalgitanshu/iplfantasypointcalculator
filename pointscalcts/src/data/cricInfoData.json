@@ -1,0 +1,1789 @@
+{
+    "meta": {
+        "fullScore": "1st Match (N), Indian Premier League at Abu Dhabi, Sep 19 2020",
+        "homeTeamName": "Mumbai Indians",
+        "homeTeamAbbr": "MI",
+        "awayTeamName": "Chennai Super Kings",
+        "awayTeamAbbr": "CSK",
+        "matchNum": "1st Match",
+        "matchYear": "2020",
+        "domain": "/series/8048/game/1216492/mumbai-indians-vs-chennai-super-kings-1st-match-indian-premier-league-2020-21",
+        "leagueName": "Indian Premier League 2020",
+        "leagueAbbreviation": "IPL",
+        "battingTeamName": "chennaisuperkings"
+    },
+    "header": {
+        "title": "1st Match (N), Indian Premier League at Abu Dhabi, Sep 19 2020",
+        "slug": "mumbai-indians-vs-chennai-super-kings-1st-match-indian-premier-league-2020-21",
+        "matchEvent": {
+            "name": "Mumbai Indians v Chennai Super Kings",
+            "id": "1216492",
+            "description": "1st Match (N), Indian Premier League at Abu Dhabi, Sep 19 2020",
+            "shortDescription": "1st Match",
+            "date": "2020-09-19T14:00Z",
+            "startDate": "2020-09-19T14:00Z",
+            "endDate": "2020-09-21T23:59Z",
+            "links": [
+                {
+                    "text": "Summary",
+                    "href": "/series/8048/game/1216492/mumbai-indians-vs-chennai-super-kings-1st-match-indian-premier-league-2020-21",
+                    "isExternal": false
+                }
+            ],
+            "shortName": "MI v CSK",
+            "status": "post",
+            "statusLabel": "Result",
+            "statusText": "Super Kings won by 5 wickets",
+            "competitors": [
+                {
+                    "id": "335978",
+                    "name": "Mumbai Indians",
+                    "displayName": "Mumbai Indians",
+                    "shortName": "MI",
+                    "href": "/team/_/id/335978/mumbai-indians",
+                    "logoUrl": "/esci/i/teamlogos/cricket/500/335978.png",
+                    "score": "162/9",
+                    "isWinner": false,
+                    "isBatting": false
+                },
+                {
+                    "id": "335974",
+                    "name": "Chennai Super Kings",
+                    "displayName": "Chennai Super Kings",
+                    "shortName": "CSK",
+                    "href": "/team/_/id/335974/chennai-super-kings",
+                    "logoUrl": "/esci/i/teamlogos/cricket/500/335974.png",
+                    "score": "166/5 (19.2/20 ov, target 163)",
+                    "isWinner": true,
+                    "isBatting": false
+                }
+            ],
+            "format": "T20",
+            "isFastcastAvailable": false,
+            "leagueId": "8048",
+            "matchId": "1216492",
+            "internationalClassId": 0,
+            "generalClassId": 6,
+            "generalClassName": "Twenty20"
+        },
+        "bestPlayer": {
+            "title": "Player Of The Match",
+            "name": "Ambati Rayudu",
+            "shortName": "Rayudu",
+            "teamName": "Chennai Super Kings",
+            "logoUrl": "/esci/i/headshots/cricket/players/full/33141.png",
+            "pageUrl": "https://www.espncricinfo.com/ci/content/player/33141.html"
+        },
+        "matchStatus": "post",
+        "matchStatusDetail": "Final",
+        "isRecent": false,
+        "matchState": "stopped",
+        "nav": [
+            {
+                "label": "Summary",
+                "id": "live",
+                "urlType": "game",
+                "pagePath": "/match/MatchLivePage"
+            },
+            {
+                "label": "Scorecard",
+                "id": "scoreboard",
+                "urlType": "scorecard",
+                "pagePath": "/match/MatchScoreBoardPage"
+            },
+            {
+                "label": "Commentary",
+                "id": "commentary",
+                "urlType": "commentary",
+                "pagePath": "/match/MatchCommentaryPage"
+            },
+            {
+                "label": "Report",
+                "id": "report",
+                "urlType": "report",
+                "pagePath": "/match/MatchReportPage"
+            },
+            {
+                "label": "Videos",
+                "id": "videos",
+                "urlType": "video",
+                "pagePath": "/match/MatchVideosPage"
+            },
+            {
+                "label": "Coverage",
+                "id": "coverage",
+                "urlType": "coverage",
+                "pagePath": "/match/MatchCoveragePage"
+            },
+            {
+                "label": "Statistics",
+                "id": "statistics",
+                "urlType": "statistics",
+                "pagePath": "/match/MatchStatisticsPage"
+            },
+            {
+                "label": "Table",
+                "id": "table",
+                "urlType": "table",
+                "season": 2020
+            }
+        ],
+        "featuredArticle": {
+            "author": "Karthik Krishnaswamy",
+            "title": "Ambati Rayudu, Faf du Plessis help CSK break Mumbai Indians jinx",
+            "description": "All the buzz from the IPL 2020 curtain-raiser, on ESPNcricinfo's live blog",
+            "href": "/series/8048/report/1216492/mumbai-indians-vs-chennai-super-kings-1st-match-ipl",
+            "image": {
+                "url": "/esci/i/cricket/cricinfo/1232728_900x506.jpg",
+                "alt": "Ambati Rayudu goes for the big one",
+                "width": 900,
+                "height": 506
+            },
+            "publishTime": "16h",
+            "videos": []
+        },
+        "tossDone": true,
+        "updatesOnly": false,
+        "source": "Feedback"
+    },
+    "rhs": [
+        {
+            "newsHeader": "IPL News",
+            "newsType": "",
+            "type": "matchCoverage",
+            "href": "#",
+            "items": [
+                {
+                    "author": "Sidharth Monga",
+                    "title": "Ambati Rayudu returns in super duper style",
+                    "description": "The CSK batsman gave a telling reminder to those who dumped him out of India's 2019 World Cup squad",
+                    "href": "/story/_/id/29923497/ipl-2020-csk-v-mumbai-indians-ambati-rayudu-returns-vengeance",
+                    "image": {
+                        "url": "/esci/media/motion/2020/0919/dm_200919_200920_TIMEOUTPOST_MICSK_NRH/dm_200919_200920_TIMEOUTPOST_MICSK_NRH.jpg",
+                        "alt": "Gautam Gambhir and Sanjay Manjrekar analyse where Mumbai lost the plot in the first game of IPL 2020 against Chennai",
+                        "width": 576,
+                        "height": 324
+                    },
+                    "publishTime": "10h"
+                },
+                {
+                    "author": "ESPNcricinfo staff",
+                    "title": "'It was just a psychological aspect' - MS Dhoni on promoting Ravindra Jadeja and Sam Curran",
+                    "description": "'One or two [sixes], then it is easier for the batsmen to follow,' says CSK captain",
+                    "href": "/story/_/id/29921863/csk-v-mi-ipl-2020-ms-dhoni-explains-promotion-ravindra-jadeja-sam-curran",
+                    "image": {
+                        "url": "/esci/i/cricket/cricinfo/1232731_900x506.jpg",
+                        "alt": "Sam Curran goes big",
+                        "width": 900,
+                        "height": 506
+                    },
+                    "publishTime": "15h"
+                },
+                {
+                    "author": "Deivarayan Muthu",
+                    "title": "Talking points - Sam Curran's promotion, Faf du Plessis' fielding and Mumbai Indians' bowling choices",
+                    "description": "Dissecting the key moments from the IPL 2020 opener",
+                    "href": "/story/_/id/29921777/ipl-2020-csk-v-mi-talking-points-sam-curran-promotion-faf-du-plessis-fielding",
+                    "image": {
+                        "url": "/esci/i/cricket/cricinfo/1232712_900x506.jpg",
+                        "alt": "Saurabh Tiwary muscles one away",
+                        "width": 900,
+                        "height": 506
+                    },
+                    "publishTime": "6h"
+                },
+                {
+                    "author": "Karthik Krishnaswamy",
+                    "title": "Ambati Rayudu, Faf du Plessis help CSK break Mumbai Indians jinx",
+                    "description": "All the buzz from the IPL 2020 curtain-raiser, on ESPNcricinfo's live blog",
+                    "href": "/series/8048/report/1216492/mumbai-indians-vs-chennai-super-kings-1st-match-ipl",
+                    "image": {
+                        "url": "/esci/i/cricket/cricinfo/1232728_900x506.jpg",
+                        "alt": "Ambati Rayudu goes for the big one",
+                        "width": 900,
+                        "height": 506
+                    },
+                    "publishTime": "16h"
+                },
+                {
+                    "author": "ESPNcricinfo staff",
+                    "title": "Injured Dwayne Bravo likely to be unavailable for one more game for Chennai Super Kings",
+                    "description": "\"Dwayne was injured so he is probably out for the first two games,\" coach Stephen Fleming said after the opening match",
+                    "href": "/story/_/id/29921655/csk-v-mi-ipl-2020-1st-match-injured-dwayne-bravo-likely-unavailable-one-more-game",
+                    "image": {
+                        "url": "/esci/i/cricket/cricinfo/1232737_900x506.jpg",
+                        "alt": "Dwayne Bravo has been a star performer for Chennai Super Kings for a long time",
+                        "width": 900,
+                        "height": 506
+                    },
+                    "publishTime": "16h"
+                }
+            ]
+        },
+        {
+            "type": "videoList",
+            "items": [
+                {
+                    "id": 29922681,
+                    "title": "Stunning catches on display in IPL season opener",
+                    "description": "Aakash Chopra joins Raunak Kapoor to look back at some splendid moments in Chennai's win over Mumbai ",
+                    "image": {
+                        "alt": "Stunning catches on display in IPL season opener",
+                        "url": "/esci/media/motion/2020/0919/dm_200919_STUNNINGMOMENTS-IPL2020-M1/dm_200919_STUNNINGMOMENTS-IPL2020-M1.jpg"
+                    },
+                    "video": {
+                        "id": "29922681",
+                        "duration": "2:59",
+                        "geo": {
+                            "type": "whitelist",
+                            "countries": [
+                                "IN"
+                            ]
+                        }
+                    },
+                    "href": "/video/clip?id=29922681&ex_cid=espnapi_internal",
+                    "isExternal": false,
+                    "coverageType": "Analysis"
+                },
+                {
+                    "id": 29922597,
+                    "title": "Manjrekar: Rayudu played one of his finest innings",
+                    "description": "Ambati Rayudu scored a match-winning half-century to help Chennai beat Mumbai on Saturday",
+                    "image": {
+                        "alt": "Manjrekar: Rayudu played one of his finest innings",
+                        "url": "/esci/media/motion/2020/0919/dm_200919_ADAPTABLEPLAYER_IPL2020_M1/dm_200919_ADAPTABLEPLAYER_IPL2020_M1.jpg"
+                    },
+                    "video": {
+                        "id": "29922597",
+                        "duration": "2:07",
+                        "geo": {
+                            "type": "whitelist",
+                            "countries": [
+                                "IN"
+                            ]
+                        }
+                    },
+                    "href": "/video/clip?id=29922597&ex_cid=espnapi_internal",
+                    "isExternal": false,
+                    "coverageType": "Analysis"
+                },
+                {
+                    "id": 29922592,
+                    "title": "Who had the biggest impact in CSK's win over Mumbai?",
+                    "description": "Sanjay Manjrekar joins Raunak Kapoor to discuss the Chennai players with maximum impact in their win over Mumbai ",
+                    "image": {
+                        "alt": "Who had the biggest impact in CSK's win over Mumbai?",
+                        "url": "/esci/media/motion/2020/0919/dm_200919_MARKSHEET-IPL2020-M1/dm_200919_MARKSHEET-IPL2020-M1.jpg"
+                    },
+                    "video": {
+                        "id": "29922592",
+                        "duration": "3:15",
+                        "geo": {
+                            "type": "whitelist",
+                            "countries": [
+                                "IN"
+                            ]
+                        }
+                    },
+                    "href": "/video/clip?id=29922592&ex_cid=espnapi_internal",
+                    "isExternal": false,
+                    "coverageType": "Analysis"
+                },
+                {
+                    "id": 29921967,
+                    "title": "Rayudu dominated Bumrah today - Gambhir",
+                    "description": "Gautam Gambhir and Sanjay Manjrekar analyse where Mumbai lost the plot in the first game of IPL 2020 against Chennai",
+                    "image": {
+                        "alt": "Rayudu dominated Bumrah today - Gambhir",
+                        "url": "/esci/media/motion/2020/0919/dm_200919_200920_TIMEOUTPOST_MICSK_NRH/dm_200919_200920_TIMEOUTPOST_MICSK_NRH.jpg"
+                    },
+                    "video": {
+                        "id": "29921967",
+                        "duration": "22:10"
+                    },
+                    "href": "/video/clip?id=29921967&ex_cid=espnapi_internal",
+                    "isExternal": false,
+                    "coverageType": "Analysis"
+                },
+                {
+                    "id": 29920516,
+                    "title": "Gambhir: Bad management from Mumbai to send in-form Pollard so late",
+                    "description": "Gautam Gambhir and Sanjay Manjrekar discuss Mumbai Indians' batting order",
+                    "image": {
+                        "alt": "Gambhir: Bad management from Mumbai to send in-form Pollard so late",
+                        "url": "/esci/media/motion/2020/0919/dm_200919_MID-SHOW-CLIP/dm_200919_MID-SHOW-CLIP.jpg"
+                    },
+                    "video": {
+                        "id": "29920516",
+                        "duration": "2:19"
+                    },
+                    "href": "/video/clip?id=29920516&ex_cid=espnapi_internal",
+                    "isExternal": false,
+                    "coverageType": "Analysis"
+                },
+                {
+                    "id": 29919918,
+                    "title": "Gambhir: Surprised to see Ngidi playing over Hazlewood",
+                    "description": "Sanjay Manjrekar and Gautam Gambhir on the team line-ups for the first match of the season",
+                    "image": {
+                        "alt": "Gambhir: Surprised to see Ngidi playing over Hazlewood",
+                        "url": "/esci/media/motion/2020/0919/dm_200919_M1-SELECTION/dm_200919_M1-SELECTION.jpg"
+                    },
+                    "video": {
+                        "id": "29919918",
+                        "duration": "3:26"
+                    },
+                    "href": "/video/clip?id=29919918&ex_cid=espnapi_internal",
+                    "isExternal": false,
+                    "coverageType": "Analysis"
+                },
+                {
+                    "id": 29915040,
+                    "title": "Tom Moody: Mumbai Indians aren't intimidated by Chennai Super Kings",
+                    "description": "Sanjay Manjrekar and Tom Moody analyse IPL 2020's opening clash between MI and CSK",
+                    "image": {
+                        "alt": "Tom Moody: Mumbai Indians aren't intimidated by Chennai Super Kings",
+                        "url": "/esci/media/motion/2020/0918/dm_200918_Timeout-IPL2020-M1-MIvCSK-Preview/dm_200918_Timeout-IPL2020-M1-MIvCSK-Preview.jpg"
+                    },
+                    "video": {
+                        "id": "29915040",
+                        "duration": "12:20"
+                    },
+                    "href": "/video/clip?id=29915040&ex_cid=espnapi_internal",
+                    "isExternal": false,
+                    "coverageType": "Analysis"
+                },
+                {
+                    "id": 29911490,
+                    "title": "Will Jadeja be the breakthrough player for CSK this year?",
+                    "description": "Gautam Gambhir, Deep Dasgupta, Aakash Chopra, Ajit Agarkar and our in-house experts on CSK's chances this IPL",
+                    "image": {
+                        "alt": "Will Jadeja be the breakthrough player for CSK this year?",
+                        "url": "/esci/media/motion/2020/0918/dm_200918_180920_IPLPVW_CSK_NRH/dm_200918_180920_IPLPVW_CSK_NRH.jpg"
+                    },
+                    "video": {
+                        "id": "29911490",
+                        "duration": "4:11"
+                    },
+                    "href": "/video/clip?id=29911490&ex_cid=espnapi_internal",
+                    "isExternal": false,
+                    "coverageType": "News"
+                }
+            ]
+        },
+        {
+            "type": "matchInningStat",
+            "items": [
+                {
+                    "type": "Batting",
+                    "title": "Super Kings Innings",
+                    "extras": "(w 3, nb 1)",
+                    "runs": "166",
+                    "total": "(5 wkts; 19.2 ovs)",
+                    "batsmen": [
+                        {
+                            "name": "M Vijay",
+                            "dismissal": "lbw",
+                            "href": "https://www.espncricinfo.com/ci/content/player/237095.html",
+                            "runs": 1,
+                            "ballsFaced": 7
+                        },
+                        {
+                            "name": "SR Watson",
+                            "dismissal": "lbw",
+                            "href": "https://www.espncricinfo.com/ci/content/player/8180.html",
+                            "runs": 4,
+                            "ballsFaced": 5
+                        },
+                        {
+                            "name": "F du Plessis",
+                            "dismissal": "not out",
+                            "href": "https://www.espncricinfo.com/ci/content/player/44828.html",
+                            "runs": 58,
+                            "ballsFaced": 44
+                        },
+                        {
+                            "name": "AT Rayudu",
+                            "dismissal": "caught",
+                            "href": "https://www.espncricinfo.com/ci/content/player/33141.html",
+                            "runs": 71,
+                            "ballsFaced": 48
+                        },
+                        {
+                            "name": "RA Jadeja",
+                            "dismissal": "lbw",
+                            "href": "https://www.espncricinfo.com/ci/content/player/234675.html",
+                            "runs": 10,
+                            "ballsFaced": 5
+                        },
+                        {
+                            "name": "SM Curran",
+                            "dismissal": "caught",
+                            "href": "https://www.espncricinfo.com/ci/content/player/662973.html",
+                            "runs": 18,
+                            "ballsFaced": 6
+                        },
+                        {
+                            "name": "MS Dhoni",
+                            "dismissal": "not out",
+                            "href": "https://www.espncricinfo.com/ci/content/player/28081.html",
+                            "runs": 0,
+                            "ballsFaced": 2
+                        },
+                        {
+                            "name": "KM Jadhav",
+                            "dismissal": "",
+                            "href": "https://www.espncricinfo.com/ci/content/player/290716.html",
+                            "runs": 0,
+                            "ballsFaced": 0
+                        },
+                        {
+                            "name": "PP Chawla",
+                            "dismissal": "",
+                            "href": "https://www.espncricinfo.com/ci/content/player/32966.html",
+                            "runs": 0,
+                            "ballsFaced": 0
+                        },
+                        {
+                            "name": "DL Chahar",
+                            "dismissal": "",
+                            "href": "https://www.espncricinfo.com/ci/content/player/447261.html",
+                            "runs": 0,
+                            "ballsFaced": 0
+                        },
+                        {
+                            "name": "L Ngidi",
+                            "dismissal": "",
+                            "href": "https://www.espncricinfo.com/ci/content/player/542023.html",
+                            "runs": 0,
+                            "ballsFaced": 0
+                        }
+                    ]
+                },
+                {
+                    "type": "Bowling",
+                    "title": "Mum Indians Bowling",
+                    "bowlers": [
+                        {
+                            "name": "TA Boult",
+                            "href": "https://www.espncricinfo.com/ci/content/player/277912.html",
+                            "conceded": 23,
+                            "economyRate": "6.90",
+                            "maidens": 0,
+                            "overs": 3.2,
+                            "wickets": 1,
+                            "nbw": ""
+                        },
+                        {
+                            "name": "JL Pattinson",
+                            "href": "https://www.espncricinfo.com/ci/content/player/272465.html",
+                            "conceded": 27,
+                            "economyRate": "6.75",
+                            "maidens": 0,
+                            "overs": 4,
+                            "wickets": 1,
+                            "nbw": "(1w)"
+                        },
+                        {
+                            "name": "JJ Bumrah",
+                            "href": "https://www.espncricinfo.com/ci/content/player/625383.html",
+                            "conceded": 43,
+                            "economyRate": "10.75",
+                            "maidens": 0,
+                            "overs": 4,
+                            "wickets": 1,
+                            "nbw": "(1nb, 1w)"
+                        },
+                        {
+                            "name": "KH Pandya",
+                            "href": "https://www.espncricinfo.com/ci/content/player/471342.html",
+                            "conceded": 37,
+                            "economyRate": "9.25",
+                            "maidens": 0,
+                            "overs": 4,
+                            "wickets": 1,
+                            "nbw": "(1w)"
+                        },
+                        {
+                            "name": "RD Chahar",
+                            "href": "https://www.espncricinfo.com/ci/content/player/1064812.html",
+                            "conceded": 36,
+                            "economyRate": "9.00",
+                            "maidens": 0,
+                            "overs": 4,
+                            "wickets": 1,
+                            "nbw": ""
+                        }
+                    ]
+                },
+                {
+                    "type": "Parternship",
+                    "title": "Super Kings 2th innings Partnerships",
+                    "partnership": [
+                        {
+                            "overs": "1st",
+                            "runs": 5,
+                            "player1": {
+                                "name": "SR Watson",
+                                "runs": 4
+                            },
+                            "player2": {
+                                "name": "M Vijay",
+                                "runs": 1
+                            }
+                        },
+                        {
+                            "overs": "2nd",
+                            "runs": 1,
+                            "player1": {
+                                "name": "F du Plessis",
+                                "runs": 0
+                            },
+                            "player2": {
+                                "name": "M Vijay",
+                                "runs": 0
+                            }
+                        },
+                        {
+                            "overs": "3rd",
+                            "runs": 115,
+                            "player1": {
+                                "name": "AT Rayudu",
+                                "runs": 71
+                            },
+                            "player2": {
+                                "name": "F du Plessis",
+                                "runs": 41
+                            }
+                        },
+                        {
+                            "overs": "4th",
+                            "runs": 13,
+                            "player1": {
+                                "name": "F du Plessis",
+                                "runs": 3
+                            },
+                            "player2": {
+                                "name": "RA Jadeja",
+                                "runs": 10
+                            }
+                        },
+                        {
+                            "overs": "5th",
+                            "runs": 19,
+                            "player1": {
+                                "name": "F du Plessis",
+                                "runs": 1
+                            },
+                            "player2": {
+                                "name": "SM Curran",
+                                "runs": 18
+                            }
+                        },
+                        {
+                            "overs": "6th",
+                            "runs": 13,
+                            "player1": {
+                                "name": "MS Dhoni",
+                                "runs": 0
+                            },
+                            "player2": {
+                                "name": "F du Plessis",
+                                "runs": 13
+                            }
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "type": "standings",
+            "title": "Indian Premier League",
+            "pageLink": {
+                "text": "Full Table",
+                "href": "/table/series/8048/season/2020/ipl",
+                "isExternal": false
+            },
+            "groupStandings": {
+                "groups": [
+                    {
+                        "name": "",
+                        "shortName": "",
+                        "items": [
+                            {
+                                "team": {
+                                    "name": "Chennai Super Kings",
+                                    "shortName": "CSK",
+                                    "logoUrl": "/esci/i/teamlogos/cricket/500/335974.png",
+                                    "pageUrl": "/team/_/id/335974/chennai-super-kings"
+                                },
+                                "data": {
+                                    "rank": "1",
+                                    "matchesplayed": "1",
+                                    "matcheswon": "1",
+                                    "matcheslost": "0",
+                                    "noresult": "0",
+                                    "matchpoints": "2",
+                                    "matchestied": "0",
+                                    "nrr": "0.486",
+                                    "for": "166/19.2",
+                                    "against": "162/20.0"
+                                }
+                            },
+                            {
+                                "team": {
+                                    "name": "Mumbai Indians",
+                                    "shortName": "MI",
+                                    "logoUrl": "/esci/i/teamlogos/cricket/500/335978.png",
+                                    "pageUrl": "/team/_/id/335978/mumbai-indians"
+                                },
+                                "data": {
+                                    "rank": "2",
+                                    "matchesplayed": "1",
+                                    "matcheswon": "0",
+                                    "matcheslost": "1",
+                                    "noresult": "0",
+                                    "matchpoints": "0",
+                                    "matchestied": "0",
+                                    "nrr": "-0.486",
+                                    "for": "162/20.0",
+                                    "against": "166/19.2"
+                                }
+                            },
+                            {
+                                "team": {
+                                    "name": "Royal Challengers Bangalore",
+                                    "shortName": "RCB",
+                                    "logoUrl": "/esci/i/teamlogos/cricket/500/335970.png",
+                                    "pageUrl": "/team/_/id/335970/royal-challengers-bangalore"
+                                },
+                                "data": {
+                                    "rank": "3",
+                                    "matchesplayed": "0",
+                                    "matcheswon": "0",
+                                    "matcheslost": "0",
+                                    "noresult": "0",
+                                    "matchpoints": "0",
+                                    "matchestied": "0",
+                                    "nrr": "0",
+                                    "for": "0",
+                                    "against": "0"
+                                }
+                            },
+                            {
+                                "team": {
+                                    "name": "Delhi Capitals",
+                                    "shortName": "DC",
+                                    "logoUrl": "/esci/i/teamlogos/cricket/500/335975.png",
+                                    "pageUrl": "/team/_/id/335975/delhi-capitals"
+                                },
+                                "data": {
+                                    "rank": "4",
+                                    "matchesplayed": "0",
+                                    "matcheswon": "0",
+                                    "matcheslost": "0",
+                                    "noresult": "0",
+                                    "matchpoints": "0",
+                                    "matchestied": "0",
+                                    "nrr": "0",
+                                    "for": "0",
+                                    "against": "0"
+                                }
+                            },
+                            {
+                                "team": {
+                                    "name": "Kings XI Punjab",
+                                    "shortName": "KXIP",
+                                    "logoUrl": "/esci/i/teamlogos/cricket/500/335973.png",
+                                    "pageUrl": "/team/_/id/335973/kings-xi-punjab"
+                                },
+                                "data": {
+                                    "rank": "5",
+                                    "matchesplayed": "0",
+                                    "matcheswon": "0",
+                                    "matcheslost": "0",
+                                    "noresult": "0",
+                                    "matchpoints": "0",
+                                    "matchestied": "0",
+                                    "nrr": "0",
+                                    "for": "0",
+                                    "against": "0"
+                                }
+                            },
+                            {
+                                "team": {
+                                    "name": "Kolkata Knight Riders",
+                                    "shortName": "KKR",
+                                    "logoUrl": "/esci/i/teamlogos/cricket/500/335971.png",
+                                    "pageUrl": "/team/_/id/335971/kolkata-knight-riders"
+                                },
+                                "data": {
+                                    "rank": "6",
+                                    "matchesplayed": "0",
+                                    "matcheswon": "0",
+                                    "matcheslost": "0",
+                                    "noresult": "0",
+                                    "matchpoints": "0",
+                                    "matchestied": "0",
+                                    "nrr": "0",
+                                    "for": "0",
+                                    "against": "0"
+                                }
+                            },
+                            {
+                                "team": {
+                                    "name": "Rajasthan Royals",
+                                    "shortName": "RR",
+                                    "logoUrl": "/esci/i/teamlogos/cricket/500/335977.png",
+                                    "pageUrl": "/team/_/id/335977/rajasthan-royals"
+                                },
+                                "data": {
+                                    "rank": "7",
+                                    "matchesplayed": "0",
+                                    "matcheswon": "0",
+                                    "matcheslost": "0",
+                                    "noresult": "0",
+                                    "matchpoints": "0",
+                                    "matchestied": "0",
+                                    "nrr": "0",
+                                    "for": "0",
+                                    "against": "0"
+                                }
+                            },
+                            {
+                                "team": {
+                                    "name": "Sunrisers Hyderabad",
+                                    "shortName": "SRH",
+                                    "logoUrl": "/esci/i/teamlogos/cricket/500/628333.png",
+                                    "pageUrl": "/team/_/id/628333/sunrisers-hyderabad"
+                                },
+                                "data": {
+                                    "rank": "8",
+                                    "matchesplayed": "0",
+                                    "matcheswon": "0",
+                                    "matcheslost": "0",
+                                    "noresult": "0",
+                                    "matchpoints": "0",
+                                    "matchestied": "0",
+                                    "nrr": "0",
+                                    "for": "0",
+                                    "against": "0"
+                                }
+                            }
+                        ]
+                    }
+                ],
+                "columns": [
+                    "rank",
+                    "matchesplayed",
+                    "matcheswon",
+                    "matcheslost",
+                    "noresult",
+                    "matchpoints",
+                    "matchestied",
+                    "nrr",
+                    "for",
+                    "against"
+                ]
+            }
+        }
+    ],
+    "content": {
+        "innings": [
+            {
+                "title": "Mumbai Indians Innings",
+                "inningStatus": "",
+                "isCurrent": false,
+                "batsmen": [
+                    {
+                        "name": "RG Sharma",
+                        "captain": true,
+                        "isNotOut": false,
+                        "runningScore": {
+                            "wickets": 1,
+                            "runs": 46
+                        },
+                        "shortText": "c Curran b Chawla",
+                        "commentary": "<b>chipped straight to mid-off!</b> Full on off stump, wants to loft that over the fielder. Might have come off too at Wankhede. This pitch a touch slower. And Rohit's bad relationship with legbreak bowling continues. Taken at the edge of the circle and CSK's gamble has paid off",
+                        "fullName": "Rohit Sharma",
+                        "href": "https://www.espncricinfo.com/ci/content/player/34102.html",
+                        "runningOver": 4.4,
+                        "role": "(c)",
+                        "runs": "12",
+                        "ballsFaced": "10",
+                        "minutes": "-",
+                        "fours": "2",
+                        "sixes": "0",
+                        "strikeRate": "120.00"
+                    },
+                    {
+                        "name": "Q de Kock",
+                        "captain": false,
+                        "isNotOut": false,
+                        "runningScore": {
+                            "wickets": 2,
+                            "runs": 48
+                        },
+                        "shortText": "c Watson b Curran",
+                        "commentary": "<b>straight to midwicket!</b> Slow does it! Spin at the other end, and an offcutter here from Curran. Welcome to the UAE. Short of a length at middle stump, clears the front leg and slugs this straight to the fielder. It's gone slowly too, perhaps an indication that this pitch won't give you too much pace. He really swung hard at that but it sort of loops on the fielder by the end",
+                        "fullName": "Quinton de Kock",
+                        "href": "https://www.espncricinfo.com/ci/content/player/379143.html",
+                        "runningOver": 5.1,
+                        "role": "&dagger;",
+                        "runs": "33",
+                        "ballsFaced": "20",
+                        "minutes": "-",
+                        "fours": "5",
+                        "sixes": "0",
+                        "strikeRate": "165.00"
+                    },
+                    {
+                        "name": "SA Yadav",
+                        "captain": false,
+                        "isNotOut": false,
+                        "runningScore": {
+                            "wickets": 3,
+                            "runs": 92
+                        },
+                        "shortText": "c Curran b Chahar",
+                        "commentary": "<b>taken at long-on!</b> Curran involved again. This looked a decent shot at first. Length ball at middle stump, full face offered as he lofted this. Nice sound and all. But it's taken well inside the line",
+                        "fullName": "Suryakumar Yadav",
+                        "href": "https://www.espncricinfo.com/ci/content/player/446507.html",
+                        "runningOver": 10.6,
+                        "role": "",
+                        "runs": "17",
+                        "ballsFaced": "16",
+                        "minutes": "-",
+                        "fours": "2",
+                        "sixes": "0",
+                        "strikeRate": "106.25"
+                    },
+                    {
+                        "name": "SS Tiwary",
+                        "captain": false,
+                        "isNotOut": false,
+                        "runningScore": {
+                            "wickets": 4,
+                            "runs": 121
+                        },
+                        "shortText": "c du Plessis b Jadeja",
+                        "commentary": "<b>taken at long-on.</b> Faf with the lob back in to take it on the second attempt. You'd pick him to be the man in that situation, wouldn't you? Certainly among the best in the world at this skill. Slog sweep for a length ball outside off, decently connected. Faf leaps up, lands inside safely, lobs it up, takes a quick step out and back into play and hangs on. Impressive knock from Tiwary though, he's set it up nicely",
+                        "fullName": "Saurabh Tiwary",
+                        "href": "https://www.espncricinfo.com/ci/content/player/35390.html",
+                        "runningOver": 14.1,
+                        "role": "",
+                        "runs": "42",
+                        "ballsFaced": "31",
+                        "minutes": "-",
+                        "fours": "3",
+                        "sixes": "1",
+                        "strikeRate": "135.48"
+                    },
+                    {
+                        "name": "HH Pandya",
+                        "captain": false,
+                        "isNotOut": false,
+                        "runningScore": {
+                            "wickets": 5,
+                            "runs": 124
+                        },
+                        "shortText": "c du Plessis b Jadeja",
+                        "commentary": "<b>Faf you stunner!</b> Wow! What a fielder. This is flat and full, right in Pandya's arc. Which means he's absolutely smoked this, flat and to Faf's right at long-off. He takes strides across, jumps perfectly as it's in danger of whistling past him. Then the magic - the gentlest of landings after all the effort of sprinting and jumping. That landing gives him balance. and he hangs on, and is already in control as he comes down. Lobs it up as a formality anyway, but he had that down. Pure artistry from Faf, and he has changed the course of this game as of now.",
+                        "fullName": "Hardik Pandya",
+                        "href": "https://www.espncricinfo.com/ci/content/player/625371.html",
+                        "runningOver": 14.5,
+                        "role": "",
+                        "runs": "14",
+                        "ballsFaced": "10",
+                        "minutes": "-",
+                        "fours": "0",
+                        "sixes": "2",
+                        "strikeRate": "140.00"
+                    },
+                    {
+                        "name": "KA Pollard",
+                        "captain": false,
+                        "isNotOut": false,
+                        "runningScore": {
+                            "wickets": 7,
+                            "runs": 151
+                        },
+                        "shortText": "c &dagger;Dhoni b Ngidi",
+                        "commentary": "<b>caught behind!</b> They've come screaming back, have CSK. The rising awkward ball does it again for Ngidi. This is lifting in the corridor from a short length. Pollard has room, to be fair, and  he tries to hoick it behind square. But it's a bit too quick for him and the edge is a straightforward catch for Dhoni this time",
+                        "fullName": "Kieron Pollard",
+                        "href": "https://www.espncricinfo.com/ci/content/player/230559.html",
+                        "runningOver": 18.1,
+                        "role": "",
+                        "runs": "18",
+                        "ballsFaced": "14",
+                        "minutes": "-",
+                        "fours": "1",
+                        "sixes": "1",
+                        "strikeRate": "128.57"
+                    },
+                    {
+                        "name": "KH Pandya",
+                        "captain": false,
+                        "isNotOut": false,
+                        "runningScore": {
+                            "wickets": 6,
+                            "runs": 136
+                        },
+                        "shortText": "c &dagger;Dhoni b Ngidi",
+                        "commentary": "<b>taken down leg side!</b> Short ball cramps him at the hips. An awkward glance, off the inside edge. Dhoni stretches to his right and holds on low",
+                        "fullName": "Krunal Pandya",
+                        "href": "https://www.espncricinfo.com/ci/content/player/471342.html",
+                        "runningOver": 16.1,
+                        "role": "",
+                        "runs": "3",
+                        "ballsFaced": "3",
+                        "minutes": "-",
+                        "fours": "0",
+                        "sixes": "0",
+                        "strikeRate": "100.00"
+                    },
+                    {
+                        "name": "JL Pattinson",
+                        "captain": false,
+                        "isNotOut": false,
+                        "runningScore": {
+                            "wickets": 8,
+                            "runs": 156
+                        },
+                        "shortText": "c du Plessis b Ngidi",
+                        "commentary": "<b>holes out to long-on.</b> It's that slam-in length again, just short of a good one. Going across the left hander. He's backing away and doesn't have a strong base for this pull. Just catching practice by the end of it, well within the playing area",
+                        "fullName": "James Pattinson",
+                        "href": "https://www.espncricinfo.com/ci/content/player/272465.html",
+                        "runningOver": 18.5,
+                        "role": "",
+                        "runs": "11",
+                        "ballsFaced": "8",
+                        "minutes": "-",
+                        "fours": "2",
+                        "sixes": "0",
+                        "strikeRate": "137.50"
+                    },
+                    {
+                        "name": "RD Chahar",
+                        "captain": false,
+                        "isNotOut": true,
+                        "runningScore": {},
+                        "shortText": "not out",
+                        "commentary": "",
+                        "fullName": "Rahul Chahar",
+                        "href": "https://www.espncricinfo.com/ci/content/player/1064812.html",
+                        "runningOver": "",
+                        "role": "",
+                        "runs": "2",
+                        "ballsFaced": "4",
+                        "minutes": "-",
+                        "fours": "0",
+                        "sixes": "0",
+                        "strikeRate": "50.00"
+                    },
+                    {
+                        "name": "TA Boult",
+                        "captain": false,
+                        "isNotOut": false,
+                        "runningScore": {
+                            "wickets": 9,
+                            "runs": 156
+                        },
+                        "shortText": " b Chahar",
+                        "commentary": "loses his leg stump. Short of good length. Walks into the leg side and swings at that. Completely misses it",
+                        "fullName": "Trent Boult",
+                        "href": "https://www.espncricinfo.com/ci/content/player/277912.html",
+                        "runningOver": 19.1,
+                        "role": "",
+                        "runs": "0",
+                        "ballsFaced": "1",
+                        "minutes": "-",
+                        "fours": "0",
+                        "sixes": "0",
+                        "strikeRate": "0.00"
+                    },
+                    {
+                        "name": "JJ Bumrah",
+                        "captain": false,
+                        "isNotOut": true,
+                        "runningScore": {},
+                        "shortText": "not out",
+                        "commentary": "",
+                        "fullName": "Jasprit Bumrah",
+                        "href": "https://www.espncricinfo.com/ci/content/player/625383.html",
+                        "runningOver": "",
+                        "role": "",
+                        "runs": "5",
+                        "ballsFaced": "3",
+                        "minutes": "-",
+                        "fours": "0",
+                        "sixes": "0",
+                        "strikeRate": "166.66"
+                    }
+                ],
+                "bowlers": [
+                    {
+                        "name": "DL Chahar",
+                        "captain": false,
+                        "fullName": "Deepak Chahar",
+                        "href": "https://www.espncricinfo.com/ci/content/player/447261.html",
+                        "role": "",
+                        "overs": "4",
+                        "maidens": "0",
+                        "conceded": "32",
+                        "wickets": "2",
+                        "economyRate": "8.00",
+                        "dots": "7",
+                        "foursConceded": "3",
+                        "sixesConceded": "0",
+                        "wides": "1",
+                        "noballs": "0"
+                    },
+                    {
+                        "name": "SM Curran",
+                        "captain": false,
+                        "fullName": "Sam Curran",
+                        "href": "https://www.espncricinfo.com/ci/content/player/662973.html",
+                        "role": "",
+                        "overs": "4",
+                        "maidens": "0",
+                        "conceded": "28",
+                        "wickets": "1",
+                        "economyRate": "7.00",
+                        "dots": "9",
+                        "foursConceded": "4",
+                        "sixesConceded": "0",
+                        "wides": "0",
+                        "noballs": "0"
+                    },
+                    {
+                        "name": "L Ngidi",
+                        "captain": false,
+                        "fullName": "Lungi Ngidi",
+                        "href": "https://www.espncricinfo.com/ci/content/player/542023.html",
+                        "role": "",
+                        "overs": "4",
+                        "maidens": "0",
+                        "conceded": "38",
+                        "wickets": "3",
+                        "economyRate": "9.50",
+                        "dots": "8",
+                        "foursConceded": "6",
+                        "sixesConceded": "0",
+                        "wides": "2",
+                        "noballs": "0"
+                    },
+                    {
+                        "name": "PP Chawla",
+                        "captain": false,
+                        "fullName": "Piyush Chawla",
+                        "href": "https://www.espncricinfo.com/ci/content/player/32966.html",
+                        "role": "",
+                        "overs": "4",
+                        "maidens": "0",
+                        "conceded": "21",
+                        "wickets": "1",
+                        "economyRate": "5.25",
+                        "dots": "11",
+                        "foursConceded": "0",
+                        "sixesConceded": "1",
+                        "wides": "1",
+                        "noballs": "0"
+                    },
+                    {
+                        "name": "RA Jadeja",
+                        "captain": false,
+                        "fullName": "Ravindra Jadeja",
+                        "href": "https://www.espncricinfo.com/ci/content/player/234675.html",
+                        "role": "",
+                        "overs": "4",
+                        "maidens": "0",
+                        "conceded": "42",
+                        "wickets": "2",
+                        "economyRate": "10.50",
+                        "dots": "5",
+                        "foursConceded": "2",
+                        "sixesConceded": "3",
+                        "wides": "0",
+                        "noballs": "0"
+                    }
+                ],
+                "didNotBat": [],
+                "total": "162/9 (20 Overs, RR: 8.1)",
+                "extras": "5 (lb 1, w 4)",
+                "fallOfWickets": [
+                    "1-46 (Rohit Sharma, 4.4 ov)",
+                    "2-48 (Quinton de Kock, 5.1 ov)",
+                    "3-92 (Suryakumar Yadav, 10.6 ov)",
+                    "4-121 (Saurabh Tiwary, 14.1 ov)",
+                    "5-124 (Hardik Pandya, 14.5 ov)",
+                    "6-136 (Krunal Pandya, 16.1 ov)",
+                    "7-151 (Kieron Pollard, 18.1 ov)",
+                    "8-156 (James Pattinson, 18.5 ov)",
+                    "9-156 (Trent Boult, 19.1 ov)"
+                ],
+                "remainingBatsmen": "Did not bat",
+                "isLimitedOvers": true,
+                "headerInfo": "(20 overs maximum)"
+            },
+            {
+                "title": "Chennai Super Kings Innings",
+                "inningStatus": "",
+                "isCurrent": true,
+                "batsmen": [
+                    {
+                        "name": "M Vijay",
+                        "captain": false,
+                        "isNotOut": false,
+                        "runningScore": {
+                            "wickets": 2,
+                            "runs": 6
+                        },
+                        "shortText": "lbw b Pattinson",
+                        "commentary": "<b>has him this time!</b> But is that going down? It could well be...looks very good actually for a batsman's review. He doesn't take it. He's off and Faf has to actually catch him halfway back to try and talk to him about it. A full ball pitching middle, cutting in off the seam. He's beaten on the flick but there was a big deviation. Vijay was completely out of sorts - as he looked on the field too - and I wonder if that has affected his judgement. <b>Replays suggest it was missing.</b> He walked right off.",
+                        "fullName": "Murali Vijay",
+                        "href": "https://www.espncricinfo.com/ci/content/player/237095.html",
+                        "runningOver": 1.6,
+                        "role": "",
+                        "runs": "1",
+                        "ballsFaced": "7",
+                        "minutes": "-",
+                        "fours": "0",
+                        "sixes": "0",
+                        "strikeRate": "14.28"
+                    },
+                    {
+                        "name": "SR Watson",
+                        "captain": false,
+                        "isNotOut": false,
+                        "runningScore": {
+                            "wickets": 1,
+                            "runs": 5
+                        },
+                        "shortText": "lbw b Boult",
+                        "commentary": "<b>massive appeal and he's given lbw.</b> Won't review it. That is dead in front. Full and swinging in sharply from off stump. Watson looking to drive for the initial line. Front leg is in the leg side and this thuds into the back one. Long appeal and then a long wait before Virender Sharma lifts the finger",
+                        "fullName": "Shane Watson",
+                        "href": "https://www.espncricinfo.com/ci/content/player/8180.html",
+                        "runningOver": 0.6,
+                        "role": "",
+                        "runs": "4",
+                        "ballsFaced": "5",
+                        "minutes": "-",
+                        "fours": "1",
+                        "sixes": "0",
+                        "strikeRate": "80.00"
+                    },
+                    {
+                        "name": "F du Plessis",
+                        "captain": false,
+                        "isNotOut": true,
+                        "runningScore": {},
+                        "shortText": "not out",
+                        "commentary": "",
+                        "fullName": "Faf du Plessis",
+                        "href": "https://www.espncricinfo.com/ci/content/player/44828.html",
+                        "runningOver": "",
+                        "role": "",
+                        "runs": "58",
+                        "ballsFaced": "44",
+                        "minutes": "-",
+                        "fours": "6",
+                        "sixes": "0",
+                        "strikeRate": "131.81"
+                    },
+                    {
+                        "name": "AT Rayudu",
+                        "captain": false,
+                        "isNotOut": false,
+                        "runningScore": {
+                            "wickets": 3,
+                            "runs": 121
+                        },
+                        "shortText": "c &amp; b Chahar",
+                        "commentary": "<b>holds onto it himself after sprinting backwards!</b> Superbly done from Chahar. It was coming all over. They were stepping down, swinging hard at Chahar who they clearly wanted to cash in on in his last over. This one lands at a good length, outside off. Rayudu ends up slicing it after not making the pitch. It hangs in the mid-off area and he keeps his eyes on it coming from over his shoulder and holds onto it. Confidently done as he ends his spell with Rayudu's wicket. A sensational knock from him",
+                        "fullName": "Ambati Rayudu",
+                        "href": "https://www.espncricinfo.com/ci/content/player/33141.html",
+                        "runningOver": 15.6,
+                        "role": "",
+                        "runs": "71",
+                        "ballsFaced": "48",
+                        "minutes": "-",
+                        "fours": "6",
+                        "sixes": "3",
+                        "strikeRate": "147.91"
+                    },
+                    {
+                        "name": "RA Jadeja",
+                        "captain": false,
+                        "isNotOut": false,
+                        "runningScore": {
+                            "wickets": 4,
+                            "runs": 134
+                        },
+                        "shortText": "lbw b KH Pandya",
+                        "commentary": "<b>doesn't go well for Jadeja!</b> This is plumb in front. Full and fast, no nuance from Krunal. It's fired in at middle stump like he's giving him throwdowns. Jadeja tries to flick that though and is caught right in front of middle",
+                        "fullName": "Ravindra Jadeja",
+                        "href": "https://www.espncricinfo.com/ci/content/player/234675.html",
+                        "runningOver": 17.1,
+                        "role": "",
+                        "runs": "10",
+                        "ballsFaced": "5",
+                        "minutes": "-",
+                        "fours": "2",
+                        "sixes": "0",
+                        "strikeRate": "200.00"
+                    },
+                    {
+                        "name": "SM Curran",
+                        "captain": false,
+                        "isNotOut": false,
+                        "runningScore": {
+                            "wickets": 5,
+                            "runs": 153
+                        },
+                        "shortText": "c Pattinson b Bumrah",
+                        "commentary": "<b>oh well taken Pattinson.</b> More backpeddling stuff from Mumbai. Curran brings out the ramp, connects on it too, but Pattinson has kept his eyes on it running backwards before smashing the ball into his chest. The perfect T20 cameo from Curran - 18 off 6 is total value - ends with CSK in sight of a win",
+                        "fullName": "Sam Curran",
+                        "href": "https://www.espncricinfo.com/ci/content/player/662973.html",
+                        "runningOver": 18.2,
+                        "role": "",
+                        "runs": "18",
+                        "ballsFaced": "6",
+                        "minutes": "-",
+                        "fours": "1",
+                        "sixes": "2",
+                        "strikeRate": "300.00"
+                    },
+                    {
+                        "name": "MS Dhoni",
+                        "captain": true,
+                        "isNotOut": true,
+                        "runningScore": {},
+                        "shortText": "not out",
+                        "commentary": "",
+                        "fullName": "MS Dhoni",
+                        "href": "https://www.espncricinfo.com/ci/content/player/28081.html",
+                        "runningOver": "",
+                        "role": "(c) &dagger;",
+                        "runs": "0",
+                        "ballsFaced": "2",
+                        "minutes": "-",
+                        "fours": "0",
+                        "sixes": "0",
+                        "strikeRate": "0.00"
+                    }
+                ],
+                "bowlers": [
+                    {
+                        "name": "TA Boult",
+                        "captain": false,
+                        "fullName": "Trent Boult",
+                        "href": "https://www.espncricinfo.com/ci/content/player/277912.html",
+                        "role": "",
+                        "overs": "3.2",
+                        "maidens": "0",
+                        "conceded": "23",
+                        "wickets": "1",
+                        "economyRate": "6.90",
+                        "dots": "12",
+                        "foursConceded": "5",
+                        "sixesConceded": "0",
+                        "wides": "0",
+                        "noballs": "0"
+                    },
+                    {
+                        "name": "JL Pattinson",
+                        "captain": false,
+                        "fullName": "James Pattinson",
+                        "href": "https://www.espncricinfo.com/ci/content/player/272465.html",
+                        "role": "",
+                        "overs": "4",
+                        "maidens": "0",
+                        "conceded": "27",
+                        "wickets": "1",
+                        "economyRate": "6.75",
+                        "dots": "10",
+                        "foursConceded": "3",
+                        "sixesConceded": "0",
+                        "wides": "1",
+                        "noballs": "0"
+                    },
+                    {
+                        "name": "JJ Bumrah",
+                        "captain": false,
+                        "fullName": "Jasprit Bumrah",
+                        "href": "https://www.espncricinfo.com/ci/content/player/625383.html",
+                        "role": "",
+                        "overs": "4",
+                        "maidens": "0",
+                        "conceded": "43",
+                        "wickets": "1",
+                        "economyRate": "10.75",
+                        "dots": "10",
+                        "foursConceded": "4",
+                        "sixesConceded": "2",
+                        "wides": "1",
+                        "noballs": "1"
+                    },
+                    {
+                        "name": "KH Pandya",
+                        "captain": false,
+                        "fullName": "Krunal Pandya",
+                        "href": "https://www.espncricinfo.com/ci/content/player/471342.html",
+                        "role": "",
+                        "overs": "4",
+                        "maidens": "0",
+                        "conceded": "37",
+                        "wickets": "1",
+                        "economyRate": "9.25",
+                        "dots": "2",
+                        "foursConceded": "1",
+                        "sixesConceded": "2",
+                        "wides": "1",
+                        "noballs": "0"
+                    },
+                    {
+                        "name": "RD Chahar",
+                        "captain": false,
+                        "fullName": "Rahul Chahar",
+                        "href": "https://www.espncricinfo.com/ci/content/player/1064812.html",
+                        "role": "",
+                        "overs": "4",
+                        "maidens": "0",
+                        "conceded": "36",
+                        "wickets": "1",
+                        "economyRate": "9.00",
+                        "dots": "2",
+                        "foursConceded": "3",
+                        "sixesConceded": "1",
+                        "wides": "0",
+                        "noballs": "0"
+                    }
+                ],
+                "didNotBat": [
+                    {
+                        "name": "KM Jadhav",
+                        "displayName": "Kedar Jadhav",
+                        "href": "https://www.espncricinfo.com/ci/content/player/290716.html",
+                        "captain": false,
+                        "trackingName": "",
+                        "hasVideoId": false,
+                        "role": ""
+                    },
+                    {
+                        "name": "PP Chawla",
+                        "displayName": "Piyush Chawla",
+                        "href": "https://www.espncricinfo.com/ci/content/player/32966.html",
+                        "captain": false,
+                        "trackingName": "",
+                        "hasVideoId": false,
+                        "role": ""
+                    },
+                    {
+                        "name": "DL Chahar",
+                        "displayName": "Deepak Chahar",
+                        "href": "https://www.espncricinfo.com/ci/content/player/447261.html",
+                        "captain": false,
+                        "trackingName": "",
+                        "hasVideoId": false,
+                        "role": ""
+                    },
+                    {
+                        "name": "L Ngidi",
+                        "displayName": "Lungi Ngidi",
+                        "href": "https://www.espncricinfo.com/ci/content/player/542023.html",
+                        "captain": false,
+                        "trackingName": "",
+                        "hasVideoId": false,
+                        "role": ""
+                    }
+                ],
+                "total": "166/5 (19.2 Overs, RR: 8.58)",
+                "extras": "4 (nb 1, w 3)",
+                "fallOfWickets": [
+                    "1-5 (Shane Watson, 0.6 ov)",
+                    "2-6 (Murali Vijay, 1.6 ov)",
+                    "3-121 (Ambati Rayudu, 15.6 ov)",
+                    "4-134 (Ravindra Jadeja, 17.1 ov)",
+                    "5-153 (Sam Curran, 18.2 ov)"
+                ],
+                "remainingBatsmen": "Did not bat",
+                "isLimitedOvers": true,
+                "headerInfo": "(target: 163 runs from 20 overs)"
+            }
+        ],
+        "about": {
+            "venue": {
+                "text": "Sheikh Zayed Stadium, Abu Dhabi",
+                "href": "https://www.espncricinfo.com/ci/content/ground/59396.html",
+                "isExternal": false,
+                "image": {
+                    "url": "https://www.espncricinfo.com/db/PICTURES/CMS/115500/115554.jpg"
+                }
+            },
+            "leagues": [
+                {
+                    "text": "Indian Premier League 2020",
+                    "href": "/series/_/id/8048/season/2020/indian-premier-league",
+                    "isExternal": false
+                }
+            ],
+            "playerOfMatch": [
+                {
+                    "text": "Ambati Rayudu",
+                    "href": "https://www.espncricinfo.com/ci/content/player/33141.html",
+                    "isExternal": false,
+                    "image": {
+                        "url": "/esci/i/teamlogos/cricket/500/335974.png",
+                        "alt": "Ambati Rayudu"
+                    }
+                }
+            ],
+            "playerOfSeries": [],
+            "debuts": [],
+            "hoursofplay": "18.00 start, First Session 18.00-19.30, Interval 19.30-19.50, Second Session 19.50- 21.20",
+            "toss": "Chennai Super Kings , elected to field first",
+            "season": {
+                "text": "2020/21",
+                "isExternal": false,
+                "href": "https://www.espncricinfo.com/ci/engine/series/index.html?season=2020/21"
+            },
+            "matchdays": "19 September 2020 - night match (20-over match)",
+            "points": "Chennai Super Kings 2, Mumbai Indians 0",
+            "reserve umpire": [
+                {
+                    "text": "Ulhas Gandhe",
+                    "isExternal": false,
+                    "href": "https://www.espncricinfo.com/ci/content/player/28768.html",
+                    "position": "reserve umpire",
+                    "image": {
+                        "url": "/esci/i/teamlogos/countries/500/ind.png",
+                        "alt": "India"
+                    }
+                }
+            ],
+            "referee": [
+                {
+                    "text": "Manu Nayyar",
+                    "isExternal": false,
+                    "href": "https://www.espncricinfo.com/ci/content/player/31909.html",
+                    "position": "referee",
+                    "image": {
+                        "url": "/esci/i/teamlogos/countries/500/ind.png",
+                        "alt": "India"
+                    }
+                }
+            ],
+            "umpire": [
+                {
+                    "text": "Chris Gaffaney",
+                    "isExternal": false,
+                    "href": "https://www.espncricinfo.com/ci/content/player/37097.html",
+                    "position": "umpire",
+                    "image": {
+                        "url": "/esci/i/teamlogos/countries/500/nzl.png",
+                        "alt": "New Zealand"
+                    }
+                },
+                {
+                    "text": "Virender Sharma",
+                    "isExternal": false,
+                    "href": "https://www.espncricinfo.com/ci/content/player/33933.html",
+                    "position": "umpire",
+                    "image": {
+                        "url": "/esci/i/teamlogos/countries/500/ind.png",
+                        "alt": "India"
+                    }
+                }
+            ],
+            "tv umpire": [
+                {
+                    "text": "Sundaram Ravi",
+                    "isExternal": false,
+                    "href": "https://www.espncricinfo.com/ci/content/player/33135.html",
+                    "position": "tv umpire",
+                    "image": {
+                        "url": "/esci/i/teamlogos/countries/500/ind.png",
+                        "alt": "India"
+                    }
+                }
+            ]
+        },
+        "notes": [
+            {
+                "titles": "Mumbai Indians innings",
+                "notes": [
+                    {
+                        "text": "Powerplay 1: Overs 0.1 - 6.0 (Mandatory - 51 runs, 2 wickets)",
+                        "id": "568043",
+                        "day": "0"
+                    },
+                    {
+                        "text": "Mumbai Indians: 50 runs in 5.3 overs (33 balls), Extras 2",
+                        "id": "568044",
+                        "day": "0"
+                    },
+                    {
+                        "text": "Strategic Timeout: Mumbai Indians - 83/2 in 9.0 overs (SA Yadav 15, SS Tiwary 21)",
+                        "id": "568045",
+                        "day": "0"
+                    },
+                    {
+                        "text": "Mumbai Indians: 100 runs in 11.6 overs (72 balls), Extras 4",
+                        "id": "568046",
+                        "day": "0"
+                    },
+                    {
+                        "text": "Over 13.4: Review by Chennai Super Kings (Bowling), Umpire - CB Gaffaney, Batsman - SS Tiwary (Struck down)",
+                        "id": "568047",
+                        "day": "0"
+                    },
+                    {
+                        "text": "Strategic Timeout: Mumbai Indians - 136/5 in 16.0 overs (KA Pollard 11, KH Pandya 3)",
+                        "id": "568048",
+                        "day": "0"
+                    },
+                    {
+                        "text": "Mumbai Indians: 150 runs in 17.4 overs (106 balls), Extras 4",
+                        "id": "568049",
+                        "day": "0"
+                    },
+                    {
+                        "text": "Innings Break: Mumbai Indians - 162/9 in 20.0 overs (RD Chahar 2, JJ Bumrah 5)",
+                        "id": "568050",
+                        "day": "0"
+                    }
+                ]
+            },
+            {
+                "titles": "Chennai Super Kings innings",
+                "notes": [
+                    {
+                        "text": "Powerplay 1: Overs 0.1 - 6.0 (Mandatory - 37 runs, 2 wickets)",
+                        "id": "568053",
+                        "day": "0"
+                    },
+                    {
+                        "text": "Chennai Super Kings: 50 runs in 7.5 overs (48 balls), Extras 2",
+                        "id": "568054",
+                        "day": "0"
+                    },
+                    {
+                        "text": "Strategic Timeout: Chennai Super Kings - 51/2 in 8.0 overs (F du Plessis 18, AT Rayudu 26)",
+                        "id": "568056",
+                        "day": "0"
+                    },
+                    {
+                        "text": "3rd Wicket: 50 runs in 41 balls (F du Plessis 20, AT Rayudu 28, Ex 2)",
+                        "id": "568057",
+                        "day": "0"
+                    },
+                    {
+                        "text": "AT Rayudu: 50 off 33 balls (6 x 4, 2 x 6)",
+                        "id": "568058",
+                        "day": "0"
+                    },
+                    {
+                        "text": "Chennai Super Kings: 100 runs in 13.1 overs (80 balls), Extras 3",
+                        "id": "568059",
+                        "day": "0"
+                    },
+                    {
+                        "text": "Strategic Timeout: Chennai Super Kings - 105/2 in 14.0 overs (F du Plessis 33, AT Rayudu 64)",
+                        "id": "568060",
+                        "day": "0"
+                    },
+                    {
+                        "text": "3rd Wicket: 100 runs in 75 balls (F du Plessis 33, AT Rayudu 65, Ex 2)",
+                        "id": "568061",
+                        "day": "0"
+                    },
+                    {
+                        "text": "Chennai Super Kings: 150 runs in 18.1 overs (110 balls), Extras 4",
+                        "id": "568062",
+                        "day": "0"
+                    },
+                    {
+                        "text": "F du Plessis: 50 off 42 balls (4 x 4)",
+                        "id": "568064",
+                        "day": "0"
+                    },
+                    {
+                        "text": "Over 18.5: Review by Chennai Super Kings (Batting), Umpire - VK Sharma, Batsman - MS Dhoni (Upheld)",
+                        "id": "568065",
+                        "day": "0"
+                    }
+                ]
+            }
+        ],
+        "closePlay": [],
+        "teams": [
+            {
+                "title": "Mumbai Indians",
+                "players": [
+                    {
+                        "name": "Rohit Sharma",
+                        "href": "https://www.espncricinfo.com/ci/content/player/34102.html",
+                        "captain": true,
+                        "role": "Batsman",
+                        "roleId": "BT"
+                    },
+                    {
+                        "name": "Quinton de Kock",
+                        "href": "https://www.espncricinfo.com/ci/content/player/379143.html",
+                        "captain": false,
+                        "role": "Wicketkeeper",
+                        "roleId": "WK"
+                    },
+                    {
+                        "name": "Suryakumar Yadav",
+                        "href": "https://www.espncricinfo.com/ci/content/player/446507.html",
+                        "captain": false,
+                        "role": "Batsman",
+                        "roleId": "BT"
+                    },
+                    {
+                        "name": "Saurabh Tiwary",
+                        "href": "https://www.espncricinfo.com/ci/content/player/35390.html",
+                        "captain": false,
+                        "role": "Batsman",
+                        "roleId": "BT"
+                    },
+                    {
+                        "name": "Hardik Pandya",
+                        "href": "https://www.espncricinfo.com/ci/content/player/625371.html",
+                        "captain": false,
+                        "role": "Allrounder",
+                        "roleId": "AR"
+                    },
+                    {
+                        "name": "Kieron Pollard",
+                        "href": "https://www.espncricinfo.com/ci/content/player/230559.html",
+                        "captain": false,
+                        "role": "Allrounder",
+                        "roleId": "AR"
+                    },
+                    {
+                        "name": "Krunal Pandya",
+                        "href": "https://www.espncricinfo.com/ci/content/player/471342.html",
+                        "captain": false,
+                        "role": "Allrounder",
+                        "roleId": "AR"
+                    },
+                    {
+                        "name": "James Pattinson",
+                        "href": "https://www.espncricinfo.com/ci/content/player/272465.html",
+                        "captain": false,
+                        "role": "Bowler",
+                        "roleId": "BL"
+                    },
+                    {
+                        "name": "Rahul Chahar",
+                        "href": "https://www.espncricinfo.com/ci/content/player/1064812.html",
+                        "captain": false,
+                        "role": "Bowler",
+                        "roleId": "BL"
+                    },
+                    {
+                        "name": "Trent Boult",
+                        "href": "https://www.espncricinfo.com/ci/content/player/277912.html",
+                        "captain": false,
+                        "role": "Bowler",
+                        "roleId": "BL"
+                    },
+                    {
+                        "name": "Jasprit Bumrah",
+                        "href": "https://www.espncricinfo.com/ci/content/player/625383.html",
+                        "captain": false,
+                        "role": "Bowler",
+                        "roleId": "BL"
+                    }
+                ],
+                "isLimitedOvers": true
+            },
+            {
+                "title": "Chennai Super Kings",
+                "players": [
+                    {
+                        "name": "Murali Vijay",
+                        "href": "https://www.espncricinfo.com/ci/content/player/237095.html",
+                        "captain": false,
+                        "role": "Batsman",
+                        "roleId": "BT"
+                    },
+                    {
+                        "name": "Shane Watson",
+                        "href": "https://www.espncricinfo.com/ci/content/player/8180.html",
+                        "captain": false,
+                        "role": "Allrounder",
+                        "roleId": "AR"
+                    },
+                    {
+                        "name": "Faf du Plessis",
+                        "href": "https://www.espncricinfo.com/ci/content/player/44828.html",
+                        "captain": false,
+                        "role": "Batsman",
+                        "roleId": "BT"
+                    },
+                    {
+                        "name": "Ambati Rayudu",
+                        "href": "https://www.espncricinfo.com/ci/content/player/33141.html",
+                        "captain": false,
+                        "role": "Batsman",
+                        "roleId": "BT"
+                    },
+                    {
+                        "name": "Ravindra Jadeja",
+                        "href": "https://www.espncricinfo.com/ci/content/player/234675.html",
+                        "captain": false,
+                        "role": "Allrounder",
+                        "roleId": "AR"
+                    },
+                    {
+                        "name": "Sam Curran",
+                        "href": "https://www.espncricinfo.com/ci/content/player/662973.html",
+                        "captain": false,
+                        "role": "Allrounder",
+                        "roleId": "AR"
+                    },
+                    {
+                        "name": "MS Dhoni",
+                        "href": "https://www.espncricinfo.com/ci/content/player/28081.html",
+                        "captain": true,
+                        "role": "Wicketkeeper",
+                        "roleId": "WK"
+                    },
+                    {
+                        "name": "Kedar Jadhav",
+                        "href": "https://www.espncricinfo.com/ci/content/player/290716.html",
+                        "captain": false,
+                        "role": "Allrounder",
+                        "roleId": "AR"
+                    },
+                    {
+                        "name": "Piyush Chawla",
+                        "href": "https://www.espncricinfo.com/ci/content/player/32966.html",
+                        "captain": false,
+                        "role": "Allrounder",
+                        "roleId": "AR"
+                    },
+                    {
+                        "name": "Deepak Chahar",
+                        "href": "https://www.espncricinfo.com/ci/content/player/447261.html",
+                        "captain": false,
+                        "role": "Bowler",
+                        "roleId": "BL"
+                    },
+                    {
+                        "name": "Lungi Ngidi",
+                        "href": "https://www.espncricinfo.com/ci/content/player/542023.html",
+                        "captain": false,
+                        "role": "Bowler",
+                        "roleId": "BL"
+                    }
+                ],
+                "isLimitedOvers": true
+            }
+        ]
+    }
+}

@@ -171,7 +171,89 @@ export class Scoreboard extends React.Component<{}, { showGrid: boolean }> {
     private calculatePoints() {
         this.calculateBattingPoints();
         this.calculateBowlingPoints();
+        this.calculateFieldingPoints();
+        this.calculateSpecialPoints()
         this.calculateTotalPoints();
+    }
+
+    private calculateSpecialPoints() {
+        // MOM
+        const playerName: string = this.data["header"]["bestPlayer"]["name"];
+        if(playerName){
+            this.playerMap[playerName].specialPoints += 25;
+        }
+        const winner:string = this.getNameOfWinningTeam();
+        if(winner){
+            this.allocateWinningBonus(winner);
+        }
+    }
+
+    private allocateWinningBonus(winner: string) {
+        Object.values(this.playerMap).map(
+            (player: Player) => {
+                if(player.team === winner){
+                    player.specialPoints += 5;
+                }
+            }
+        );
+    }
+    
+    private getNameOfWinningTeam(): string {
+        let winnerTeam: string = "";
+        this.data["header"]["matchEvent"]["competitors"].map(
+            (team: any) => {
+                if(team.isWinner){
+                    winnerTeam = team.name;
+                }
+            }
+        );
+        return winnerTeam;
+    }
+
+    private calculateFieldingPoints() {
+        Object.values(this.playerMap).map(
+            (player: Player) => {
+                let text: string = player.shortText;
+                // Caught and bowled
+                if(text && text.indexOf("c & b ") > -1){
+                    const playerName = text.substring(6);
+                    this.allocateFieldingPointToPlayer(playerName, player.team);
+                }
+                // caught
+                if(text && text.indexOf("c ") > -1){
+                    text = text.substring(2);
+                    const playerName = text.split(" b")[0];
+                    this.allocateFieldingPointToPlayer(playerName, player.team);
+                }
+                // run out
+                if(text && text.indexOf("run out (") > -1){
+                    text = text.substring(9);
+                    text = text.substring(0, text.length - 1);                    
+                    text.split("/").map(
+                        (playerName: string) => {
+                            this.allocateFieldingPointToPlayer(playerName, player.team);
+                        }
+                    );
+                }
+                // stumping
+                if(text && text.indexOf("st ") > -1){
+                    text = text.substring(3);
+                    const playerName = text.split(" b")[0];
+                    this.allocateFieldingPointToPlayer(playerName, player.team);
+                }
+           }
+        );
+    }
+
+    private allocateFieldingPointToPlayer(playerName: string, oppnentTeam: string) {
+        Object.values(this.playerMap).map(
+            (player: Player) => {
+                if(player.name.indexOf(playerName) > -1 && player.team != oppnentTeam){
+                    player.fieldingActions++;
+                    player.fieldingPoints += 10;
+                }
+            }
+        );
     }
 
     private calculateBattingPoints() {

@@ -76,8 +76,14 @@ export class Scoreboard extends React.Component<{}, {
                 currentMatch = match;
             }
         });
-        this.placholder = currentMatch.title;
-        return currentMatch.id;
+        if (currentMatch) {
+            this.placholder = currentMatch.title;
+            return currentMatch.id;
+        } else {
+            this.setState({
+                errorMessage: "Tournament Chalu hone ke baad ana :P"
+            });
+        }
     }
 
     private viewPointsTable() {
@@ -87,7 +93,28 @@ export class Scoreboard extends React.Component<{}, {
         }
         return (
             <div>
-                <h2>IPL fantasy league for F.R.I.E.N.D.S  - Points Table</h2>
+                <h2 style={{ margin: "auto" }}>IPL fantasy league for F.R.I.E.N.D.S  - Points Table</h2>
+                <div style={{ display: "flex", flexDirection: "row" }}>
+                    <h3>Go to&nbsp;</h3>
+                    <a href="https://docs.google.com/spreadsheets/d/1dDUpBAGOzmJBF7O0U60Yc005QTA01BFpSym9VywaquY/edit#gid=594733490">
+                        <h3> Google Score Sheet</h3>
+                    </a>
+                    {
+                        this.state.showGrid &&
+                        <button
+                            style={{
+                                marginBottom: "auto",
+                                marginTop: "auto",
+                                marginLeft: "10px",
+                            }}
+                            onClick={() => {
+                                this.gridApi.exportDataAsCsv();
+                            }}
+                        >
+                            Export Points Table to Excel
+                    </button>
+                    }
+                </div>
                 <ReactDropdown
                     options={this.fixtureList.map((match: any) => { return { label: match.title, value: match.id } })}
                     onChange={(option: any) => {
@@ -116,21 +143,18 @@ export class Scoreboard extends React.Component<{}, {
                 }
                 {
                     this.state.showGrid &&
-                    <button
-                        onClick={() => {
-                            this.gridApi.exportDataAsCsv();
-                        }}
-                    >
-                        Export to Excel
-                    </button>
-                }
-                {
-                    this.state.showGrid &&
                     <div className="ag-theme-alpine" style={{ height: '600px', width: '1250px' }}>
                         <AgGridReact
-                            rowData={Object.values(this.playerMap)}
+                            rowData={Object.values(this.playerMap).sort(
+                                (a: Player, b: Player) => {
+                                    return b.totalPoints - a.totalPoints;
+                                }
+                            )}
                             onGridReady={(params) => {
                                 this.gridApi = params.api;
+                            }}
+                            defaultColDef={{
+                                sortable: true,
                             }}>
                             <AgGridColumn field="fullName"></AgGridColumn>
                             <AgGridColumn field="totalPoints"></AgGridColumn>

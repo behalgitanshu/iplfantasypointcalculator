@@ -143,7 +143,7 @@ export class Scoreboard extends React.Component<{}, {
                 }
                 {
                     this.state.showGrid &&
-                    <div className="ag-theme-alpine" style={{ height: '600px', width: '1250px' }}>
+                    <div className="ag-theme-alpine" style={{ height: '600px', width: '100%' }}>
                         <AgGridReact
                             rowData={Object.values(this.playerMap).sort(
                                 (a: Player, b: Player) => {

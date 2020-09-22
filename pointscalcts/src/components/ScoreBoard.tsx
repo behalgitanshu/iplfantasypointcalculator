@@ -95,7 +95,6 @@ export class Scoreboard extends React.Component<{}, {
             <div>
                 <h2 style={{ margin: "auto" }}>IPL fantasy league for F.R.I.E.N.D.S  - Points Table</h2>
                 <div style={{ display: "flex", flexDirection: "row" }}>
-                    <h3>Go to&nbsp;</h3>
                     <a href="https://docs.google.com/spreadsheets/d/1dDUpBAGOzmJBF7O0U60Yc005QTA01BFpSym9VywaquY/edit#gid=594733490">
                         <h3> Google Score Sheet</h3>
                     </a>

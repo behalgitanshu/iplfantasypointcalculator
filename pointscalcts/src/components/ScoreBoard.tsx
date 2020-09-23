@@ -47,7 +47,7 @@ export class Scoreboard extends React.Component<{}, {
                 (error) => {
                     this.setState(
                         {
-                            errorMessage: "kuchh to gadbad hai!!"
+                            errorMessage: "kuchh to gadbad hai - Technical message: " + error
                         }
                     );
                 }
@@ -129,7 +129,7 @@ export class Scoreboard extends React.Component<{}, {
                     placeholder={"Latest: " + this.placholder} />
                 {
                     this.data["header"]["matchEvent"]["statusLabel"] === "Scheduled"
-                    && <label> Thoda ruko, jab match chalu hoga tab aana </label>
+                    && <label> Match hone me time hai abhi!! </label>
                 }
                 {
                     !this.state.showGrid &&

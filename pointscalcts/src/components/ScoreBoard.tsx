@@ -8,11 +8,13 @@ import ReactDropdown from "react-dropdown";
 import 'react-dropdown/style.css';
 import { ClipLoader } from "react-spinners";
 import { Button, Icon } from "@material-ui/core";
+import { PlayerDB } from "./PlayerDB";
 
 export class Scoreboard extends React.Component<{}, {
     showGrid: boolean,
     title: string,
     errorMessage: string,
+    showPlayerDB: boolean
 }> {
 
     private buttonTheme: any = {
@@ -26,20 +28,51 @@ export class Scoreboard extends React.Component<{}, {
     private data: { [key: string]: any } = require("./../data/cricInfoData.json");
     private playerMap: { [key: string]: Player } = {};
     private gridApi: GridApi = {} as GridApi;
-    private placholder: string = "Select a team";
+    private placeholder: string = "Select a team";
+    private HidePlaceholderPrefix: boolean = false;
 
     constructor(props: any) {
         super(props);
         this.state = {
             showGrid: false,
             title: "",
-            errorMessage: ""
+            errorMessage: "",
+            showPlayerDB: false,
         }
         this.getFixtureList();
     }
 
     render() {
-        return this.viewPointsTable();
+        if (this.state.errorMessage) {
+            return <h3 style={{ color: "white" }}>{this.state.errorMessage}</h3>;
+        }
+        return (
+            <div>
+                <h2 style={{ margin: "auto", color: "white" }}>IPL Fantasy League Points Table - F.R.I.E.N.D.S</h2>
+                {this.getButttons()}
+                {this.state.showPlayerDB && <PlayerDB />}
+                {!this.state.showPlayerDB && this.getDashboard()}
+            </div>
+        );
+    }
+
+    getDashboard(): React.ReactNode {
+        return <div>
+            {this.getFixtureDropdown()}
+            {
+                this.data["header"]["matchEvent"]["statusLabel"] === "Scheduled"
+                && <label style={{ color: "white" }}> Match hone me time hai abhi!! </label>
+            }
+            {
+                !this.state.showGrid &&
+                this.data["header"]["matchEvent"]["statusLabel"] !== "Scheduled" &&
+                this.getSpinner()
+            }
+            {
+                this.state.showGrid
+                && this.getAGGridPointTable()
+            }
+        </div>
     }
 
     private fetchData(url: string) {
@@ -84,7 +117,7 @@ export class Scoreboard extends React.Component<{}, {
             }
         });
         if (currentMatch) {
-            this.placholder = currentMatch.title;
+            this.placeholder = currentMatch.title;
             return currentMatch.id;
         } else {
             this.setState({
@@ -93,114 +126,120 @@ export class Scoreboard extends React.Component<{}, {
         }
     }
 
-    private viewPointsTable() {
+    private getButttons(): React.ReactNode {
+        return <div style={{ display: "flex", flexDirection: "row", marginBottom: "10px", marginTop: "10px" }}>
+            <Button
+                variant="contained"
+                color="secondary"
+                onClick={() => {
+                    this.HidePlaceholderPrefix = true;
+                    this.setState({
+                        showPlayerDB: !this.state.showPlayerDB,
+                    });
+                }}
+                style={this.buttonTheme}
+            >
+                {this.state.showPlayerDB ? "Back" : "Players Database"}
+            </Button>
+            <Button
+                variant="contained"
+                color="primary"
+                onClick={() => {
+                    window.open("https://docs.google.com/spreadsheets/d/1dDUpBAGOzmJBF7O0U60Yc005QTA01BFpSym9VywaquY/edit#gid=304738466", "_self");
+                }}
+                style={this.buttonTheme}
+            >
+                Fantasy League Points Table
+            </Button>
+            {
+                this.state.showGrid &&
+                this.data["header"]["bestPlayer"] &&
+                <Button
+                    variant="contained"
+                    color="default"
+                    onClick={() => {
+                        this.gridApi.exportDataAsCsv();
+                    }}
+                    style={this.buttonTheme}
+                >
+                    Export Points Table to Excel
+            </Button>
+            }
+        </div>
+    }
 
-        if (this.state.errorMessage) {
-            return <h3 style={{color: "white"}}>{this.state.errorMessage}</h3>;
-        }
-        return (
-            <div>
-                <h2 style={{ margin: "auto", color: "white" }}>IPL Fantasy League Points Table - F.R.I.E.N.D.S</h2>
-                <div style={{ display: "flex", flexDirection: "row", marginBottom: "10px", marginTop: "10px" }}>
-                    <Button
-                        variant="contained"
-                        color="primary"
-                        onClick={() => {
-                            window.open("https://docs.google.com/spreadsheets/d/1dDUpBAGOzmJBF7O0U60Yc005QTA01BFpSym9VywaquY/edit#gid=304738466", "_self");
-                        }}
-                        style={this.buttonTheme}
-                    >
-                        Fantasy League Points Table
-                    </Button>
-                    {
-                        this.state.showGrid &&
-                        this.data["header"]["bestPlayer"] &&
-                        <Button
-                            variant="contained"
-                            color="secondary"
-                            onClick={() => {
-                                this.gridApi.exportDataAsCsv();
-                            }}
-                            style={this.buttonTheme}
-                        >
-                            Export Points Table to Excel
-                        </Button>
+    private getFixtureDropdown(): React.ReactNode {
+        return <div style={{ marginBottom: "5px" }}>
+            <ReactDropdown
+                options={this.fixtureList.map((match: any) => { return { label: match.title, value: match.id } })}
+                onChange={(option: any) => {
+                    this.playerMap = {};
+                    this.fetchData(this.getJSONUrl(option.value));
+                    this.setState(
+                        {
+                            title: option.label,
+                            showGrid: false,
+                        }
+                    );
+                }}
+                placeholder={
+                    (this.HidePlaceholderPrefix
+                        ? ""
+                        : (this.data["header"]["bestPlayer"]
+                            ?
+                            "Recent Result: "
+                            : "Live Match: "))
+                    + this.placeholder}
+            />
+        </div>;
+    }
+
+    private getSpinner(): React.ReactNode {
+        return <ClipLoader
+            size={50}
+            color={"#123abc"}
+            loading={true}
+        />;
+    }
+
+    private getAGGridPointTable(): React.ReactNode {
+        return <div className="ag-theme-alpine" style={{ height: '1000px', width: '100%' }}>
+            <AgGridReact
+                rowData={Object.values(this.playerMap).sort(
+                    (a: Player, b: Player) => {
+                        return b.totalPoints - a.totalPoints;
                     }
-                </div>
-                <div style={{ marginBottom: "5px" }}>
-                    <ReactDropdown
-                        options={this.fixtureList.map((match: any) => { return { label: match.title, value: match.id } })}
-                        onChange={(option: any) => {
-                            this.playerMap = {};
-                            this.fetchData(this.getJSONUrl(option.value));
-                            this.setState(
-                                {
-                                    title: option.label,
-                                    showGrid: false,
-                                }
-                            );
-                        }}
-                        placeholder={
-                            (this.data["header"]["bestPlayer"] ?
-                                "Recent Result: " : "Live Match: ")
-                            + this.placholder}
-                    />
-                </div>
-                {
-                    this.data["header"]["matchEvent"]["statusLabel"] === "Scheduled"
-                    && <label style={{color: "white"}}> Match hone me time hai abhi!! </label>
-                }
-                {
-                    !this.state.showGrid &&
-                    this.data["header"]["matchEvent"]["statusLabel"] !== "Scheduled" &&
-                    <ClipLoader
-                        size={50}
-                        color={"#123abc"}
-                        loading={true}
-                    />
-                }
-                {
-                    this.state.showGrid &&
-                    <div className="ag-theme-alpine" style={{ height: '1000px', width: '100%' }}>
-                        <AgGridReact
-                            rowData={Object.values(this.playerMap).sort(
-                                (a: Player, b: Player) => {
-                                    return b.totalPoints - a.totalPoints;
-                                }
-                            )}
-                            onGridReady={(params) => {
-                                this.gridApi = params.api;
-                            }}
-                            defaultColDef={{
-                                sortable: true,
-                            }}>
-                            <AgGridColumn field="fullName"></AgGridColumn>
-                            <AgGridColumn field="totalPoints"></AgGridColumn>
-                            <AgGridColumn field="battingPoints"></AgGridColumn>
-                            <AgGridColumn field="bowlingPoints"></AgGridColumn>
-                            <AgGridColumn field="fieldingPoints"></AgGridColumn>
-                            <AgGridColumn field="specialPoints"></AgGridColumn>
-                            <AgGridColumn field="team"></AgGridColumn>
-                            <AgGridColumn field="roleId"></AgGridColumn>
-                            <AgGridColumn field="name"></AgGridColumn>
-                            <AgGridColumn field="shortText"></AgGridColumn>
-                            <AgGridColumn field="runs"></AgGridColumn>
-                            <AgGridColumn field="ballsFaced"></AgGridColumn>
-                            <AgGridColumn field="fours"></AgGridColumn>
-                            <AgGridColumn field="sixes"></AgGridColumn>
-                            <AgGridColumn field="strikeRate"></AgGridColumn>
-                            <AgGridColumn field="ballsBowled"></AgGridColumn>
-                            <AgGridColumn field="conceded"></AgGridColumn>
-                            <AgGridColumn field="maidens"></AgGridColumn>
-                            <AgGridColumn field="wickets"></AgGridColumn>
-                            <AgGridColumn field="dots"></AgGridColumn>
-                            <AgGridColumn field="economyRate"></AgGridColumn>
-                            <AgGridColumn field="fieldingActions"></AgGridColumn>
-                        </AgGridReact>
-                    </div>
-                }
-            </div>
-        );
+                )}
+                onGridReady={(params) => {
+                    this.gridApi = params.api;
+                }}
+                defaultColDef={{
+                    sortable: true,
+                }}>
+                <AgGridColumn field="fullName"></AgGridColumn>
+                <AgGridColumn field="totalPoints"></AgGridColumn>
+                <AgGridColumn field="battingPoints"></AgGridColumn>
+                <AgGridColumn field="bowlingPoints"></AgGridColumn>
+                <AgGridColumn field="fieldingPoints"></AgGridColumn>
+                <AgGridColumn field="specialPoints"></AgGridColumn>
+                <AgGridColumn field="team"></AgGridColumn>
+                <AgGridColumn field="roleId"></AgGridColumn>
+                <AgGridColumn field="name"></AgGridColumn>
+                <AgGridColumn field="shortText"></AgGridColumn>
+                <AgGridColumn field="runs"></AgGridColumn>
+                <AgGridColumn field="ballsFaced"></AgGridColumn>
+                <AgGridColumn field="fours"></AgGridColumn>
+                <AgGridColumn field="sixes"></AgGridColumn>
+                <AgGridColumn field="strikeRate"></AgGridColumn>
+                <AgGridColumn field="ballsBowled"></AgGridColumn>
+                <AgGridColumn field="conceded"></AgGridColumn>
+                <AgGridColumn field="maidens"></AgGridColumn>
+                <AgGridColumn field="wickets"></AgGridColumn>
+                <AgGridColumn field="dots"></AgGridColumn>
+                <AgGridColumn field="economyRate"></AgGridColumn>
+                <AgGridColumn field="fieldingActions"></AgGridColumn>
+            </AgGridReact>
+        </div>
     }
 
     private getJSONUrl(eventId: string): string {

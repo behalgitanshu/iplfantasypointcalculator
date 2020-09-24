@@ -26,7 +26,7 @@ export class Scoreboard extends React.Component<{}, {
     };
     private fixtures: { [key: string]: any } = require("./../data/fixtures.json");
     private fixtureList: { title: string, id: string, startTime: string }[] = [];
-    private data: { [key: string]: any } = require("./../data/cricInfoData.json");
+    private data: { [key: string]: any } = {}; // require("./../data/cricInfoData.json");
     private playerMap: { [key: string]: Player } = {};
     private gridApi: GridApi = {} as GridApi;
     private placeholder: string = "Select a team";
@@ -44,6 +44,9 @@ export class Scoreboard extends React.Component<{}, {
     }
 
     render() {
+        if (!this.data["meta"]) {
+            return this.getSpinner();
+        }
         if (this.state.errorMessage) {
             return <h3 style={{ color: "white" }}>{this.state.errorMessage}</h3>;
         }

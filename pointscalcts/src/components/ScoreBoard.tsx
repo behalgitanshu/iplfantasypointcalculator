@@ -96,7 +96,7 @@ export class Scoreboard extends React.Component<{}, {
     private viewPointsTable() {
 
         if (this.state.errorMessage) {
-            return <h3>{this.state.errorMessage}</h3>;
+            return <h3 style={{color: "white"}}>{this.state.errorMessage}</h3>;
         }
         return (
             <div>
@@ -148,7 +148,7 @@ export class Scoreboard extends React.Component<{}, {
                 </div>
                 {
                     this.data["header"]["matchEvent"]["statusLabel"] === "Scheduled"
-                    && <label> Match hone me time hai abhi!! </label>
+                    && <label style={{color: "white"}}> Match hone me time hai abhi!! </label>
                 }
                 {
                     !this.state.showGrid &&

@@ -114,6 +114,7 @@ export class Scoreboard extends React.Component<{}, {
                     </Button>
                     {
                         this.state.showGrid &&
+                        this.data["header"]["bestPlayer"] &&
                         <Button
                             variant="contained"
                             color="secondary"

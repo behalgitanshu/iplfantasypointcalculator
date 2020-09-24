@@ -73,7 +73,7 @@ export class Scoreboard extends React.Component<{}, {
                 {this.state.showPlayerDB && <PlayerDB />}
                 {!this.state.showPlayerDB && this.getDashboard()}
                 {this.getButttons()}
-                {this.getScoreBoard()}
+                {!this.state.showPlayerDB && this.state.showGrid && this.getScoreBoard()}
             </div>
         );
     }

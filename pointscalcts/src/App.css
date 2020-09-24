@@ -1,5 +1,14 @@
 .App {
-  padding: 20px;
+  padding: 10px;
+  background-color:darkslategrey;
+}
+
+.Dropdown-control {
+  background-color: bisque !important;
+}
+
+.Dropdown-placeholder{
+  font-weight: 500;
 }
 
 .App-logo {

@@ -50,3 +50,11 @@ export interface Bowling {
     economyRate: string,
     conceded: string,
 }
+
+export interface FantasyPlayer {
+    Name: string,
+    TeamName: string,
+    SkillName: string,
+    IS_FP: string,
+    Value: string,
+}

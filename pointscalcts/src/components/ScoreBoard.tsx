@@ -31,7 +31,7 @@ export class Scoreboard extends React.Component<{}, {
         marginRight: "10px",
         fontWeight: "600",
         color: "white",
-        curson: "default"
+        cursor: "default"
     };
     private matchStatus: any = {
         marginBottom: "5px",
@@ -105,9 +105,11 @@ export class Scoreboard extends React.Component<{}, {
                     style={this.scoreCard}
                 >
                     {
-                        this.data["header"]["matchEvent"]["competitors"][1]["shortName"]
-                        + " : "
-                        + this.data["header"]["matchEvent"]["competitors"][1]["score"]
+                        this.data["header"]["matchEvent"]["competitors"][1]["score"]
+                            ? this.data["header"]["matchEvent"]["competitors"][1]["shortName"]
+                            + " : "
+                            + this.data["header"]["matchEvent"]["competitors"][1]["score"]
+                            : "-"
                     }
                 </Button>
             </div>

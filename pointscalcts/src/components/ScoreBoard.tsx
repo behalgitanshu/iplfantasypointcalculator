@@ -22,7 +22,24 @@ export class Scoreboard extends React.Component<{}, {
         marginTop: "auto",
         marginRight: "10px",
         fontWeight: "600",
-        fontSize: "x-small"
+        fontSize: "x-small",
+        color: "white"
+    };
+    private scoreCard: any = {
+        marginBottom: "auto",
+        marginTop: "auto",
+        marginRight: "10px",
+        fontWeight: "600",
+        color: "white",
+        curson: "default"
+    };
+    private matchStatus: any = {
+        marginBottom: "5px",
+        marginTop: "5px",
+        marginRight: "10px",
+        fontWeight: "600",
+        color: "black",
+        cursor: "default"
     };
     private fixtures: { [key: string]: any } = require("./../data/fixtures.json");
     private fixtureList: { title: string, id: string, startTime: string }[] = [];
@@ -56,11 +73,57 @@ export class Scoreboard extends React.Component<{}, {
                 {this.state.showPlayerDB && <PlayerDB />}
                 {!this.state.showPlayerDB && this.getDashboard()}
                 {this.getButttons()}
+                {this.getScoreBoard()}
             </div>
         );
     }
 
-    getDashboard(): React.ReactNode {
+    private getScoreBoard(): React.ReactNode {
+        return <div style={{ display: "flex", flexDirection: "column" }}>
+            <Button
+                variant="contained"
+                color="default"
+                style={this.matchStatus}
+            >
+                {this.data["header"]["matchEvent"]["statusText"]}
+            </Button>
+            <div style={{ display: "flex", flexDirection: "row" }}>
+                <Button
+                    variant="contained"
+                    color="primary"
+                    style={this.scoreCard}
+                >
+                    {
+                        this.data["header"]["matchEvent"]["competitors"][0]["shortName"]
+                        + " : "
+                        + this.data["header"]["matchEvent"]["competitors"][0]["score"]
+                    }
+                </Button>
+                <Button
+                    variant="contained"
+                    color="secondary"
+                    style={this.scoreCard}
+                >
+                    {
+                        this.data["header"]["matchEvent"]["competitors"][1]["shortName"]
+                        + " : "
+                        + this.data["header"]["matchEvent"]["competitors"][1]["score"]
+                    }
+                </Button>
+            </div>
+            {this.data["header"]["matchEvent"]["statusLabel"] === "Live"
+                && <Button
+                    variant="contained"
+                    color="default"
+                    style={this.matchStatus}
+                >
+                    {this.data["header"]["title"]}
+                </Button>
+            }
+        </div>
+    }
+
+    private getDashboard(): React.ReactNode {
         return <div>
             {this.getFixtureDropdown()}
             {
@@ -207,7 +270,7 @@ export class Scoreboard extends React.Component<{}, {
     }
 
     private getAGGridPointTable(): React.ReactNode {
-        return <div className="ag-theme-alpine" style={{ height: '60vh', width: '100%' }}>
+        return <div className="ag-theme-alpine" style={{ height: '50vh', width: '100%' }}>
             <AgGridReact
                 rowData={Object.values(this.playerMap).sort(
                     (a: Player, b: Player) => {

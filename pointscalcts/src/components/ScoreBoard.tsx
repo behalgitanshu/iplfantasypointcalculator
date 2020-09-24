@@ -25,6 +25,14 @@ export class Scoreboard extends React.Component<{}, {
         fontSize: "x-small",
         color: "white"
     };
+    private defaultButtonTheme: any = {
+        marginBottom: "auto",
+        marginTop: "auto",
+        marginRight: "10px",
+        fontWeight: "600",
+        fontSize: "x-small",
+        color: "black"
+    };
     private scoreCard: any = {
         marginBottom: "auto",
         marginTop: "auto",
@@ -229,7 +237,7 @@ export class Scoreboard extends React.Component<{}, {
                     onClick={() => {
                         this.gridApi.exportDataAsCsv();
                     }}
-                    style={this.buttonTheme}
+                    style={this.defaultButtonTheme}
                 >
                     Export Points Table to Excel
             </Button>

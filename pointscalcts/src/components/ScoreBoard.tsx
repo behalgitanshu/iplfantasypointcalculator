@@ -21,7 +21,8 @@ export class Scoreboard extends React.Component<{}, {
         marginBottom: "auto",
         marginTop: "auto",
         marginRight: "10px",
-        fontWeight: "600"
+        fontWeight: "600",
+        fontSize: "x-small"
     };
     private fixtures: { [key: string]: any } = require("./../data/fixtures.json");
     private fixtureList: { title: string, id: string, startTime: string }[] = [];
@@ -49,9 +50,9 @@ export class Scoreboard extends React.Component<{}, {
         return (
             <div>
                 <h2 style={{ margin: "auto", color: "white" }}>IPL Fantasy League Points Table - F.R.I.E.N.D.S</h2>
-                {this.getButttons()}
                 {this.state.showPlayerDB && <PlayerDB />}
                 {!this.state.showPlayerDB && this.getDashboard()}
+                {this.getButttons()}
             </div>
         );
     }
@@ -169,7 +170,7 @@ export class Scoreboard extends React.Component<{}, {
     }
 
     private getFixtureDropdown(): React.ReactNode {
-        return <div style={{ marginBottom: "5px" }}>
+        return <div style={{ marginBottom: "5px", marginTop: "10px" }}>
             <ReactDropdown
                 options={this.fixtureList.map((match: any) => { return { label: match.title, value: match.id } })}
                 onChange={(option: any) => {
@@ -203,7 +204,7 @@ export class Scoreboard extends React.Component<{}, {
     }
 
     private getAGGridPointTable(): React.ReactNode {
-        return <div className="ag-theme-alpine" style={{ height: '1000px', width: '100%' }}>
+        return <div className="ag-theme-alpine" style={{ height: '60vh', width: '100%' }}>
             <AgGridReact
                 rowData={Object.values(this.playerMap).sort(
                     (a: Player, b: Player) => {

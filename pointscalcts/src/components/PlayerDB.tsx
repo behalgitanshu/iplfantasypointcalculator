@@ -2,12 +2,8 @@ import React from "react";
 import { AgGridColumn, AgGridReact } from 'ag-grid-react';
 import './ag-grid.css';
 import 'ag-grid-community/dist/styles/ag-theme-alpine.css';
-import { Team, Bowling, Batting, Player, FantasyPlayer } from "../model/model";
-import { GridApi } from "ag-grid-community";
-import ReactDropdown from "react-dropdown";
+import { FantasyPlayer } from "../model/model";
 import 'react-dropdown/style.css';
-import { ClipLoader } from "react-spinners";
-import { Button, Icon } from "@material-ui/core";
 
 export class PlayerDB extends React.Component<{}, {}> {
 
@@ -20,7 +16,7 @@ export class PlayerDB extends React.Component<{}, {}> {
     }
 
     render() {
-        return <div className="ag-theme-alpine" style={{ height: '600px', width: '1000px' }}>
+        return <div className="ag-theme-alpine" style={{ height: '60vh', maxWidth: '1000px', width: "100%" }}>
             <AgGridReact
                 rowData={Object.values(this.playersList).sort(
                     (a: FantasyPlayer, b: FantasyPlayer) => {

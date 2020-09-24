@@ -7,6 +7,7 @@ import { GridApi } from "ag-grid-community";
 import ReactDropdown from "react-dropdown";
 import 'react-dropdown/style.css';
 import { ClipLoader } from "react-spinners";
+import { Button, Icon } from "@material-ui/core";
 
 export class Scoreboard extends React.Component<{}, {
     showGrid: boolean,
@@ -14,6 +15,12 @@ export class Scoreboard extends React.Component<{}, {
     errorMessage: string,
 }> {
 
+    private buttonTheme: any = {
+        marginBottom: "auto",
+        marginTop: "auto",
+        marginRight: "10px",
+        fontWeight: "600"
+    };
     private fixtures: { [key: string]: any } = require("./../data/fixtures.json");
     private fixtureList: { title: string, id: string, startTime: string }[] = [];
     private data: { [key: string]: any } = require("./../data/cricInfoData.json");
@@ -93,40 +100,51 @@ export class Scoreboard extends React.Component<{}, {
         }
         return (
             <div>
-                <h2 style={{ margin: "auto" }}>IPL fantasy league for F.R.I.E.N.D.S  - Points Table</h2>
-                <div style={{ display: "flex", flexDirection: "row" }}>
-                    <a href="https://docs.google.com/spreadsheets/d/1dDUpBAGOzmJBF7O0U60Yc005QTA01BFpSym9VywaquY/edit#gid=304738466">
-                        <h3> Google Score Sheet</h3>
-                    </a>
+                <h2 style={{ margin: "auto", color: "white" }}>IPL Fantasy League Points Table - F.R.I.E.N.D.S</h2>
+                <div style={{ display: "flex", flexDirection: "row", marginBottom: "10px", marginTop: "10px" }}>
+                    <Button
+                        variant="contained"
+                        color="primary"
+                        onClick={() => {
+                            window.open("https://docs.google.com/spreadsheets/d/1dDUpBAGOzmJBF7O0U60Yc005QTA01BFpSym9VywaquY/edit#gid=304738466", "_self");
+                        }}
+                        style={this.buttonTheme}
+                    >
+                        Fantasy League Points Table
+                    </Button>
                     {
                         this.state.showGrid &&
-                        <button
-                            style={{
-                                marginBottom: "auto",
-                                marginTop: "auto",
-                                marginLeft: "10px",
-                            }}
+                        <Button
+                            variant="contained"
+                            color="secondary"
                             onClick={() => {
                                 this.gridApi.exportDataAsCsv();
                             }}
+                            style={this.buttonTheme}
                         >
                             Export Points Table to Excel
-                    </button>
+                        </Button>
                     }
                 </div>
-                <ReactDropdown
-                    options={this.fixtureList.map((match: any) => { return { label: match.title, value: match.id } })}
-                    onChange={(option: any) => {
-                        this.playerMap = {};
-                        this.fetchData(this.getJSONUrl(option.value));
-                        this.setState(
-                            {
-                                title: option.label,
-                                showGrid: false,
-                            }
-                        );
-                    }}
-                    placeholder={"Latest: " + this.placholder} />
+                <div style={{ marginBottom: "5px" }}>
+                    <ReactDropdown
+                        options={this.fixtureList.map((match: any) => { return { label: match.title, value: match.id } })}
+                        onChange={(option: any) => {
+                            this.playerMap = {};
+                            this.fetchData(this.getJSONUrl(option.value));
+                            this.setState(
+                                {
+                                    title: option.label,
+                                    showGrid: false,
+                                }
+                            );
+                        }}
+                        placeholder={
+                            (this.data["header"]["bestPlayer"] ?
+                                "Recent Result: " : "Live Match: ")
+                            + this.placholder}
+                    />
+                </div>
                 {
                     this.data["header"]["matchEvent"]["statusLabel"] === "Scheduled"
                     && <label> Match hone me time hai abhi!! </label>

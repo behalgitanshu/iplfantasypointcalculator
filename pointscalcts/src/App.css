@@ -12,6 +12,10 @@
   font-weight: 500;
 }
 
+.Dropdown-menu{
+  max-height: 60vh !important;
+}
+
 .App-logo {
   height: 40vmin;
   pointer-events: none;

@@ -81,7 +81,7 @@ export class Scoreboard extends React.Component<{}, {
         }
         return (
             <div style={{ display: "flex", flexDirection: "column", height: "100%" }}>
-                <h2 style={{ margin: "auto", color: "white" }}>IPL Fantasy League Points Table - F.R.I.E.N.D.S</h2>
+                <h2 style={{ margin: "auto", color: "white" }}>IPL Fantasy League Points Table 2020 - F.R.I.E.N.D.S</h2>
                 <div style={{ flexGrow: 1 }}>
                     {this.state.showPlayerDB && <PlayerDB />}
                     {!this.state.showPlayerDB && this.getDashboard()}
@@ -122,7 +122,6 @@ export class Scoreboard extends React.Component<{}, {
                         fontWeight: 600,
                         color: "white",
                         flexGrow: 1,
-                        width: "50%",
                         backgroundColor: "#735e56",
                     }}
                 />
@@ -142,7 +141,6 @@ export class Scoreboard extends React.Component<{}, {
                         fontWeight: 600,
                         color: "white",
                         flexGrow: 1,
-                        width: "50%",
                         backgroundColor: "#806070",
                     }}
                 />
@@ -213,7 +211,10 @@ export class Scoreboard extends React.Component<{}, {
         this.fixtureList = this.fixtures["content"]["matchEvents"].map(
             (match: any) => {
                 return {
-                    title: match.shortName + " " + match.description,
+                    title: match.shortName + " "
+                        + (match.description as string)
+                            .replace("Indian Premier League at ", "")
+                            .replace(" 2020", ""),
                     id: match.id,
                     startTime: match.startDate,
                 }

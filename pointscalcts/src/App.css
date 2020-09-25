@@ -4,6 +4,10 @@
   background-color:darkslategrey;
 }
 
+.ag-theme-alpine{
+  -webkit-box-flex: 1;
+}
+
 .Dropdown-control {
   background-color: bisque !important;
 }

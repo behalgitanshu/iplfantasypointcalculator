@@ -348,22 +348,22 @@ export class Scoreboard extends React.Component<{}, {
                 }}
                 defaultColDef={{
                     sortable: true,
-                    width: 100,
+                    width: 75,
                 }}>
                 <AgGridColumn field="name" headerName={"Nickname"} width={125} lockPinned={true} pinned={"left"} ></AgGridColumn>
-                <AgGridColumn field="totalPoints" headerName={"Total"}></AgGridColumn>
-                <AgGridColumn field="battingPoints" headerName={"Batting"}></AgGridColumn>
-                <AgGridColumn field="bowlingPoints" headerName={"Bowling"}></AgGridColumn>
-                <AgGridColumn field="fieldingPoints" headerName={"Fielding"}></AgGridColumn>
-                <AgGridColumn field="specialPoints" headerName={"Special"}></AgGridColumn>
+                <AgGridColumn field="totalPoints" headerName={"Points"} width={75} lockPinned={true} pinned={"right"} ></AgGridColumn>
+                <AgGridColumn field="battingPoints" headerName={"Bat"}></AgGridColumn>
+                <AgGridColumn field="bowlingPoints" headerName={"Bowl"}></AgGridColumn>
+                <AgGridColumn field="fieldingPoints" headerName={"Field"}></AgGridColumn>
+                <AgGridColumn field="specialPoints" headerName={"Bonus"}></AgGridColumn>
                 <AgGridColumn field="roleId" headerName={"Role"}></AgGridColumn>
                 <AgGridColumn field="runs"></AgGridColumn>
-                <AgGridColumn field="ballsFaced" headerName={"Balls"}></AgGridColumn>
+                <AgGridColumn field="ballsFaced" headerName={"Faced"}></AgGridColumn>
                 <AgGridColumn field="fours"></AgGridColumn>
                 <AgGridColumn field="sixes"></AgGridColumn>
                 <AgGridColumn field="strikeRate"></AgGridColumn>
                 <AgGridColumn field="shortText" headerName={"Status"} width={200}></AgGridColumn>
-                <AgGridColumn field="ballsBowled" headerName={"Deliveries"}></AgGridColumn>
+                <AgGridColumn field="ballsBowled" headerName={"Bowled"}></AgGridColumn>
                 <AgGridColumn field="conceded"></AgGridColumn>
                 <AgGridColumn field="maidens"></AgGridColumn>
                 <AgGridColumn field="wickets"></AgGridColumn>

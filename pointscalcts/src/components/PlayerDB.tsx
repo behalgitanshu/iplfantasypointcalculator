@@ -47,7 +47,7 @@ export class PlayerDB extends React.Component<{}, {
                         cursor: "default"
                     }}
                 />
-                <div className="ag-theme-alpine" style={{ flexGrow: 1, maxWidth: '755px', width: "100%", alignSelf: "center" }}>
+                <div className="ag-theme-alpine" style={{ flexGrow: 1, maxWidth: '770px', width: "100%", alignSelf: "center" }}>
                     <AgGridReact
                         rowData={Object.values(this.playersList).sort(
                             (a: FantasyPlayer, b: FantasyPlayer) => {

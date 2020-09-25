@@ -61,6 +61,7 @@ export class Scoreboard extends React.Component<{}, {
     private playerMap: { [key: string]: Player } = {};
     private gridApi: GridApi = {} as GridApi;
     private placeholder: string = "Select a team";
+    private upcomingMatchTitle: string = "";
     private HidePlaceholderPrefix: boolean = false;
 
     constructor(props: any) {
@@ -172,6 +173,7 @@ export class Scoreboard extends React.Component<{}, {
             flexDirection: "column",
             height: "100%"
         }}>
+            {this.upcomingMatchTitle && this.getNextMatch()}
             {this.getFixtureDropdown()}
             {
                 this.data["header"]["matchEvent"]["statusLabel"] === "Scheduled"
@@ -188,6 +190,20 @@ export class Scoreboard extends React.Component<{}, {
                 && this.getAGGridPointTable()
             }
         </div>
+    }
+
+    private getNextMatch(): React.ReactNode {
+        return <Chip
+            label={"Scheduled: " + this.upcomingMatchTitle}
+            color="secondary"
+            style={{
+                justifyContent: "left",
+                marginTop: "5px",
+                marginRight: "10px",
+                fontWeight: 600,
+                cursor: "default",
+            }}
+        />;
     }
 
     private fetchData(url: string) {
@@ -228,12 +244,22 @@ export class Scoreboard extends React.Component<{}, {
 
     private getCurrentMatch(): any {
         let currentMatch: any;
+        let upcomingMatch: any;
+        let captureUpcoming: boolean = true;
         const now: Date = new Date();
         this.fixtureList.map((match: any) => {
+            if (captureUpcoming) {
+                upcomingMatch = match;
+                captureUpcoming = false;
+            }
             if (new Date(match.startTime) < now) {
                 currentMatch = match;
+                captureUpcoming = true;
             }
         });
+        if (currentMatch.id !== upcomingMatch.id) {
+            this.upcomingMatchTitle = upcomingMatch.title;
+        }
         if (currentMatch) {
             this.placeholder = currentMatch.title;
             return currentMatch.id;

@@ -54,6 +54,7 @@ export interface Bowling {
 export interface FantasyPlayer {
     Name: string,
     TeamName: string,
+    TeamShortName: string,
     SkillName: string,
     IS_FP: string,
     Value: string,

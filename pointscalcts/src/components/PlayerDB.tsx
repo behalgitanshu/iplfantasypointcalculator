@@ -47,7 +47,7 @@ export class PlayerDB extends React.Component<{}, {
                         cursor: "default"
                     }}
                 />
-                <div className="ag-theme-alpine" style={{ flexGrow: 1, maxWidth: '1200px', width: "100%" }}>
+                <div className="ag-theme-alpine" style={{ flexGrow: 1, maxWidth: '755px', width: "100%", alignSelf: "center" }}>
                     <AgGridReact
                         rowData={Object.values(this.playersList).sort(
                             (a: FantasyPlayer, b: FantasyPlayer) => {
@@ -58,13 +58,14 @@ export class PlayerDB extends React.Component<{}, {
                             sortable: true,
                             filter: true,
                             floatingFilter: true,
+                            width: 100
                         }}>
-                        <AgGridColumn field="TeamName"></AgGridColumn>
-                        <AgGridColumn field="Name"></AgGridColumn>
-                        <AgGridColumn field="Value"></AgGridColumn>
-                        <AgGridColumn field="SkillName"></AgGridColumn>
-                        <AgGridColumn field="OverallPoints"></AgGridColumn>
-                        <AgGridColumn field="IS_FP"></AgGridColumn>
+                        <AgGridColumn field="TeamShortName" headerName={"Team"}></AgGridColumn>
+                        <AgGridColumn field="Name" width={200}></AgGridColumn>
+                        <AgGridColumn field="Value" headerName={"Price"}></AgGridColumn>
+                        <AgGridColumn field="SkillName" width={150} headerName="Skill"></AgGridColumn>
+                        <AgGridColumn field="OverallPoints" headerName={"Points"}></AgGridColumn>
+                        <AgGridColumn field="IS_FP" headerName={"IsForeigner"}></AgGridColumn>
                     </AgGridReact>
                 </div>
             </div>

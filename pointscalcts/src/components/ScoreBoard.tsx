@@ -84,7 +84,7 @@ export class Scoreboard extends React.Component<{}, {
         }
         return (
             <div style={{ display: "flex", flexDirection: "column", height: "100%" }}>
-                <h2 style={{ margin: "auto", color: "white" }}>IPL Fantasy League 2020 - F.R.I.E.N.D.S</h2>
+                <h3 style={{ margin: "auto", color: "white" }}>IPL Fantasy League 2020 - F.R.I.E.N.D.S</h3>
                 <div style={{ flexGrow: 1 }}>
                     {this.state.showPlayerDB && <PlayerDB />}
                     {!this.state.showPlayerDB && this.getDashboard()}

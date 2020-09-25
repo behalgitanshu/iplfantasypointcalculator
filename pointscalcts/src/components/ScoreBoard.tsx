@@ -96,8 +96,7 @@ export class Scoreboard extends React.Component<{}, {
 
     private getScoreBoard(): React.ReactNode {
         return <div style={{ display: "flex", flexDirection: "column", paddingBottom: "10px" }}>
-            <Chip
-                label={this.data["header"]["matchEvent"]["statusText"]}
+            <Button
                 color="default"
                 style={{
                     marginBottom: "5px",
@@ -109,16 +108,11 @@ export class Scoreboard extends React.Component<{}, {
                     cursor: "default",
                     backgroundColor: "#afdade",
                 }}
-            />
+            >
+                {this.data["header"]["matchEvent"]["statusText"]}
+            </Button>
             <div style={{ display: "flex", flexDirection: "row" }}>
-                <Chip
-                    label={
-                        this.data["header"]["matchEvent"]["competitors"][0]["score"]
-                            ? this.data["header"]["matchEvent"]["competitors"][0]["shortName"]
-                            + " : "
-                            + this.data["header"]["matchEvent"]["competitors"][0]["score"]
-                            : "1st Innings"
-                    }
+                <Button
                     color="primary"
                     style={{
                         marginBottom: "auto",
@@ -128,16 +122,18 @@ export class Scoreboard extends React.Component<{}, {
                         color: "white",
                         flexGrow: 1,
                         backgroundColor: "#735e56",
+                        cursor: "default"
                     }}
-                />
-                <Chip
-                    label={
-                        this.data["header"]["matchEvent"]["competitors"][1]["score"]
-                            ? this.data["header"]["matchEvent"]["competitors"][1]["shortName"]
+                >
+                    {
+                        this.data["header"]["matchEvent"]["competitors"][0]["score"]
+                            ? this.data["header"]["matchEvent"]["competitors"][0]["shortName"]
                             + " : "
-                            + this.data["header"]["matchEvent"]["competitors"][1]["score"]
-                            : "2nd Innings"
+                            + this.data["header"]["matchEvent"]["competitors"][0]["score"]
+                            : "-"
                     }
+                </Button>
+                <Button
                     color="secondary"
                     style={{
                         marginBottom: "auto",
@@ -147,12 +143,20 @@ export class Scoreboard extends React.Component<{}, {
                         color: "white",
                         flexGrow: 1,
                         backgroundColor: "#806070",
+                        cursor: "default"
                     }}
-                />
+                >
+                    {
+                        this.data["header"]["matchEvent"]["competitors"][1]["score"]
+                            ? this.data["header"]["matchEvent"]["competitors"][1]["shortName"]
+                            + " : "
+                            + this.data["header"]["matchEvent"]["competitors"][1]["score"]
+                            : "-"
+                    }
+                </Button>
             </div>
             {this.data["header"]["matchEvent"]["statusLabel"] === "Live"
-                && <Chip
-                    label={this.data["header"]["title"]}
+                && <Button
                     color="default"
                     style={{
                         marginBottom: "5px",
@@ -164,7 +168,9 @@ export class Scoreboard extends React.Component<{}, {
                         cursor: "default",
                         backgroundColor: "#afdade",
                     }}
-                />
+                >
+                    {this.data["header"]["title"].replace(" - Live", "")}
+                </Button>
             }
         </div>
     }

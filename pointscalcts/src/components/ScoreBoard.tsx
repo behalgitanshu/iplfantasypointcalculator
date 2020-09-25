@@ -332,29 +332,30 @@ export class Scoreboard extends React.Component<{}, {
                 }}
                 defaultColDef={{
                     sortable: true,
+                    width: 100,
                 }}>
-                <AgGridColumn field="fullName"></AgGridColumn>
-                <AgGridColumn field="totalPoints"></AgGridColumn>
-                <AgGridColumn field="battingPoints"></AgGridColumn>
-                <AgGridColumn field="bowlingPoints"></AgGridColumn>
-                <AgGridColumn field="fieldingPoints"></AgGridColumn>
-                <AgGridColumn field="specialPoints"></AgGridColumn>
-                <AgGridColumn field="team"></AgGridColumn>
-                <AgGridColumn field="roleId"></AgGridColumn>
-                <AgGridColumn field="name"></AgGridColumn>
-                <AgGridColumn field="shortText"></AgGridColumn>
+                <AgGridColumn field="name" headerName={"Nickname"} width={125}  lockPinned={true} pinned={"left"} ></AgGridColumn>
+                <AgGridColumn field="totalPoints" headerName={"Total"}></AgGridColumn>
+                <AgGridColumn field="battingPoints" headerName={"Batting"}></AgGridColumn>
+                <AgGridColumn field="bowlingPoints" headerName={"Bowling"}></AgGridColumn>
+                <AgGridColumn field="fieldingPoints" headerName={"Fielding"}></AgGridColumn>
+                <AgGridColumn field="specialPoints" headerName={"Special"}></AgGridColumn>
+                <AgGridColumn field="roleId" headerName={"Role"}></AgGridColumn>
                 <AgGridColumn field="runs"></AgGridColumn>
-                <AgGridColumn field="ballsFaced"></AgGridColumn>
+                <AgGridColumn field="ballsFaced" headerName={"Balls"}></AgGridColumn>
                 <AgGridColumn field="fours"></AgGridColumn>
                 <AgGridColumn field="sixes"></AgGridColumn>
                 <AgGridColumn field="strikeRate"></AgGridColumn>
-                <AgGridColumn field="ballsBowled"></AgGridColumn>
+                <AgGridColumn field="shortText" headerName={"Status"} width={200}></AgGridColumn>
+                <AgGridColumn field="ballsBowled" headerName={"Deliveries"}></AgGridColumn>
                 <AgGridColumn field="conceded"></AgGridColumn>
                 <AgGridColumn field="maidens"></AgGridColumn>
                 <AgGridColumn field="wickets"></AgGridColumn>
                 <AgGridColumn field="dots"></AgGridColumn>
                 <AgGridColumn field="economyRate"></AgGridColumn>
                 <AgGridColumn field="fieldingActions"></AgGridColumn>
+                <AgGridColumn field="team" width={200}></AgGridColumn>
+                <AgGridColumn field="fullName"width={200}></AgGridColumn>
             </AgGridReact>
         </div>
     }

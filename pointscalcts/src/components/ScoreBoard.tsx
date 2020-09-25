@@ -24,6 +24,7 @@ export class Scoreboard extends React.Component<{}, {
         fontWeight: "600",
         fontSize: "x-small",
         color: "white",
+        width: "50%",
         flexGrow: 1,
     };
     private defaultButtonTheme: any = {
@@ -33,6 +34,7 @@ export class Scoreboard extends React.Component<{}, {
         fontWeight: "600",
         fontSize: "x-small",
         flexGrow: 1,
+        width: "50%",
         color: "black"
     };
     private scoreCard: any = {
@@ -243,45 +245,59 @@ export class Scoreboard extends React.Component<{}, {
     }
 
     private getButttons(): React.ReactNode {
-        return <div style={{ display: "flex", flexDirection: "row", marginBottom: "10px", marginTop: "10px", width: "100%" }}>
-            <Button
-                variant="contained"
-                color="secondary"
-                onClick={() => {
-                    this.HidePlaceholderPrefix = true;
-                    this.setState({
-                        showPlayerDB: !this.state.showPlayerDB,
-                    });
-                }}
-                style={this.buttonTheme}
-            >
-                {this.state.showPlayerDB ? "Back" : "Players Database"}
-            </Button>
-            <Button
-                variant="contained"
-                color="primary"
-                onClick={() => {
-                    window.open("https://docs.google.com/spreadsheets/d/1dDUpBAGOzmJBF7O0U60Yc005QTA01BFpSym9VywaquY/edit#gid=304738466", "_self");
-                }}
-                style={this.buttonTheme}
-            >
-                Fantasy League Points Table
-            </Button>
-            {
-                this.state.showGrid &&
-                !this.state.showPlayerDB &&
-                this.data["header"]["bestPlayer"] &&
+        return <div style={{ display: "flex", flexDirection: "column", marginTop: "10px", width: "100%" }}>
+            <div style={{ display: "flex", flexDirection: "row", marginBottom: "5px", width: "100%" }}>
                 <Button
                     variant="contained"
-                    color="default"
+                    color="primary"
                     onClick={() => {
-                        this.gridApi.exportDataAsCsv();
+                        window.open("https://docs.google.com/document/d/1lIOvXLeVBKRwQ8g4eo05eKStPUmJbl6Hhy2dsKYoDjY/edit", "_self");
                     }}
-                    style={this.defaultButtonTheme}
+                    style={this.buttonTheme}
                 >
-                    Export Points Table to Excel
+                    {"Rule Book"}
+                </Button>
+                {
+                    this.state.showGrid &&
+                    !this.state.showPlayerDB &&
+                    this.data["header"]["bestPlayer"] &&
+                    <Button
+                        variant="contained"
+                        color="default"
+                        onClick={() => {
+                            this.gridApi.exportDataAsCsv();
+                        }}
+                        style={this.defaultButtonTheme}
+                    >
+                        Save Points Table
+                </Button>
+                }
+            </div>
+            <div style={{ display: "flex", flexDirection: "row", marginBottom: "5px", width: "100%" }}>
+                <Button
+                    variant="contained"
+                    color="secondary"
+                    onClick={() => {
+                        this.HidePlaceholderPrefix = true;
+                        this.setState({
+                            showPlayerDB: !this.state.showPlayerDB,
+                        });
+                    }}
+                    style={this.buttonTheme}
+                >
+                    {this.state.showPlayerDB ? "Point Table" : "Players Database"}
+                </Button>
+                <Button
+                    variant="contained"
+                    color="primary"
+                    onClick={() => {
+                        window.open("https://docs.google.com/spreadsheets/d/1dDUpBAGOzmJBF7O0U60Yc005QTA01BFpSym9VywaquY/edit#gid=304738466", "_self");
+                    }}
+                    style={this.buttonTheme}
+                >
+                    Score Sheet
             </Button>
-            }
+            </div>
         </div>
     }
 
@@ -334,7 +350,7 @@ export class Scoreboard extends React.Component<{}, {
                     sortable: true,
                     width: 100,
                 }}>
-                <AgGridColumn field="name" headerName={"Nickname"} width={125}  lockPinned={true} pinned={"left"} ></AgGridColumn>
+                <AgGridColumn field="name" headerName={"Nickname"} width={125} lockPinned={true} pinned={"left"} ></AgGridColumn>
                 <AgGridColumn field="totalPoints" headerName={"Total"}></AgGridColumn>
                 <AgGridColumn field="battingPoints" headerName={"Batting"}></AgGridColumn>
                 <AgGridColumn field="bowlingPoints" headerName={"Bowling"}></AgGridColumn>
@@ -355,7 +371,7 @@ export class Scoreboard extends React.Component<{}, {
                 <AgGridColumn field="economyRate"></AgGridColumn>
                 <AgGridColumn field="fieldingActions"></AgGridColumn>
                 <AgGridColumn field="team" width={200}></AgGridColumn>
-                <AgGridColumn field="fullName"width={200}></AgGridColumn>
+                <AgGridColumn field="fullName" width={200}></AgGridColumn>
             </AgGridReact>
         </div>
     }

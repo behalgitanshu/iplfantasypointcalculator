@@ -177,8 +177,7 @@ export class Scoreboard extends React.Component<{}, {
 
     private getDashboard(): React.ReactNode {
         return <div style={{
-            display: "flex",
-            display: "-webkit-box",
+            display: "-webkit-flex",
             flexDirection: "column",
             height: "100%"
         }}>

@@ -6,6 +6,7 @@
 
 .ag-theme-alpine{
   -webkit-flex: 1;
+  height: 50vh;
 }
 
 .Dropdown-control {

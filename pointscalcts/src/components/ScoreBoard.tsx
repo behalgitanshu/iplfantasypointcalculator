@@ -84,7 +84,7 @@ export class Scoreboard extends React.Component<{}, {
         }
         return (
             <div style={{ display: "flex", flexDirection: "column", height: "100%" }}>
-                <h3 style={{ margin: "auto", color: "white" }}>IPL Fantasy League 2020 - F.R.I.E.N.D.S</h3>
+                <h2 style={{ margin: "auto", color: "white" }}>IPL Fantasy League Points Table 2020 - F.R.I.E.N.D.S</h2>
                 <div style={{ flexGrow: 1 }}>
                     {this.state.showPlayerDB && <PlayerDB />}
                     {!this.state.showPlayerDB && this.getDashboard()}
@@ -113,9 +113,11 @@ export class Scoreboard extends React.Component<{}, {
             <div style={{ display: "flex", flexDirection: "row" }}>
                 <Chip
                     label={
-                        this.data["header"]["matchEvent"]["competitors"][0]["shortName"]
-                        + " : "
-                        + this.data["header"]["matchEvent"]["competitors"][0]["score"]
+                        this.data["header"]["matchEvent"]["competitors"][0]["score"]
+                            ? this.data["header"]["matchEvent"]["competitors"][0]["shortName"]
+                            + " : "
+                            + this.data["header"]["matchEvent"]["competitors"][0]["score"]
+                            : "1st Innings"
                     }
                     color="primary"
                     style={{
@@ -134,7 +136,7 @@ export class Scoreboard extends React.Component<{}, {
                             ? this.data["header"]["matchEvent"]["competitors"][1]["shortName"]
                             + " : "
                             + this.data["header"]["matchEvent"]["competitors"][1]["score"]
-                            : "-"
+                            : "2nd Innings"
                     }
                     color="secondary"
                     style={{
@@ -247,6 +249,7 @@ export class Scoreboard extends React.Component<{}, {
         let upcomingMatch: any;
         let captureUpcoming: boolean = true;
         const now: Date = new Date();
+        now.setMinutes(now.getMinutes() + 29);
         this.fixtureList.map((match: any) => {
             if (captureUpcoming) {
                 upcomingMatch = match;

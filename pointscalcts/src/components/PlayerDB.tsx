@@ -5,6 +5,7 @@ import 'ag-grid-community/dist/styles/ag-theme-alpine.css';
 import { FantasyPlayer } from "../model/model";
 import 'react-dropdown/style.css';
 import { ClipLoader } from "react-spinners";
+import { Chip } from "@material-ui/core";
 
 export class PlayerDB extends React.Component<{}, {
     showGrid: boolean;
@@ -29,11 +30,24 @@ export class PlayerDB extends React.Component<{}, {
         }
         if (this.state.showGrid) {
             this.playersList = this.playerDB["Data"]["Value"]["Players"];
-            return <div style={{marginBottom: "-20px"}}>
-                <h3 style={{ color: "cyan", marginTop: "5px", marginBottom: "5px" }}>
-                    Sorted as per points on fantasy league site!!
-                </h3>
-                <div className="ag-theme-alpine" style={{ height: '60vh', maxWidth: '1200px', width: "100%" }}>
+            return <div style={{
+                display: "flex",
+                flexDirection: "column",
+                height: "100%"
+            }}>
+                <Chip
+                    label={"Sorted as per points on fantasy league site!!"}
+                    color="default"
+                    style={{
+                        marginBottom: "5px",
+                        marginTop: "5px",
+                        marginRight: "10px",
+                        fontWeight: 600,
+                        color: "black",
+                        cursor: "default"
+                    }}
+                />
+                <div className="ag-theme-alpine" style={{ flexGrow: 1, maxWidth: '1200px', width: "100%" }}>
                     <AgGridReact
                         rowData={Object.values(this.playersList).sort(
                             (a: FantasyPlayer, b: FantasyPlayer) => {
@@ -52,7 +66,7 @@ export class PlayerDB extends React.Component<{}, {
                         <AgGridColumn field="OverallPoints"></AgGridColumn>
                         <AgGridColumn field="IS_FP"></AgGridColumn>
                     </AgGridReact>
-                </div>;
+                </div>
             </div>
         } else {
             return this.getSpinner();

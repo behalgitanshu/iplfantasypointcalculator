@@ -1,6 +1,6 @@
 .App {
   padding: 10px;
-  height: 100vh;
+  height: calc(100vh - 20px);
   background-color:darkslategrey;
 }
 

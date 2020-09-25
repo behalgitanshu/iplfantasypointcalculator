@@ -7,7 +7,7 @@ import { GridApi } from "ag-grid-community";
 import ReactDropdown from "react-dropdown";
 import 'react-dropdown/style.css';
 import { ClipLoader } from "react-spinners";
-import { Button, Icon } from "@material-ui/core";
+import { Button, Chip, Icon } from "@material-ui/core";
 import { PlayerDB } from "./PlayerDB";
 
 export class Scoreboard extends React.Component<{}, {
@@ -23,7 +23,8 @@ export class Scoreboard extends React.Component<{}, {
         marginRight: "10px",
         fontWeight: "600",
         fontSize: "x-small",
-        color: "white"
+        color: "white",
+        flexGrow: 1,
     };
     private defaultButtonTheme: any = {
         marginBottom: "auto",
@@ -31,6 +32,7 @@ export class Scoreboard extends React.Component<{}, {
         marginRight: "10px",
         fontWeight: "600",
         fontSize: "x-small",
+        flexGrow: 1,
         color: "black"
     };
     private scoreCard: any = {
@@ -39,6 +41,7 @@ export class Scoreboard extends React.Component<{}, {
         marginRight: "10px",
         fontWeight: "600",
         color: "white",
+        flexGrow: 1,
         cursor: "default"
     };
     private matchStatus: any = {
@@ -47,6 +50,7 @@ export class Scoreboard extends React.Component<{}, {
         marginRight: "10px",
         fontWeight: "600",
         color: "black",
+        flexGrow: 1,
         cursor: "default"
     };
     private fixtures: { [key: string]: any } = require("./../data/fixtures.json");
@@ -76,65 +80,98 @@ export class Scoreboard extends React.Component<{}, {
             return <h3 style={{ color: "white" }}>{this.state.errorMessage}</h3>;
         }
         return (
-            <div>
+            <div style={{ display: "flex", flexDirection: "column", height: "100%" }}>
                 <h2 style={{ margin: "auto", color: "white" }}>IPL Fantasy League Points Table - F.R.I.E.N.D.S</h2>
-                {this.state.showPlayerDB && <PlayerDB />}
-                {!this.state.showPlayerDB && this.getDashboard()}
+                <div style={{ flexGrow: 1 }}>
+                    {this.state.showPlayerDB && <PlayerDB />}
+                    {!this.state.showPlayerDB && this.getDashboard()}
+                </div>
                 {this.getButttons()}
-                {!this.state.showPlayerDB && this.state.showGrid && this.getScoreBoard()}
             </div>
         );
     }
 
     private getScoreBoard(): React.ReactNode {
-        return <div style={{ display: "flex", flexDirection: "column" }}>
-            <Button
-                variant="contained"
+        return <div style={{ display: "flex", flexDirection: "column", paddingBottom: "10px" }}>
+            <Chip
+                label={this.data["header"]["matchEvent"]["statusText"]}
                 color="default"
-                style={this.matchStatus}
-            >
-                {this.data["header"]["matchEvent"]["statusText"]}
-            </Button>
+                style={{
+                    marginBottom: "5px",
+                    marginTop: "5px",
+                    marginRight: "10px",
+                    fontWeight: 600,
+                    color: "black",
+                    flexGrow: 1,
+                    cursor: "default",
+                    backgroundColor: "#afdade",
+                }}
+            />
             <div style={{ display: "flex", flexDirection: "row" }}>
-                <Button
-                    variant="contained"
-                    color="primary"
-                    style={this.scoreCard}
-                >
-                    {
+                <Chip
+                    label={
                         this.data["header"]["matchEvent"]["competitors"][0]["shortName"]
                         + " : "
                         + this.data["header"]["matchEvent"]["competitors"][0]["score"]
                     }
-                </Button>
-                <Button
-                    variant="contained"
-                    color="secondary"
-                    style={this.scoreCard}
-                >
-                    {
+                    color="primary"
+                    style={{
+                        marginBottom: "auto",
+                        marginTop: "auto",
+                        marginRight: "10px",
+                        fontWeight: 600,
+                        color: "white",
+                        flexGrow: 1,
+                        width: "50%",
+                        backgroundColor: "#735e56",
+                    }}
+                />
+                <Chip
+                    label={
                         this.data["header"]["matchEvent"]["competitors"][1]["score"]
                             ? this.data["header"]["matchEvent"]["competitors"][1]["shortName"]
                             + " : "
                             + this.data["header"]["matchEvent"]["competitors"][1]["score"]
                             : "-"
                     }
-                </Button>
+                    color="secondary"
+                    style={{
+                        marginBottom: "auto",
+                        marginTop: "auto",
+                        marginRight: "10px",
+                        fontWeight: 600,
+                        color: "white",
+                        flexGrow: 1,
+                        width: "50%",
+                        backgroundColor: "#806070",
+                    }}
+                />
             </div>
             {this.data["header"]["matchEvent"]["statusLabel"] === "Live"
-                && <Button
-                    variant="contained"
+                && <Chip
+                    label={this.data["header"]["title"]}
                     color="default"
-                    style={this.matchStatus}
-                >
-                    {this.data["header"]["title"]}
-                </Button>
+                    style={{
+                        marginBottom: "5px",
+                        marginTop: "5px",
+                        marginRight: "10px",
+                        fontWeight: 600,
+                        color: "black",
+                        flexGrow: 1,
+                        cursor: "default",
+                        backgroundColor: "#afdade",
+                    }}
+                />
             }
         </div>
     }
 
     private getDashboard(): React.ReactNode {
-        return <div>
+        return <div style={{
+            display: "flex",
+            flexDirection: "column",
+            height: "100%"
+        }}>
             {this.getFixtureDropdown()}
             {
                 this.data["header"]["matchEvent"]["statusLabel"] === "Scheduled"
@@ -145,6 +182,7 @@ export class Scoreboard extends React.Component<{}, {
                 this.data["header"]["matchEvent"]["statusLabel"] !== "Scheduled" &&
                 this.getSpinner()
             }
+            {this.state.showGrid && this.getScoreBoard()}
             {
                 this.state.showGrid
                 && this.getAGGridPointTable()
@@ -204,7 +242,7 @@ export class Scoreboard extends React.Component<{}, {
     }
 
     private getButttons(): React.ReactNode {
-        return <div style={{ display: "flex", flexDirection: "row", marginBottom: "10px", marginTop: "10px" }}>
+        return <div style={{ display: "flex", flexDirection: "row", marginBottom: "10px", marginTop: "10px", width: "100%" }}>
             <Button
                 variant="contained"
                 color="secondary"
@@ -230,6 +268,7 @@ export class Scoreboard extends React.Component<{}, {
             </Button>
             {
                 this.state.showGrid &&
+                !this.state.showPlayerDB &&
                 this.data["header"]["bestPlayer"] &&
                 <Button
                     variant="contained"
@@ -280,7 +319,7 @@ export class Scoreboard extends React.Component<{}, {
     }
 
     private getAGGridPointTable(): React.ReactNode {
-        return <div className="ag-theme-alpine" style={{ height: '50vh', width: '100%' }}>
+        return <div className="ag-theme-alpine" style={{ flexGrow: 1, width: '100%' }}>
             <AgGridReact
                 rowData={Object.values(this.playerMap).sort(
                     (a: Player, b: Player) => {

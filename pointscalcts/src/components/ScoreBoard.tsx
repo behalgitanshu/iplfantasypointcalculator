@@ -371,7 +371,7 @@ export class Scoreboard extends React.Component<{}, {
     }
 
     private getAGGridPointTable(): React.ReactNode {
-        return <div className="ag-theme-alpine" style={{ flexGrow: 1, width: '100%' }}>
+        return <div className="ag-theme-alpine" style={{ flexGrow: 1, width: '100%', height: "100%", minHeight: "50vh", }}>
             <AgGridReact
                 rowData={Object.values(this.playerMap).sort(
                     (a: Player, b: Player) => {

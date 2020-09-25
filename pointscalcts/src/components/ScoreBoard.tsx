@@ -211,7 +211,7 @@ export class Scoreboard extends React.Component<{}, {
         this.fixtureList = this.fixtures["content"]["matchEvents"].map(
             (match: any) => {
                 return {
-                    title: match.shortName + " "
+                    title: match.shortName + " - "
                         + (match.description as string)
                             .replace("Indian Premier League at ", "")
                             .replace(" 2020", ""),

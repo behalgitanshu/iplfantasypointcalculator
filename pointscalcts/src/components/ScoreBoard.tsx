@@ -386,7 +386,7 @@ export class Scoreboard extends React.Component<{}, {
                     width: 75,
                 }}>
                 <AgGridColumn field="name" headerName={"Nickname"} width={125} lockPinned={true} pinned={"left"} ></AgGridColumn>
-                <AgGridColumn field="totalPoints" headerName={"Points"} width={75} lockPinned={true} pinned={"right"} ></AgGridColumn>
+                <AgGridColumn field="totalPoints" headerName={"Points"} width={75} lockPinned={true} pinned={"left"} ></AgGridColumn>
                 <AgGridColumn field="battingPoints" headerName={"Bat"}></AgGridColumn>
                 <AgGridColumn field="bowlingPoints" headerName={"Bowl"}></AgGridColumn>
                 <AgGridColumn field="fieldingPoints" headerName={"Field"}></AgGridColumn>

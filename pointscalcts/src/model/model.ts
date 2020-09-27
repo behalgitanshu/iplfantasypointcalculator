@@ -57,6 +57,6 @@ export interface FantasyPlayer {
     TeamShortName: string,
     SkillName: string,
     IS_FP: string,
-    Value: string,
+    Value: number,
     OverallPoints: number,
 }

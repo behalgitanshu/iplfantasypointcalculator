@@ -36,7 +36,7 @@ export class PlayerDB extends React.Component<{}, {
                 height: "100%"
             }}>
                 <Chip
-                    label={"Sorted as per points on fantasy league site!!"}
+                    label={"Sorted as per base value from official FL site!!"}
                     color="default"
                     style={{
                         marginBottom: "5px",
@@ -51,7 +51,7 @@ export class PlayerDB extends React.Component<{}, {
                     <AgGridReact
                         rowData={Object.values(this.playersList).sort(
                             (a: FantasyPlayer, b: FantasyPlayer) => {
-                                return b.OverallPoints - a.OverallPoints;
+                                return b.Value - a.Value;
                             }
                         )}
                         defaultColDef={{

@@ -537,6 +537,10 @@ export class Scoreboard extends React.Component<{}, {
                 }
             }
         );
+        const status = (this.data["header"]["matchEvent"]["statusText"] as string);
+        if (status.indexOf("Match tied") > -1) {
+            winnerTeam = status.split('(')[1].replace(" won the one-over eliminator)", "");
+        }
         return winnerTeam;
     }
 

@@ -88,7 +88,7 @@ export class Scoreboard extends React.Component<{}, {
                     backgroundColor: "cyan",
                     flexGrow: 1,
                     marginRight: "10px",
-                    overflow: "hidde"
+                    height: "100%"
                 }}
             />
             <Button

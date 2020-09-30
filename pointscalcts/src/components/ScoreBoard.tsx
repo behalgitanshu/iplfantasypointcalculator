@@ -11,10 +11,10 @@ import { Button, Chip, Icon } from "@material-ui/core";
 import { PlayerDB } from "./PlayerDB";
 
 export class Scoreboard extends React.Component<{}, {
-    showGrid: boolean,
     title: string,
     errorMessage: string,
-    showPlayerDB: boolean
+    showPlayerDB: boolean,
+    data: { [key: string]: any }
 }> {
 
     private buttonTheme: any = {
@@ -29,26 +29,31 @@ export class Scoreboard extends React.Component<{}, {
     };
     private fixtures: { [key: string]: any } = require("./../data/fixtures.json");
     private fixtureList: { title: string, id: string, startTime: string }[] = [];
-    private data: { [key: string]: any } = {}; // require("./../data/cricInfoData.json");
+    // private data: { [key: string]: any } = {}; // require("./../data/cricInfoData.json");
     private playerMap: { [key: string]: Player } = {};
     private gridApi: GridApi = {} as GridApi;
     private placeholder: string = "Select a team";
     private upcomingMatchTitle: string = "";
     private HidePlaceholderPrefix: boolean = false;
+    private matchId: string = "";
+    private selection: Player[] = [];
 
     constructor(props: any) {
         super(props);
         this.state = {
-            showGrid: false,
             title: "",
             errorMessage: "",
             showPlayerDB: false,
+            data: {}
         }
+    }
+
+    componentDidMount() {
         this.getFixtureList();
     }
 
     render() {
-        if (!this.data["meta"]) {
+        if (!this.state.data["meta"]) {
             return this.getSpinner();
         }
         if (this.state.errorMessage) {
@@ -62,12 +67,10 @@ export class Scoreboard extends React.Component<{}, {
                     {!this.state.showPlayerDB && this.getDashboard()}
                 </div>
                 {
-                    this.state.showGrid &&
                     !this.state.showPlayerDB &&
                     this.upcomingMatchTitle && this.getNextMatch()
                 }
                 {
-                    this.state.showGrid &&
                     !this.state.showPlayerDB &&
                     this.getPointsCounter()
                 }
@@ -120,7 +123,7 @@ export class Scoreboard extends React.Component<{}, {
                     backgroundColor: "#afdade",
                 }}
             >
-                {this.data["header"]["matchEvent"]["statusText"]}
+                {this.state.data["header"]["matchEvent"]["statusText"]}
             </Button>
             <div style={{ display: "flex", flexDirection: "row" }}>
                 <Button
@@ -137,10 +140,10 @@ export class Scoreboard extends React.Component<{}, {
                     }}
                 >
                     {
-                        this.data["header"]["matchEvent"]["competitors"][0]["score"]
-                            ? this.data["header"]["matchEvent"]["competitors"][0]["shortName"]
+                        this.state.data["header"]["matchEvent"]["competitors"][0]["score"]
+                            ? this.state.data["header"]["matchEvent"]["competitors"][0]["shortName"]
                             + " : "
-                            + this.data["header"]["matchEvent"]["competitors"][0]["score"]
+                            + this.state.data["header"]["matchEvent"]["competitors"][0]["score"]
                             : "-"
                     }
                 </Button>
@@ -158,15 +161,15 @@ export class Scoreboard extends React.Component<{}, {
                     }}
                 >
                     {
-                        this.data["header"]["matchEvent"]["competitors"][1]["score"]
-                            ? this.data["header"]["matchEvent"]["competitors"][1]["shortName"]
+                        this.state.data["header"]["matchEvent"]["competitors"][1]["score"]
+                            ? this.state.data["header"]["matchEvent"]["competitors"][1]["shortName"]
                             + " : "
-                            + this.data["header"]["matchEvent"]["competitors"][1]["score"]
+                            + this.state.data["header"]["matchEvent"]["competitors"][1]["score"]
                             : "-"
                     }
                 </Button>
             </div>
-            {this.data["header"]["matchEvent"]["statusLabel"] === "Live"
+            {this.state.data["header"]["matchEvent"]["statusLabel"] === "Live"
                 && <Button
                     color="default"
                     style={{
@@ -180,7 +183,7 @@ export class Scoreboard extends React.Component<{}, {
                         backgroundColor: "#afdade",
                     }}
                 >
-                    {this.data["header"]["title"].replace(" - Live", "")}
+                    {this.state.data["header"]["title"].replace(" - Live", "")}
                 </Button>
             }
         </div>
@@ -193,19 +196,9 @@ export class Scoreboard extends React.Component<{}, {
             height: "100%"
         }}>
             {this.getFixtureDropdown()}
+            {this.getScoreBoard()}
             {
-                this.data["header"]["matchEvent"]["statusLabel"] === "Scheduled"
-                && <label style={{ color: "white" }}> Match hone me time hai abhi!! </label>
-            }
-            {
-                !this.state.showGrid &&
-                this.data["header"]["matchEvent"]["statusLabel"] !== "Scheduled" &&
-                this.getSpinner()
-            }
-            {this.state.showGrid && this.getScoreBoard()}
-            {
-                this.state.showGrid
-                && this.getAGGridPointTable()
+                this.getAGGridPointTable()
             }
         </div>
     }
@@ -224,12 +217,22 @@ export class Scoreboard extends React.Component<{}, {
         />;
     }
 
-    private fetchData(url: string) {
+    private fetchData() {
+        this.playerMap = {};
+        if (document.querySelector('#currentSelectionTotal')) {
+            (document.querySelector('#currentSelectionTotal') as any).innerHTML = "0";
+        }
+        if (!this.matchId) {
+            return;
+        }
+        const url = this.getJSONUrl(this.matchId);
         const proxyurl = "https://cors-anywhere.herokuapp.com/"
         fetch(proxyurl + url, { method: "get" })
             .then(response => response.json()
                 .then(x => {
-                    this.data = x;
+                    this.setState({
+                        data: x,
+                    });
                     this.processData();
                 })
             ).catch(
@@ -257,7 +260,9 @@ export class Scoreboard extends React.Component<{}, {
             }
         );
         const id: string = this.getCurrentMatch();
-        this.fetchData(this.getJSONUrl(id));
+        this.matchId = id;
+        this.fetchData();
+        setInterval(this.fetchData.bind(this), 300000);
     }
 
     private getCurrentMatch(): any {
@@ -295,7 +300,7 @@ export class Scoreboard extends React.Component<{}, {
                 {/* {
                     this.state.showGrid &&
                     !this.state.showPlayerDB &&
-                    this.data["header"]["bestPlayer"] &&
+                    this.state.data["header"]["bestPlayer"] &&
                     <Button
                         variant="contained"
                         color="default"
@@ -351,19 +356,18 @@ export class Scoreboard extends React.Component<{}, {
             <ReactDropdown
                 options={this.fixtureList.map((match: any) => { return { label: match.title, value: match.id } })}
                 onChange={(option: any) => {
-                    this.playerMap = {};
-                    this.fetchData(this.getJSONUrl(option.value));
+                    this.matchId = option.value;
+                    this.fetchData();
                     this.setState(
                         {
                             title: option.label,
-                            showGrid: false,
                         }
                     );
                 }}
                 placeholder={
                     (this.HidePlaceholderPrefix
                         ? ""
-                        : (this.data["header"]["bestPlayer"]
+                        : (this.state.data["header"]["bestPlayer"]
                             ?
                             "Recent Result: "
                             : "Live Match: "))
@@ -393,9 +397,9 @@ export class Scoreboard extends React.Component<{}, {
                 }}
                 onSelectionChanged={
                     () => {
-                        const selection: Player[] = this.gridApi.getSelectedRows();
+                        this.selection = this.gridApi.getSelectedRows();
                         let points: number = 0;
-                        selection.map(
+                        this.selection.map(
                             (player: Player) => {
                                 points += player.totalPoints;
                             }
@@ -440,8 +444,8 @@ export class Scoreboard extends React.Component<{}, {
     }
 
     private processData() {
-        if (this.data["header"]["matchEvent"]["statusLabel"] !== "Scheduled") {
-            Object.keys(this.playerMap).length === 0 && this.data["content"]["teams"].map(
+        if (this.state.data["header"]["matchEvent"]["statusLabel"] !== "Scheduled") {
+            Object.keys(this.playerMap).length === 0 && this.state.data["content"]["teams"].map(
                 (team: Team) => {
                     team.players.map(
                         (player: Player) => {
@@ -470,7 +474,7 @@ export class Scoreboard extends React.Component<{}, {
                 }
             );
 
-            this.data["content"]["innings"].map(
+            this.state.data["content"]["innings"].map(
                 (inn: any) => {
                     inn["batsmen"].map(
                         (battingData: Batting) => {
@@ -501,9 +505,9 @@ export class Scoreboard extends React.Component<{}, {
                 }
             );
             this.calculatePoints();
-            this.setState(
-                { showGrid: true }
-            )
+            this.setState({
+                title: this.state.title
+            });
         } else {
             // refresh page
             this.setState({
@@ -532,7 +536,7 @@ export class Scoreboard extends React.Component<{}, {
 
     private calculateSpecialPoints() {
         // MOM
-        const playerName: string = this.data["header"]["bestPlayer"] ? this.data["header"]["bestPlayer"]["name"] : "";
+        const playerName: string = this.state.data["header"]["bestPlayer"] ? this.state.data["header"]["bestPlayer"]["name"] : "";
         if (playerName) {
             this.playerMap[playerName].specialPoints += 25;
         }
@@ -554,14 +558,14 @@ export class Scoreboard extends React.Component<{}, {
 
     private getNameOfWinningTeam(): string {
         let winnerTeam: string = "";
-        this.data["header"]["matchEvent"]["competitors"].map(
+        this.state.data["header"]["matchEvent"]["competitors"].map(
             (team: any) => {
                 if (team.isWinner) {
                     winnerTeam = team.name;
                 }
             }
         );
-        const status = (this.data["header"]["matchEvent"]["statusText"] as string);
+        const status = (this.state.data["header"]["matchEvent"]["statusText"] as string);
         if (status.indexOf("Match tied") > -1) {
             winnerTeam = status.split('(')[1].replace(" won the one-over eliminator)", "");
         }

@@ -21,39 +21,11 @@ export class Scoreboard extends React.Component<{}, {
         marginBottom: "auto",
         marginTop: "auto",
         marginRight: "10px",
-        fontWeight: "600",
+        fontWeight: 600,
         fontSize: "x-small",
         color: "white",
-        width: "50%",
+        width: "33%",
         flexGrow: 1,
-    };
-    private defaultButtonTheme: any = {
-        marginBottom: "auto",
-        marginTop: "auto",
-        marginRight: "10px",
-        fontWeight: "600",
-        fontSize: "x-small",
-        flexGrow: 1,
-        width: "50%",
-        color: "black"
-    };
-    private scoreCard: any = {
-        marginBottom: "auto",
-        marginTop: "auto",
-        marginRight: "10px",
-        fontWeight: "600",
-        color: "white",
-        flexGrow: 1,
-        cursor: "default"
-    };
-    private matchStatus: any = {
-        marginBottom: "5px",
-        marginTop: "5px",
-        marginRight: "10px",
-        fontWeight: "600",
-        color: "black",
-        flexGrow: 1,
-        cursor: "default"
     };
     private fixtures: { [key: string]: any } = require("./../data/fixtures.json");
     private fixtureList: { title: string, id: string, startTime: string }[] = [];
@@ -89,9 +61,50 @@ export class Scoreboard extends React.Component<{}, {
                     {this.state.showPlayerDB && <PlayerDB />}
                     {!this.state.showPlayerDB && this.getDashboard()}
                 </div>
+                {
+                    this.state.showGrid &&
+                    !this.state.showPlayerDB &&
+                    this.upcomingMatchTitle && this.getNextMatch()
+                }
+                {
+                    this.state.showGrid &&
+                    !this.state.showPlayerDB &&
+                    this.getPointsCounter()
+                }
                 {this.getButttons()}
             </div>
         );
+    }
+
+    private getPointsCounter(): React.ReactNode {
+        return <div style={{ display: "flex", flexDirection: "row", width: "100%", marginTop: "10px" }}>
+            <Chip
+                label={"Total points of Selected Players"}
+                color="default"
+                style={{
+                    fontWeight: 600,
+                    color: "black",
+                    justifyContent: "left",
+                    backgroundColor: "cyan",
+                    flexGrow: 1,
+                    marginRight: "10px",
+                    overflow: "hidde"
+                }}
+            />
+            <Button
+                variant="contained"
+                color="default"
+                style={{
+                    fontWeight: 600,
+                    color: "black",
+                    backgroundColor: "lightskyblue",
+                    marginRight: "10px",
+                    width: "20%",
+                }}
+            >
+                <span id="currentSelectionTotal">0</span>
+            </Button>
+        </div>
     }
 
     private getScoreBoard(): React.ReactNode {
@@ -101,11 +114,9 @@ export class Scoreboard extends React.Component<{}, {
                 style={{
                     marginBottom: "5px",
                     marginTop: "5px",
-                    marginRight: "10px",
                     fontWeight: 600,
                     color: "black",
                     flexGrow: 1,
-                    cursor: "default",
                     backgroundColor: "#afdade",
                 }}
             >
@@ -181,7 +192,6 @@ export class Scoreboard extends React.Component<{}, {
             flexDirection: "column",
             height: "100%"
         }}>
-            {this.upcomingMatchTitle && this.getNextMatch()}
             {this.getFixtureDropdown()}
             {
                 this.data["header"]["matchEvent"]["statusLabel"] === "Scheduled"
@@ -282,17 +292,7 @@ export class Scoreboard extends React.Component<{}, {
     private getButttons(): React.ReactNode {
         return <div style={{ display: "flex", flexDirection: "column", marginTop: "10px", width: "100%" }}>
             <div style={{ display: "flex", flexDirection: "row", marginBottom: "5px", width: "100%" }}>
-                <Button
-                    variant="contained"
-                    color="primary"
-                    onClick={() => {
-                        window.open("https://docs.google.com/document/d/1lIOvXLeVBKRwQ8g4eo05eKStPUmJbl6Hhy2dsKYoDjY/edit", "_self");
-                    }}
-                    style={this.buttonTheme}
-                >
-                    {"Rule Book"}
-                </Button>
-                {
+                {/* {
                     this.state.showGrid &&
                     !this.state.showPlayerDB &&
                     this.data["header"]["bestPlayer"] &&
@@ -306,7 +306,7 @@ export class Scoreboard extends React.Component<{}, {
                     >
                         Save Points Table
                 </Button>
-                }
+                } */}
             </div>
             <div style={{ display: "flex", flexDirection: "row", marginBottom: "5px", width: "100%" }}>
                 <Button
@@ -320,7 +320,7 @@ export class Scoreboard extends React.Component<{}, {
                     }}
                     style={this.buttonTheme}
                 >
-                    {this.state.showPlayerDB ? "Point Table" : "Players Database"}
+                    {this.state.showPlayerDB ? "Point Table" : "Players List"}
                 </Button>
                 <Button
                     variant="contained"
@@ -331,7 +331,17 @@ export class Scoreboard extends React.Component<{}, {
                     style={this.buttonTheme}
                 >
                     Score Sheet
-            </Button>
+                </Button>
+                <Button
+                    variant="contained"
+                    color="secondary"
+                    onClick={() => {
+                        window.open("https://docs.google.com/document/d/1lIOvXLeVBKRwQ8g4eo05eKStPUmJbl6Hhy2dsKYoDjY/edit", "_self");
+                    }}
+                    style={this.buttonTheme}
+                >
+                    {"Rule Book"}
+                </Button>
             </div>
         </div>
     }
@@ -381,6 +391,20 @@ export class Scoreboard extends React.Component<{}, {
                 onGridReady={(params) => {
                     this.gridApi = params.api;
                 }}
+                onSelectionChanged={
+                    () => {
+                        const selection: Player[] = this.gridApi.getSelectedRows();
+                        let points: number = 0;
+                        selection.map(
+                            (player: Player) => {
+                                points += player.totalPoints;
+                            }
+                        );
+                        (document.querySelector('#currentSelectionTotal') as any).innerHTML = points;
+                    }
+                }
+                rowSelection="multiple"
+                rowMultiSelectWithClick={true}
                 defaultColDef={{
                     sortable: true,
                     width: 75,

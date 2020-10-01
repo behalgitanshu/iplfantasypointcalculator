@@ -6,8 +6,9 @@ import { Team, Bowling, Batting, Player } from "../model/model";
 import { GridApi } from "ag-grid-community";
 import ReactDropdown, { Group, Option } from "react-dropdown";
 import 'react-dropdown/style.css';
-import { Button, Chip, CircularProgress, Icon, NativeSelect } from "@material-ui/core";
+import { Button, Chip } from "@material-ui/core";
 import { PlayerDB } from "./PlayerDB";
+import { CommonComponents } from "./Common";
 
 export class Scoreboard extends React.Component<{}, {
     title: string,
@@ -55,7 +56,7 @@ export class Scoreboard extends React.Component<{}, {
 
     render() {
         if (!this.state.data["meta"]) {
-            return this.getSpinner();
+            return CommonComponents.getSpinner();
         }
         if (this.state.errorMessage) {
             return <h3 style={{ color: "white" }}>{this.state.errorMessage}</h3>;
@@ -391,7 +392,7 @@ export class Scoreboard extends React.Component<{}, {
                 />
             </div>
             <div style={{ marginLeft: "10px" }}>
-                {this.state.fetchInProgress && this.getSpinner()}
+                {this.state.fetchInProgress && CommonComponents.getSpinner()}
             </div>
         </div>;
     }
@@ -418,18 +419,6 @@ export class Scoreboard extends React.Component<{}, {
         }
         return groups;
         // return this.fixtureList.map((match: any) => { return { label: match.title, value: match.id } })
-    }
-
-    private getSpinner(): React.ReactNode {
-        return <div style={{
-            height: "100%",
-            width: "100%",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-        }}>
-            <CircularProgress />
-        </div>
     }
 
     private getAGGridPointTable(): React.ReactNode {

@@ -6,6 +6,7 @@ import { FantasyPlayer } from "../model/model";
 import 'react-dropdown/style.css';
 import { ClipLoader } from "react-spinners";
 import { Chip } from "@material-ui/core";
+import { CommonComponents } from "./Common";
 
 export class PlayerDB extends React.Component<{}, {
     showGrid: boolean;
@@ -70,16 +71,8 @@ export class PlayerDB extends React.Component<{}, {
                 </div>
             </div>
         } else {
-            return this.getSpinner();
+            return CommonComponents.getSpinner();
         }
-    }
-
-    private getSpinner(): React.ReactNode {
-        return <ClipLoader
-            size={50}
-            color={"#123abc"}
-            loading={true}
-        />;
     }
 
     private fetchData(url: string) {

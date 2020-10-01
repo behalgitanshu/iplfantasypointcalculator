@@ -6,8 +6,7 @@ import { Team, Bowling, Batting, Player } from "../model/model";
 import { GridApi } from "ag-grid-community";
 import ReactDropdown, { Group, Option } from "react-dropdown";
 import 'react-dropdown/style.css';
-import { ClipLoader } from "react-spinners";
-import { Button, Chip, Icon, NativeSelect } from "@material-ui/core";
+import { Button, Chip, CircularProgress, Icon, NativeSelect } from "@material-ui/core";
 import { PlayerDB } from "./PlayerDB";
 
 export class Scoreboard extends React.Component<{}, {
@@ -15,6 +14,7 @@ export class Scoreboard extends React.Component<{}, {
     errorMessage: string,
     showPlayerDB: boolean,
     data: { [key: string]: any }
+    fetchInProgress: boolean;
 }> {
 
     private buttonTheme: any = {
@@ -44,7 +44,8 @@ export class Scoreboard extends React.Component<{}, {
             title: "",
             errorMessage: "",
             showPlayerDB: false,
-            data: {}
+            data: {},
+            fetchInProgress: false,
         }
     }
 
@@ -231,6 +232,7 @@ export class Scoreboard extends React.Component<{}, {
             .then(response => response.json()
                 .then(x => {
                     this.setState({
+                        fetchInProgress: false,
                         data: x,
                     });
                     this.processData();
@@ -244,6 +246,11 @@ export class Scoreboard extends React.Component<{}, {
                     );
                 }
             )
+        this.setState(
+            {
+                fetchInProgress: true,
+            }
+        );
     }
 
     private getFixtureList() {
@@ -355,38 +362,44 @@ export class Scoreboard extends React.Component<{}, {
     }
 
     private getFixtureDropdown(): React.ReactNode {
-        return <div style={{ marginBottom: "5px", marginTop: "10px" }}>
-            <ReactDropdown
-                options={this.createWeeklyGroups()}
-                onChange={(option: any) => {
-                    this.matchId = option.value;
-                    this.placeholder = option.label;
-                    this.HidePlaceholderPrefix = true;
-                    this.fetchData();
-                    this.setState(
-                        {
-                            title: option.label,
-                        }
-                    );
-                }}
-                value={{
-                    label: (this.HidePlaceholderPrefix
-                        ? ""
-                        : (this.state.data["header"]["bestPlayer"]
-                            ?
-                            "Recent Result: "
-                            : "Live Match: "))
-                        + this.placeholder,
-                    value: this.matchId,
-                }}
-            />
+        return <div style={{ marginBottom: "5px", marginTop: "10px", display: "flex", flexDirection: "row" }}>
+            <div style={{ flexGrow: 1 }}>
+                <ReactDropdown
+                    options={this.createWeeklyGroups()}
+                    disabled={this.state.fetchInProgress}
+                    onChange={(option: any) => {
+                        this.matchId = option.value;
+                        this.placeholder = option.label;
+                        this.HidePlaceholderPrefix = true;
+                        this.fetchData();
+                        this.setState(
+                            {
+                                title: option.label,
+                            }
+                        );
+                    }}
+                    value={{
+                        label: (this.HidePlaceholderPrefix
+                            ? ""
+                            : (this.state.data["header"]["bestPlayer"]
+                                ?
+                                "Recent Result: "
+                                : "Live Match: "))
+                            + this.placeholder,
+                        value: this.matchId,
+                    }}
+                />
+            </div>
+            <div style={{ marginLeft: "10px" }}>
+                {this.state.fetchInProgress && this.getSpinner()}
+            </div>
         </div>;
     }
 
     private createWeeklyGroups(): Group[] {
         let groups: Group[] = [];
         let weekCnt: number = 1;
-        for (let i: number = 0; i < this.fixtureList.length; ) {
+        for (let i: number = 0; i < this.fixtureList.length;) {
             let options: Option[] = [];
             for (let j: number = 0; j < 9; j++) {
                 if (i < this.fixtureList.length) {
@@ -408,11 +421,7 @@ export class Scoreboard extends React.Component<{}, {
     }
 
     private getSpinner(): React.ReactNode {
-        return <ClipLoader
-            size={50}
-            color={"#123abc"}
-            loading={true}
-        />;
+        return <CircularProgress />
     }
 
     private getAGGridPointTable(): React.ReactNode {

@@ -4,10 +4,10 @@ import './ag-grid.css';
 import 'ag-grid-community/dist/styles/ag-theme-alpine.css';
 import { Team, Bowling, Batting, Player } from "../model/model";
 import { GridApi } from "ag-grid-community";
-import ReactDropdown from "react-dropdown";
+import ReactDropdown, { Group, Option } from "react-dropdown";
 import 'react-dropdown/style.css';
 import { ClipLoader } from "react-spinners";
-import { Button, Chip, Icon } from "@material-ui/core";
+import { Button, Chip, Icon, NativeSelect } from "@material-ui/core";
 import { PlayerDB } from "./PlayerDB";
 
 export class Scoreboard extends React.Component<{}, {
@@ -297,21 +297,7 @@ export class Scoreboard extends React.Component<{}, {
     private getButttons(): React.ReactNode {
         return <div style={{ display: "flex", flexDirection: "column", marginTop: "10px", width: "100%" }}>
             <div style={{ display: "flex", flexDirection: "row", marginBottom: "5px", width: "100%" }}>
-                {/* {
-                    this.state.showGrid &&
-                    !this.state.showPlayerDB &&
-                    this.state.data["header"]["bestPlayer"] &&
-                    <Button
-                        variant="contained"
-                        color="default"
-                        onClick={() => {
-                            this.gridApi.exportDataAsCsv();
-                        }}
-                        style={this.defaultButtonTheme}
-                    >
-                        Save Points Table
-                </Button>
-                } */}
+                {this.getExportToExcelButton()}
             </div>
             <div style={{ display: "flex", flexDirection: "row", marginBottom: "5px", width: "100%" }}>
                 <Button
@@ -351,12 +337,31 @@ export class Scoreboard extends React.Component<{}, {
         </div>
     }
 
+    private getExportToExcelButton(): React.ReactNode {
+        return null;
+        //     return {
+        //         !this.state.showPlayerDB &&
+        //         this.state.data["header"]["bestPlayer"] &&
+        //         <Button
+        //             variant="contained"
+        //             color="default"
+        //             onClick={() => {
+        //                 this.gridApi.exportDataAsCsv();
+        //             }}
+        //         >
+        //             Save Points Table
+        //     </Button>
+        // }
+    }
+
     private getFixtureDropdown(): React.ReactNode {
         return <div style={{ marginBottom: "5px", marginTop: "10px" }}>
             <ReactDropdown
-                options={this.fixtureList.map((match: any) => { return { label: match.title, value: match.id } })}
+                options={this.createWeeklyGroups()}
                 onChange={(option: any) => {
                     this.matchId = option.value;
+                    this.placeholder = option.label;
+                    this.HidePlaceholderPrefix = true;
                     this.fetchData();
                     this.setState(
                         {
@@ -364,16 +369,42 @@ export class Scoreboard extends React.Component<{}, {
                         }
                     );
                 }}
-                placeholder={
-                    (this.HidePlaceholderPrefix
+                value={{
+                    label: (this.HidePlaceholderPrefix
                         ? ""
                         : (this.state.data["header"]["bestPlayer"]
                             ?
                             "Recent Result: "
                             : "Live Match: "))
-                    + this.placeholder}
+                        + this.placeholder,
+                    value: this.matchId,
+                }}
             />
         </div>;
+    }
+
+    private createWeeklyGroups(): Group[] {
+        let groups: Group[] = [];
+        let weekCnt: number = 1;
+        for (let i: number = 0; i < this.fixtureList.length; ) {
+            let options: Option[] = [];
+            for (let j: number = 0; j < 9; j++) {
+                if (i < this.fixtureList.length) {
+                    const match = this.fixtureList[i++];
+                    options.push({ label: match.title, value: match.id })
+                }
+            }
+            groups.push(
+                {
+                    items: options,
+                    name: "Week: " + weekCnt,
+                    type: "group",
+                }
+            );
+            weekCnt++;
+        }
+        return groups;
+        // return this.fixtureList.map((match: any) => { return { label: match.title, value: match.id } })
     }
 
     private getSpinner(): React.ReactNode {

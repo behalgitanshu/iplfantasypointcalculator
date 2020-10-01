@@ -9,6 +9,9 @@
   height: 50vh;
 }
 
+.Dropdown-option.is-selected {
+  background-color: #80d4ff !important;
+}
 .Dropdown-control {
   background-color: bisque !important;
 }

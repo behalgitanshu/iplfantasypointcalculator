@@ -49,11 +49,11 @@ export class Scoreboard extends React.Component<{}, {
     }
 
     render() {
-        if (!this.state.data["meta"]) {
-            return CommonComponents.getSpinner();
-        }
         if (this.state.errorMessage) {
             return <h3 style={{ color: "white" }}>{this.state.errorMessage}</h3>;
+        }
+        if (!this.state.data["meta"]) {
+            return CommonComponents.getSpinner();
         }
         return (
             <div style={{ display: "flex", flexDirection: "column", height: "100%" }}>

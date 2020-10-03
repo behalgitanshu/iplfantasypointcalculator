@@ -9,32 +9,25 @@ import 'react-dropdown/style.css';
 import { Button, Chip } from "@material-ui/core";
 import { PlayerDB } from "./PlayerDB";
 import { CommonComponents } from "./Common";
+import { Styles } from "../constants/Styles";
+import { Style } from "@material-ui/icons";
 
 export class Scoreboard extends React.Component<{}, {
     title: string,
     errorMessage: string,
     showPlayerDB: boolean,
-    data: { [key: string]: any }
-    fetchInProgress: boolean;
+    data: { [key: string]: any },
+    fetchInProgress: boolean,
+    nextMatchClicked: boolean,
 }> {
 
-    private buttonTheme: any = {
-        marginBottom: "auto",
-        marginTop: "auto",
-        marginRight: "10px",
-        fontWeight: 600,
-        fontSize: "x-small",
-        color: "white",
-        width: "33%",
-        flexGrow: 1,
-    };
     private fixtures: { [key: string]: any } = require("./../data/fixtures.json");
     private fixtureList: { title: string, id: string, startTime: string }[] = [];
     // private data: { [key: string]: any } = {}; // require("./../data/cricInfoData.json");
     private playerMap: { [key: string]: Player } = {};
     private gridApi: GridApi = {} as GridApi;
     private placeholder: string = "Select a team";
-    private upcomingMatchTitle: string = "";
+    private upcomingMatch: { label: string, value: string } = { label: "", value: "" };
     private HidePlaceholderPrefix: boolean = false;
     private matchId: string = "";
     private selection: Player[] = [];
@@ -47,6 +40,7 @@ export class Scoreboard extends React.Component<{}, {
             showPlayerDB: false,
             data: {},
             fetchInProgress: false,
+            nextMatchClicked: false,
         }
     }
 
@@ -70,44 +64,111 @@ export class Scoreboard extends React.Component<{}, {
                 </div>
                 {
                     !this.state.showPlayerDB &&
-                    this.upcomingMatchTitle && this.getNextMatch()
+                    this.upcomingMatch.label && this.getNextMatch()
                 }
                 {
                     !this.state.showPlayerDB &&
                     this.getPointsCounter()
                 }
-                {this.getButttons()}
+                {this.getActionButttons()}
             </div>
         );
     }
 
+    private getNextMatch(): React.ReactNode {
+        return <div style={Styles.rowStyle}>
+            {
+                this.state.nextMatchClicked
+                && <Button
+                    variant="contained"
+                    color="primary"
+                    onClick={() => {
+                        this.matchId = this.getCurrentMatch();
+                        this.HidePlaceholderPrefix = true;
+                        this.fetchData();
+                        this.setState(
+                            {
+                                nextMatchClicked: false,
+                            }
+                        );
+                    }}
+                    style={Styles.buttonTheme}
+                >
+                    Back
+                </Button>}
+            <Button
+                variant="contained"
+                color="secondary"
+                onClick={() => {
+                    this.matchId = this.upcomingMatch.value;
+                    this.placeholder = this.upcomingMatch.label;
+                    this.HidePlaceholderPrefix = true;
+                    this.fetchData();
+                    this.setState(
+                        {
+                            nextMatchClicked: true,
+                            title: this.upcomingMatch.label,
+                        }
+                    );
+                }}
+                style={Styles.nextMatchButton}
+            >
+                {"Scheduled: " + this.upcomingMatch.label}
+            </Button>
+        </div>
+    }
+
     private getPointsCounter(): React.ReactNode {
-        return <div style={{ display: "flex", flexDirection: "row", width: "100%", marginTop: "10px" }}>
+        return <div style={Styles.rowStyle}>
             <Chip
                 label={"Total points of Selected Players"}
                 color="default"
-                style={{
-                    fontWeight: 600,
-                    color: "black",
-                    justifyContent: "left",
-                    backgroundColor: "cyan",
-                    flexGrow: 1,
-                    marginRight: "10px",
-                    height: "100%"
-                }}
+                style={Styles.calculatorText}
             />
             <Button
                 variant="contained"
                 color="default"
-                style={{
-                    fontWeight: 600,
-                    color: "black",
-                    backgroundColor: "lightskyblue",
-                    marginRight: "10px",
-                    width: "20%",
-                }}
+                style={Styles.calculatorValue}
             >
                 <span id="currentSelectionTotal">0</span>
+            </Button>
+        </div>
+    }
+
+    private getActionButttons(): React.ReactNode {
+        return <div style={Styles.rowStyle}>
+            <Button
+                variant="contained"
+                color="secondary"
+                onClick={() => {
+                    this.HidePlaceholderPrefix = true;
+                    this.setState({
+                        showPlayerDB: !this.state.showPlayerDB,
+                    });
+                }}
+                style={Styles.buttonTheme}
+            >
+                {this.state.showPlayerDB ? "Point Table" : "Players List"}
+            </Button>
+            <Button
+                variant="contained"
+                color="primary"
+                onClick={() => {
+                    window.open("https://docs.google.com/spreadsheets/d/1dDUpBAGOzmJBF7O0U60Yc005QTA01BFpSym9VywaquY/edit#gid=304738466", "_self");
+                }}
+                style={Styles.buttonTheme}
+            >
+                Score Sheet
+            </Button>
+            <Button
+                variant="contained"
+                color="secondary"
+                onClick={() => {
+                    window.open("https://docs.google.com/document/d/1lIOvXLeVBKRwQ8g4eo05eKStPUmJbl6Hhy2dsKYoDjY/edit", "_self");
+                }}
+                style={Styles.rightButtonTheme}
+            >
+                {"Rule Book"}
             </Button>
         </div>
     }
@@ -154,7 +215,6 @@ export class Scoreboard extends React.Component<{}, {
                     style={{
                         marginBottom: "auto",
                         marginTop: "auto",
-                        marginRight: "10px",
                         fontWeight: 600,
                         color: "white",
                         flexGrow: 1,
@@ -203,20 +263,6 @@ export class Scoreboard extends React.Component<{}, {
                 this.getAGGridPointTable()
             }
         </div>
-    }
-
-    private getNextMatch(): React.ReactNode {
-        return <Chip
-            label={"Scheduled: " + this.upcomingMatchTitle}
-            color="secondary"
-            style={{
-                justifyContent: "left",
-                marginTop: "5px",
-                marginRight: "10px",
-                fontWeight: 600,
-                cursor: "default",
-            }}
-        />;
     }
 
     private fetchData() {
@@ -290,7 +336,10 @@ export class Scoreboard extends React.Component<{}, {
             }
         });
         if (currentMatch.id !== upcomingMatch.id) {
-            this.upcomingMatchTitle = upcomingMatch.title;
+            this.upcomingMatch = {
+                label: upcomingMatch.title,
+                value: upcomingMatch.id
+            };
         }
         if (currentMatch) {
             this.placeholder = currentMatch.title;
@@ -302,68 +351,8 @@ export class Scoreboard extends React.Component<{}, {
         }
     }
 
-    private getButttons(): React.ReactNode {
-        return <div style={{ display: "flex", flexDirection: "column", marginTop: "10px", width: "100%" }}>
-            <div style={{ display: "flex", flexDirection: "row", marginBottom: "5px", width: "100%" }}>
-                {this.getExportToExcelButton()}
-            </div>
-            <div style={{ display: "flex", flexDirection: "row", marginBottom: "5px", width: "100%" }}>
-                <Button
-                    variant="contained"
-                    color="secondary"
-                    onClick={() => {
-                        this.HidePlaceholderPrefix = true;
-                        this.setState({
-                            showPlayerDB: !this.state.showPlayerDB,
-                        });
-                    }}
-                    style={this.buttonTheme}
-                >
-                    {this.state.showPlayerDB ? "Point Table" : "Players List"}
-                </Button>
-                <Button
-                    variant="contained"
-                    color="primary"
-                    onClick={() => {
-                        window.open("https://docs.google.com/spreadsheets/d/1dDUpBAGOzmJBF7O0U60Yc005QTA01BFpSym9VywaquY/edit#gid=304738466", "_self");
-                    }}
-                    style={this.buttonTheme}
-                >
-                    Score Sheet
-                </Button>
-                <Button
-                    variant="contained"
-                    color="secondary"
-                    onClick={() => {
-                        window.open("https://docs.google.com/document/d/1lIOvXLeVBKRwQ8g4eo05eKStPUmJbl6Hhy2dsKYoDjY/edit", "_self");
-                    }}
-                    style={this.buttonTheme}
-                >
-                    {"Rule Book"}
-                </Button>
-            </div>
-        </div>
-    }
-
-    private getExportToExcelButton(): React.ReactNode {
-        return null;
-        //     return {
-        //         !this.state.showPlayerDB &&
-        //         this.state.data["header"]["bestPlayer"] &&
-        //         <Button
-        //             variant="contained"
-        //             color="default"
-        //             onClick={() => {
-        //                 this.gridApi.exportDataAsCsv();
-        //             }}
-        //         >
-        //             Save Points Table
-        //     </Button>
-        // }
-    }
-
     private getFixtureDropdown(): React.ReactNode {
-        return <div style={{ marginBottom: "5px", marginTop: "10px", display: "flex", flexDirection: "row" }}>
+        return <div style={Styles.rowStyle}>
             <div style={{ flexGrow: 1 }}>
                 <ReactDropdown
                     options={this.createWeeklyGroups()}

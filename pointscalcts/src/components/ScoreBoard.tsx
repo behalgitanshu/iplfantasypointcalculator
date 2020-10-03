@@ -95,26 +95,30 @@ export class Scoreboard extends React.Component<{}, {
                     style={Styles.buttonTheme}
                 >
                     Back
-                </Button>}
-            <Button
-                variant="contained"
-                color="secondary"
-                onClick={() => {
-                    this.matchId = this.upcomingMatch.value;
-                    this.placeholder = this.upcomingMatch.label;
-                    this.HidePlaceholderPrefix = true;
-                    this.fetchData();
-                    this.setState(
-                        {
-                            nextMatchClicked: true,
-                            title: this.upcomingMatch.label,
-                        }
-                    );
-                }}
-                style={Styles.nextMatchButton}
-            >
-                {"Scheduled: " + this.upcomingMatch.label.split(',')[0]}
-            </Button>
+                </Button>
+            }
+            {
+                !this.state.nextMatchClicked
+                && <Button
+                    variant="contained"
+                    color="secondary"
+                    onClick={() => {
+                        this.matchId = this.upcomingMatch.value;
+                        this.placeholder = this.upcomingMatch.label;
+                        this.HidePlaceholderPrefix = true;
+                        this.fetchData();
+                        this.setState(
+                            {
+                                nextMatchClicked: true,
+                                title: this.upcomingMatch.label,
+                            }
+                        );
+                    }}
+                    style={Styles.nextMatchButton}
+                >
+                    {"Scheduled: " + this.upcomingMatch.label}
+                </Button>
+            }
         </div>
     }
 

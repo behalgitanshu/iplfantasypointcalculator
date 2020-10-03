@@ -29,10 +29,11 @@ export class Styles {
         flexGrow: 1,
     };
 
-    public static nextMatchButton: any = {
+    public static nextMatchButton: CSSProperties = {
         fontWeight: 600,
         color: "white",
-        flexGrow: 1
+        flexGrow: 1,
+        fontSize: "x-small"
     };
 
     public static calculatorText: CSSProperties = {

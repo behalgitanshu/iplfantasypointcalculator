@@ -11,6 +11,7 @@ import { PlayerDB } from "./PlayerDB";
 import { CommonComponents } from "./Common";
 import { Styles } from "../constants/Styles";
 import { Style } from "@material-ui/icons";
+import { URL } from "../constants/URLs";
 
 export class Scoreboard extends React.Component<{}, {
     title: string,
@@ -278,7 +279,7 @@ export class Scoreboard extends React.Component<{}, {
             return;
         }
         const url = this.getJSONUrl(this.matchId);
-        const proxyurl = "https://cors-anywhere.herokuapp.com/"
+        const proxyurl = URL.proxyURL;
         fetch(proxyurl + url, { method: "get" })
             .then(response => response.json()
                 .then(x => {

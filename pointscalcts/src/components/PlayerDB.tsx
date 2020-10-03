@@ -7,6 +7,7 @@ import 'react-dropdown/style.css';
 import { ClipLoader } from "react-spinners";
 import { Chip } from "@material-ui/core";
 import { CommonComponents } from "./Common";
+import { URL } from "../constants/URLs";
 
 export class PlayerDB extends React.Component<{}, {
     showGrid: boolean;
@@ -76,7 +77,7 @@ export class PlayerDB extends React.Component<{}, {
     }
 
     private fetchData(url: string) {
-        const proxyurl = "https://cors-anywhere.herokuapp.com/"
+        const proxyurl = URL.proxyURL;
         fetch(proxyurl + url, { method: "get" })
             .then(response => response.json()
                 .then(x => {

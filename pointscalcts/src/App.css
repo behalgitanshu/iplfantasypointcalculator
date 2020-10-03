@@ -15,9 +15,11 @@
 
 .Dropdown-control.Dropdown-disabled {
   background-color: rgb(158, 158, 158) !important;
+  font-size: small;
 }
 
 .Dropdown-control {
+  font-size: small;
   background-color: bisque !important;
 }
 

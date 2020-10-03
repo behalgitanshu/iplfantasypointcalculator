@@ -113,7 +113,7 @@ export class Scoreboard extends React.Component<{}, {
                 }}
                 style={Styles.nextMatchButton}
             >
-                {"Scheduled: " + this.upcomingMatch.label}
+                {"Scheduled: " + this.upcomingMatch.label.split(',')[0]}
             </Button>
         </div>
     }

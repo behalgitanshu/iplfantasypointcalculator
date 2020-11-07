@@ -21,8 +21,6 @@ export class Scoreboard extends React.Component<{}, {
     fetchInProgress: boolean,
     nextMatchClicked: boolean,
 }> {
-
-    private fixtures: { [key: string]: any } = require("./../data/fixtures.json");
     private fixtureList: { title: string, id: string, startTime: string }[] = [];
     // private data: { [key: string]: any } = {}; // require("./../data/cricInfoData.json");
     private playerMap: { [key: string]: Player } = {};
@@ -306,22 +304,45 @@ export class Scoreboard extends React.Component<{}, {
     }
 
     private getFixtureList() {
-        this.fixtureList = this.fixtures["content"]["matchEvents"].map(
-            (match: any) => {
-                return {
-                    title: match.shortName + " - "
-                        + (match.description as string)
-                            .replace("Indian Premier League at ", "")
-                            .replace(" 2020", ""),
-                    id: match.id,
-                    startTime: match.startDate,
+        const fixtureUrl = "https://hsapi.espncricinfo.com/v1/pages/series/schedule?lang=en&leagueId=8048&year=2020";
+        const proxyurl = URL.proxyURL;
+        fetch(proxyurl + fixtureUrl, { method: "get" })
+            .then(response => response.json()
+                .then(fixtures => {
+                    this.fixtureList = fixtures["content"]["matchEvents"].map(
+                        (match: any) => {
+                            return {
+                                title: match.shortName + " - "
+                                    + (match.description as string)
+                                        .replace("Indian Premier League at ", "")
+                                        .replace(" 2020", ""),
+                                id: match.id,
+                                startTime: match.startDate,
+                            }
+                        }
+                    );
+                    const id: string = this.getCurrentMatch();
+                    this.matchId = id;
+                    this.fetchData();
+                    setInterval(this.fetchData.bind(this), 300000);
+                    this.setState({
+                        fetchInProgress: true
+                    });
+                })
+            ).catch(
+                (error) => {
+                    this.setState(
+                        {
+                            errorMessage: "kuchh to gadbad hai - Technical message: " + error
+                        }
+                    );
                 }
+            )
+        this.setState(
+            {
+                fetchInProgress: true,
             }
         );
-        const id: string = this.getCurrentMatch();
-        this.matchId = id;
-        this.fetchData();
-        setInterval(this.fetchData.bind(this), 300000);
     }
 
     private getCurrentMatch(): any {

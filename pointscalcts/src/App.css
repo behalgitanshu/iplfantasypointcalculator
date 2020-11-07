@@ -13,6 +13,30 @@
   height: 44vh;
 }
 
+.year .Dropdown-control.Dropdown-disabled {
+    background-color: blue !important;
+    font-size: small;
+  }
+  
+.year .Dropdown-control {
+    font-size: small;
+    background-color: skyblue !important;
+    border: none !important;
+  }
+  
+.year .Dropdown-option.is-selected {
+    background-color: greenyellow !important;
+  }
+  
+.year .Dropdown-placeholder{
+    font-weight: 500;
+  }
+  
+.year .Dropdown-menu{
+    max-height: 60vh !important;
+    background-color: skyblue !important;
+  }
+
 .Dropdown-control.Dropdown-disabled {
   background-color: rgb(158, 158, 158) !important;
   font-size: small;

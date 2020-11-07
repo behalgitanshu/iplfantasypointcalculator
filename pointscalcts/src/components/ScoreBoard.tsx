@@ -21,6 +21,7 @@ export class Scoreboard extends React.Component<{}, {
     fetchInProgress: boolean,
     nextMatchClicked: boolean,
 }> {
+    private year: string = "2020";
     private fixtureList: { title: string, id: string, startTime: string }[] = [];
     // private data: { [key: string]: any } = {}; // require("./../data/cricInfoData.json");
     private playerMap: { [key: string]: Player } = {};
@@ -41,9 +42,6 @@ export class Scoreboard extends React.Component<{}, {
             fetchInProgress: false,
             nextMatchClicked: false,
         }
-    }
-
-    componentDidMount() {
         this.getFixtureList();
     }
 
@@ -56,7 +54,10 @@ export class Scoreboard extends React.Component<{}, {
         }
         return (
             <div style={{ display: "flex", flexDirection: "column", height: "100%" }}>
-                <h3 style={{ margin: "auto", color: "white" }}>IPL Fantasy League 2020 - F.R.I.E.N.D.S</h3>
+                <div style={{ display: "flex", flexDirection: "row" }}>
+                    <h3 style={{ color: "white", marginTop: "auto", marginBottom: "auto", flexGrow: 1 }}>IPL Fantasy League - F.R.I.E.N.D.S</h3>
+                    {this.getYearDropdown()}
+                </div>
                 <div style={{ flexGrow: 1 }}>
                     {this.state.showPlayerDB && <PlayerDB />}
                     {!this.state.showPlayerDB && this.getDashboard()}
@@ -304,7 +305,7 @@ export class Scoreboard extends React.Component<{}, {
     }
 
     private getFixtureList() {
-        const fixtureUrl = "https://hsapi.espncricinfo.com/v1/pages/series/schedule?lang=en&leagueId=8048&year=2020";
+        const fixtureUrl = "https://hsapi.espncricinfo.com/v1/pages/series/schedule?lang=en&leagueId=8048&year=" + this.year;
         const proxyurl = URL.proxyURL;
         fetch(proxyurl + fixtureUrl, { method: "get" })
             .then(response => response.json()
@@ -375,6 +376,33 @@ export class Scoreboard extends React.Component<{}, {
                 errorMessage: "Tournament Chalu hone ke baad ana :P"
             });
         }
+    }
+
+    private getYearDropdown(): React.ReactNode {
+        return <div className= "year">
+            <ReactDropdown
+                options={[
+                    "2020",
+                    "2019",
+                    "2018",
+                    "2017",
+                    "2016",
+                    "2015",
+                    "2014",
+                    "2013",
+                    "2012",
+                    "2011",
+                    "2010",
+                    "2009",
+                    "2008",
+                ]}
+                onChange={(option: any) => {
+                    this.year = option.value;
+                    this.getFixtureList();
+                }}
+                value={"2020"}
+            />
+        </div>;
     }
 
     private getFixtureDropdown(): React.ReactNode {

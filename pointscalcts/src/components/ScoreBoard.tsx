@@ -21,7 +21,7 @@ export class Scoreboard extends React.Component<{}, {
     fetchInProgress: boolean,
     nextMatchClicked: boolean,
 }> {
-    private year: string = "2020";
+    private year: string = "2021";
     private fixtureList: { title: string, id: string, startTime: string }[] = [];
     // private data: { [key: string]: any } = {}; // require("./../data/cricInfoData.json");
     private playerMap: { [key: string]: Player } = {};
@@ -316,7 +316,7 @@ export class Scoreboard extends React.Component<{}, {
                                 title: match.shortName + " - "
                                     + (match.description as string)
                                         .replace("Indian Premier League at ", "")
-                                        .replace(" 2020", ""),
+                                        .replace(" 2021", ""),
                                 id: match.id,
                                 startTime: match.startDate,
                             }
@@ -382,6 +382,7 @@ export class Scoreboard extends React.Component<{}, {
         return <div className= "year">
             <ReactDropdown
                 options={[
+                    "2021",
                     "2020",
                     "2019",
                     "2018",
@@ -400,7 +401,7 @@ export class Scoreboard extends React.Component<{}, {
                     this.year = option.value;
                     this.getFixtureList();
                 }}
-                value={"2020"}
+                value={"2021"}
             />
         </div>;
     }

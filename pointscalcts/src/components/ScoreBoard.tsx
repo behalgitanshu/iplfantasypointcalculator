@@ -24,7 +24,7 @@ export class Scoreboard extends React.Component<
     nextMatchClicked: boolean;
   }
 > {
-  private year: string = "2022";
+  private year: string = "2023";
   private fixtureList: { title: string; id: string; startTime: string }[] = [];
   // private data: { [key: string]: any } = {}; // require("./../data/cricInfoData.json");
   private playerMap: { [key: string]: Player } = {};
@@ -346,7 +346,7 @@ export class Scoreboard extends React.Component<
                   " - " +
                   (match.description as string)
                     .replace("Indian Premier League at ", "")
-                    .replace(" 2022", ""),
+                    .replace(" 2023", ""),
                 id: match.id,
                 startTime: match.startDate,
               };
@@ -413,6 +413,7 @@ export class Scoreboard extends React.Component<
       <div className="year">
         <ReactDropdown
           options={[
+            "2023",
             "2022",
             "2021",
             "2020",
@@ -433,7 +434,7 @@ export class Scoreboard extends React.Component<
             this.year = option.value;
             this.getFixtureList();
           }}
-          value={"2022"}
+          value={"2023"}
         />
       </div>
     );

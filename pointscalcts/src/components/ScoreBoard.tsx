@@ -354,6 +354,7 @@ export class Scoreboard extends React.Component<
               };
             }
           );
+          this.fixtureList = this.fixtureList.sort((a,b) => +a.id - +b.id);
           const id: string = this.getCurrentMatch();
           this.matchId = id;
           this.fetchData();

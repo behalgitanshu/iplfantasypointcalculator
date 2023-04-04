@@ -313,6 +313,7 @@ export class Scoreboard extends React.Component<
     fetch(proxyurl + url, { method: "get" })
       .then((response) =>
         response.json().then((x) => {
+          x = JSON.parse(x["contents"]);
           this.setState({
             fetchInProgress: false,
             data: x,
@@ -332,12 +333,13 @@ export class Scoreboard extends React.Component<
 
   private getFixtureList() {
     const fixtureUrl =
-      "https://hsapi.espncricinfo.com/v1/pages/series/schedule?lang=en&leagueId=8048&year=" +
+      "https://hsapi.espncricinfo.com/v1/pages/series/schedule?lang=en%26leagueId=8048%26year=" +
       this.year;
     const proxyurl = URL.proxyURL;
     fetch(proxyurl + fixtureUrl, { method: "get" })
       .then((response) =>
         response.json().then((fixtures) => {
+          fixtures = JSON.parse(fixtures["contents"]);
           this.fixtureList = fixtures["content"]["matchEvents"].map(
             (match: any) => {
               return {
@@ -582,9 +584,9 @@ export class Scoreboard extends React.Component<
 
   private getJSONUrl(eventId: string): string {
     return (
-      "https://hsapi.espncricinfo.com/v1/pages/match/scoreboard?lang=en&leagueId=8048&eventId=" +
+      "https://hsapi.espncricinfo.com/v1/pages/match/scoreboard?lang=en%26leagueId=8048%26eventId=" +
       eventId +
-      "&liveTest=false&qaTest=false"
+      "%26liveTest=false%26qaTest=false"
     );
   }
 
